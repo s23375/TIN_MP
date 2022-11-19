@@ -9,3 +9,7 @@ exports.showAddProductModelForm = (req, res, next) => {
 exports.showProductModelDetails = (req, res, next) => {
     res.render('pages/ProductModel/form-detail', { navLocation: 'productModel' });
 }
+
+exports.showProductModelEdit = (req, res, next) => {
+    res.render('pages/ProductModel/form-edit', { navLocation: 'productModel' });
+}

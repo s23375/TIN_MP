@@ -23,7 +23,7 @@
 <main>
     <h2>Edit the order</h2>
 
-    <form class="form">
+    <form class="form" novalidate onsubmit="return validateForm();">
         <label for="IDorderedProduct">IDorderedProduct: </label> 
         <input type="number" name="IDorderedProduct" id="IDorderedProduct" value="1" disabled> <!-- Removed "class="error-input" as this isn't suposed to be modified "-->
         <span id="errorIDorderedProduct" class="errors-text"></span>

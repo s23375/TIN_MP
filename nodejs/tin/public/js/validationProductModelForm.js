@@ -52,7 +52,7 @@ function validateForm() {
     } else if(!checkCompareDate(endDistributionDateInput.value, productionDateInput.value)) {
         valid = false;
         endDistributionDateInput.classList.add("error-input");
-        errorEndDistributionDate.innerText = "This field cannot contain a date past production date."
+        errorEndDistributionDate.innerText = "This field cannot contain a date before production date."
     }
 
     return valid;

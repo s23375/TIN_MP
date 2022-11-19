@@ -86,7 +86,7 @@ function checkCompareDate(value, compareVal) {
     if(!value) {
         return true;
     }
-    if(value > compareVal) {
+    if(value < compareVal) {
         return false;
     }
 

@@ -5,5 +5,10 @@ const productModelController = require('../controllers/productModelController') 
 router.get('/', productModelController.showProductModelList);
 router.get('/add', productModelController.showAddProductModelForm);
 router.get('/details/:IDproduct', productModelController.showProductModelDetails);
+router.get('/edit/:IDproduct', productModelController.showProductModelEdit);
+/*
+the paths defined here will be used in hrefs when you want to refer to them, like
+/ProductModel/add leads to "Add new product" page
+ */
 
 module.exports = router; // exporting router so it can be used elsewhere
