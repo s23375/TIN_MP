@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> BMI view list page</title>
+        <link rel="stylesheet" href="../../css/style.css" /> <!-- attaching css file -->
+        <meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- defining responding to different device sizes -->
+    </head>
+<body>
+
+<header>
+    <h1> BMI</h1>
+    <img src="../../images/logo.png" alt="BMI Logo">
+</header>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Main page</a></li>
+        <li><a href="../ProductModel/list.html" class="active">ProductModel</a></li>
+        <li><a href="../Order/list.html">Order</a></li>
+        <li><a href="../OrderedProducts/list.html">OrderedProducts</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>All products</h2>
+    <table class="table-list"> <!-- Table with first table's fields--> <!-- ADDED TABLE-LIST CLASS FOR CSS TO WORK-->
+        <thead>
+            <tr>
+                <th>IDproduct</th>
+                <th>Name</th>
+                <th>Production Date</th>
+                <th>Price</th>
+                <th>Distribution End Date</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="IDproduct">1</td>
+                <td data-label="Name">Axceletron DB120</td>
+                <td data-label="Production Date">16-09-2022</td>
+                <td data-label="Price">$100</td>
+                <td data-label="Distribution End date"> - </td>
+                <td>
+                    <ul class="list-actions"> <!-- add class list-actions to align buttons horizontally -->
+                        <li>
+                            <a href="form-detail.html" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="form-edit.html" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-delete">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td data-label="IDproduct">2</td>
+                <td data-label="Name">PlasticSeries Friend 350</td>
+                <td data-label="Production Date">04-02-2021</td>
+                <td data-label="Price">$50</td>
+                <td data-label="Distribution End date"> - </td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="form-detail.html" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="form-edit.html" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-delete">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr> 
+                <td data-label="IDproduct">3</td>
+                <td data-label="Name">Basix e11</td>
+                <td data-label="Production Date">04-02-2021</td>
+                <td data-label="Price">$5</td>
+                <td data-label="Distribution End date">09-11-2022</td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="form-detail.html" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="form-edit.html" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-delete">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <p><a href="form.html" class="button-add">Add new product</a></p>
+        <p class="delete-message">Product deleted successfully</p>
+    </div>
+    
+</main>
+
+    <footer>
+        Bartosz Janowski, s23375
+    </footer>
+
+</body>
+</html>

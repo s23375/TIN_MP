@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> BMI editing page</title>
+        <link rel="stylesheet" href="../../css/style.css" /> <!-- attaching css file -->
+        <meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- defining responding to different device sizes -->
+        <script type="application/javascript" src="../../js/validationCommon.js"></script>
+        <script type="application/javascript" src="../../js/validationOrderedProductsForm.js"></script>
+    </head>
+<body>
+
+<header>
+    <h1> BMI</h1>
+    <img src="../../images/logo.png" alt="BMI Logo">
+</header>
+<nav>
+    <ul>
+        <li><a href="../../index.ejs">Main page</a></li>
+        <li><a href="../ProductModel/list.ejs">ProductModel</a></li>
+        <li><a href="../Order/list.ejs">Order</a></li>
+        <li><a href="list.ejs" class="active">OrderedProducts</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>Add products to an order</h2>
+
+    <form class="form" novalidate onsubmit="return validateForm();">
+        <label for="quantity">Quantity: <span class="symbol-required">*</span></label> 
+        <input type="number" name="quantity" id="quantity" class="error-input" required>
+        <span id="errorQuantity" class="errors-text">Field required dummy.</span>
+
+        <label for="product">Product: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
+        <select name="product" id="product" class="error-input" required>
+            <option>-- Choose product --</option>
+            <option value="1"> Axceletron DB120</option>
+            <option value="2"> PlasticSeries Friend 350</option>
+            <option value="3"> Basix e11</option>
+        </select>
+        <span id="errorIDproduct" class="errors-text">Field required dummy.</span>
+
+        <label for="IDorder">For: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
+        <select name="IDorder" id="IDorder" class="error-input" required>
+            <option>-- Choose the order --</option>
+            <option value="1">IDorder 1 - BMIgeneral@bmi.com</option>
+            <option value="2">IDorder 2 - daniel@gmail.com</option>
+            <option value="3">IDorder 3 - eilenedover@gmail.com</option>
+        </select>
+        <span id="errorIDorder" class="errors-text">Field required dummy.</span>
+
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text">There are errors in the form!</p>
+            <input type="submit" value="Add" class="form-button-submit">
+            <a href="list.ejs" class="form-button-cancel">Cancel</a>
+        </div>
+    </form>
+</main>
+
+    <footer>
+        Bartosz Janowski, s23375
+    </footer>
+
+</body>
+</html>

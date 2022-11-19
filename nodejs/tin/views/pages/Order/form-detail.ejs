@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> BMI details page</title>
+        <link rel="stylesheet" href="../../css/style.css" /> <!-- attaching css file -->
+        <meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- defining responding to different device sizes -->
+    </head>
+<body>
+
+<header>
+    <h1> BMI </h1>
+    <img src="../../images/logo.png" alt="BMI Logo">
+</header>
+<nav>
+    <ul>
+        <li><a href="../../index.ejs">Main page</a></li>
+        <li><a href="../ProductModel/list.ejs">ProductModel</a></li>
+        <li><a href="list.ejs" class="active">Order</a></li>
+        <li><a href="../OrderedProducts/list.ejs">OrderedProducts</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>Order details</h2>
+
+    <form class="form">
+        <label for="IDorder">IDorder: </label> 
+        <input type="number" name="IDorder" id="IDorder" value="1" disabled>
+        <span id="errorIDorder" class="errors-text"></span>
+
+        <label for="datePlaced">Order placed: <span class="symbol-required">*</span></label> 
+        <input type="date" name="datePlaced" id="datePlaced" value="2022-10-12" class="error-input" disabled>
+        <span id="errorDatePlaced" class="errors-text">Field required dummy.</span>
+
+        <label for="clientContactInfo">Contact info: <span class="symbol-required">*</span></label> 
+        <input type="text" name="clientContactInfo" id="clientContactInfo" value="BMIgeneral@bmi.com" class="error-input" disabled>
+        <span id="errorClientContactInfo" class="errors-text">Field required dummy.</span>
+
+        <label for="shippingCompany">Shipping method: <span class="symbol-required">*</span></label> 
+        <input type="text" name="shippingCompany" id="shippingCompany" value="DHL" class="error-input" disabled>
+        <span id="errorShippingCompany" class="errors-text">Field required dummy.</span>
+
+        <label for="premiumDelivery">Premium delivery: </label>  <!-- premiumDelivery is nullable therefore no "required" keyword-->
+        <input type="checkbox" name="premiumDelivery" id="premiumDelivery" checked disabled>
+        <span id="errorPremiumDelivery"></span>
+
+        <div class="form-buttons"> 
+            <a href="form-edit.ejs" class="form-button-edit">Edit</a>
+        </div>
+    </form>
+
+    <h2>Ordered products</h2>
+    <table class="table-list"> <!-- Table with first table's fields-->
+        <thead>
+            <tr>
+                <th>IDorderedProduct</th>
+                <th>Quantity</th>
+                <th>Product</th>
+                <th>IDorder</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="IDorderedProduct">1</td>
+                <td data-label="Quantity">1</td>
+                <td data-label="Product">Axceletron DB120</td>
+                <td data-label="IDorder">1</td>
+            </tr>
+            <tr>
+                <td data-label="IDorderedProduct">2</td>
+                <td data-label="Quantity">2</td>
+                <td data-label="Product">PlasticSeries Friend 350</td>
+                <td data-label="IDorder">1</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="list.ejs" class="form-button-back">Back</a>
+
+</main>
+
+    <footer>
+        Bartosz Janowski, s23375
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> BMI editing page</title>
+        <link rel="stylesheet" href="../../css/style.css" /> <!-- attaching css file -->
+        <meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- defining responding to different device sizes -->
+    </head>
+<body>
+
+<header>
+    <h1> BMI</h1>
+    <img src="../../images/logo.png" alt="BMI Logo">
+</header>
+<nav>
+    <ul>
+        <li><a href="../../index.ejs">Main page</a></li>
+        <li><a href="../ProductModel/list.ejs">ProductModel</a></li>
+        <li><a href="list.ejs" class="active">Order</a></li>
+        <li><a href="../OrderedProducts/list.ejs">OrderedProducts</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>Edit product</h2>
+
+    <form class="form">
+        <!--
+        <label for="IDorder">IDorder: <span class="symbol-required">*</span></label> 
+        <input type="number" name="IDorder" id="IDorder" value="1" class="error-input" required>
+        <span id="errorIDorder" class="errors-text">Field required dummy.</span>
+        -->
+
+        <label for="IDorder">IDorder: </label> 
+        <input type="number" name="IDorder" id="IDorder" value="1" disabled>
+        <span id="errorIDorder" class="errors-text"></span>
+
+        <!--
+        <label for="datePlaced">Order placed: <span class="symbol-required">*</span></label> 
+        <input type="date" name="datePlaced" id="datePlaced" value="2022-10-12" class="error-input" required>
+        <span id="errorDatePlaced" class="errors-text">Field required dummy.</span>
+        -->
+
+        <label for="clientContactInfo">Contact info: <span class="symbol-required">*</span></label> 
+        <input type="text" name="clientContactInfo" id="clientContactInfo" value="BMIgeneral@bmi.com" class="error-input" required>
+        <span id="errorClientContactInfo" class="errors-text">Field required dummy.</span>
+
+        <!--
+        <label for="shippingCompany">Shipping method: <span class="symbol-required">*</span></label> 
+        <input type="text" name="shippingCompany" id="shippingCompany" value="DHL" class="error-input" required>
+        <span id="errorShippingCompany" class="errors-text">Field required dummy.</span>
+        -->
+        <label for="shippingCompany"> Shipping method: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
+        <select name="shippingCompany" id="shippingCompany" required>
+            <option>DHL</option>
+            <option value="1"> DHL</option>
+            <option value="2"> Inpost</option>
+            <option value="3"> Poczta Polska</option>
+        </select>
+        <span id="errorShippingCompany" class="errors-text"></span>
+
+        <label for="premiumDelivery">Premium delivery: </label>  <!-- premiumDelivery is nullable therefore no "required" keyword-->
+        <input type="checkbox" name="premiumDelivery" id="premiumDelivery" checked>
+        <span id="errorPremiumDelivery"></span>
+
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text">There are errors in the form!</p>
+            <input type="submit" value="Add" class="form-button-submit">
+            <a href="list.ejs" class="form-button-cancel">Cancel</a>
+        </div>
+    </form>
+</main>
+
+    <footer>
+        Bartosz Janowski, s23375
+    </footer>
+
+</body>
+</html>

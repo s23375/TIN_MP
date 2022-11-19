@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> BMI details page</title>
+        <link rel="stylesheet" href="../../css/style.css" /> <!-- attaching css file -->
+        <meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- defining responding to different device sizes -->
+    </head>
+<body>
+
+<header>
+    <h1> BMI </h1>
+    <img src="../../images/logo.png" alt="BMI Logo">
+</header>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Main page</a></li>
+        <li><a href="../ProductModel/list.html">ProductModel</a></li>
+        <li><a href="../Order/list.html">Order</a></li>
+        <li><a href="../OrderedProducts/list.html" class="active">OrderedProducts</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>Ordered product details</h2>
+
+    <form class="form">
+        <label for="IDorderedProduct">IDorderedProduct: </label> 
+        <input type="number" name="IDorder" id="IDorder" value="1" disabled>
+        <span id="errorIDorderedProduct" class="errors-text"></span>
+
+        <label for="quantity">Quantity: <span class="symbol-required">*</span></label> 
+        <input type="number" name="quantity" id="quantity" value="1" class="error-input" disabled>
+        <span id="errorQuantity" class="errors-text">Field required dummy.</span>
+
+        <label for="product">Product: <span class="symbol-required">*</span></label> 
+        <input type="text" name="product" id="product" value="Axceletron DB120" class="error-input" disabled>
+        <span id="errorIDproduct" class="errors-text">Field required dummy.</span>
+
+        <div class="form-buttons"> 
+            <a href="form-edit.html" class="form-button-edit">Edit</a> 
+        </div>
+    </form>
+
+    <h2>Related order details</h2>
+    <table class="table-list"> <!-- Table with first table's fields-->
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Date of placing order</th>
+                <th>Contact info</th>
+                <th>Shipping company</th>
+                <th>Premium delivery</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Order ID">1</td>
+                <td data-label="Date of placing order">12-10-2022</td>
+                <td data-label="Contact info">BMIgeneral@bmi.com</td>
+                <td data-label="Shipping company">DHL</td>
+                <td data-label="Premium delivery">yes</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="list.html" class="form-button-back">Back</a>
+
+</main>
+
+    <footer>
+        Bartosz Janowski, s23375
+    </footer>
+
+</body>
+</html>

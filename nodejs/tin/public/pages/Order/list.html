@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> BMI view list page</title>
+        <link rel="stylesheet" href="../../css/style.css" /> <!-- attaching css file -->
+        <meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- defining responding to different device sizes -->
+    </head>
+<body>
+
+<header>
+    <h1> BMI</h1>
+    <img src="../../images/logo.png" alt="BMI Logo">
+</header>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Main page</a></li>
+        <li><a href="../ProductModel/list.html">ProductModel</a></li>
+        <li><a href="../Order/list.html" class="active">Order</a></li>
+        <li><a href="../OrderedProducts/list.html">OrderedProducts</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>All orders</h2>
+    <table class="table-list"> <!-- Table with first table's fields--> <!-- ADDED TABLE-LIST CLASS FOR CSS TO WORK-->
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Date of placing order</th>
+                <th>Contact info</th>
+                <th>Shipping company</th>
+                <th>Premium delivery</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Order ID">1</td>
+                <td data-label="Date of placing order">12-10-2022 </td>
+                <td data-label="Contact info">BMIgeneral@bmi.com</td>
+                <td data-label="Shipping company">DHL</td>
+                <td data-label="Premium delivery">Yes</td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="form-detail.html" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="form-edit.html" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-delete">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td data-label="Order ID">2</td>
+                <td data-label="Date of placing order">13-10-2022 </td>
+                <td data-label="Contact info">daniel@gmail.com</td>
+                <td data-label="Shipping company">Inpost</td>
+                <td data-label="Premium delivery">No</td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="form-detail.html" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="form-edit.html" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-delete">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr> 
+                <td data-label="Order ID">3</td>
+                <td data-label="Date of placing order">13-10-2022</td>
+                <td data-label="Contact info">eilenedover@gmail.com</td>
+                <td data-label="Shipping company">DHL</td>
+                <td data-label="Premium delivery">No</td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="form-detail.html" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="form-edit.html" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-delete">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <p><a href="form.html" class="button-add">Add new order</a></p>
+        <p class="delete-message">Product deleted successfully</p>
+    </div>
+    
+</main>
+
+    <footer>
+        Bartosz Janowski, s23375
+    </footer>
+
+</body>
+</html>
