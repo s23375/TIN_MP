@@ -24,7 +24,6 @@ app.use('/users', usersRouter); // if we type /user it sends us here
 // there aren't actually files, if our path is localhost/users/1/books/5
 // it actually means /users/:id/books/:bid
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
