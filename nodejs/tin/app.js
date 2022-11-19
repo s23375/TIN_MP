@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const productModelRouter = require('./routes/productModelRoute');
 
 var app = express();
 
@@ -20,7 +20,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter); // default router
-app.use('/users', usersRouter); // if we type /user it sends us here
+app.use('/ProductModel', productModelRouter);
+
+//app.use('/users', usersRouter); // if we type /user it sends us here
 // there aren't actually files, if our path is localhost/users/1/books/5
 // it actually means /users/:id/books/:bid
 
