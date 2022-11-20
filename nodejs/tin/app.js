@@ -28,6 +28,13 @@ app.use('/ProductModel', productModelRoute);
 app.use('/Order', orderRoute);
 app.use('/OrderedProducts', orderedProductsRoute);
 
+// calling the monstrosity that is config/sequelize/init.js
+const sequelizeInit = require('./config/sequelize/init');
+sequelizeInit()
+    .catch(err => {
+      console.log(err);
+    })
+
 //app.use('/users', usersRouter); // if we type /user it sends us here
 // there aren't actually files, if our path is localhost/users/1/books/5
 // it actually means /users/:id/books/:bid
