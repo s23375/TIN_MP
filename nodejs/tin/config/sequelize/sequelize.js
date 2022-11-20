@@ -5,4 +5,4 @@ const sequelize = new Sequelize('myDatabase', 'root', 'root', {
     host: 'localhost'
 });
 
-module.exports = sequelize;
+module.exports = sequelize; //TODO app crash because of something here?

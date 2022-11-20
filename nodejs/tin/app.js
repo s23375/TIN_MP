@@ -29,11 +29,15 @@ app.use('/Order', orderRoute);
 app.use('/OrderedProducts', orderedProductsRoute);
 
 // calling the monstrosity that is config/sequelize/init.js
-const sequelizeInit = require('./config/sequelize/init');
+const sequelizeInit = require('./config/sequelize/init'); //TODO causing a crash, go to config/sequelize/sequelize.js
 sequelizeInit()
     .catch(err => {
       console.log(err);
     })
+
+// adding API routes
+const productApiRoute = require('./routes/api/ProductModelApiRoute');
+app.use('/api/products', productApiRoute);
 
 //app.use('/users', usersRouter); // if we type /user it sends us here
 // there aren't actually files, if our path is localhost/users/1/books/5
