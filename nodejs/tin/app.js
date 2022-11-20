@@ -4,8 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/indexRoute');
-const productModelRouter = require('./routes/productModelRoute');
+/*routers */
+var indexRoute = require('./routes/indexRoute');
+const productModelRoute = require('./routes/productModelRoute');
+const orderRoute = require('./routes/orderRoute');
+const orderedProductsRoute = require('./routes/orderedProductsRoute');
 
 var app = express();
 
@@ -19,8 +22,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter); // default router
-app.use('/ProductModel', productModelRouter);
+// using routes
+app.use('/', indexRoute); // default router
+app.use('/ProductModel', productModelRoute);
+app.use('/Order', orderRoute);
+app.use('/OrderedProducts', orderedProductsRoute);
 
 //app.use('/users', usersRouter); // if we type /user it sends us here
 // there aren't actually files, if our path is localhost/users/1/books/5

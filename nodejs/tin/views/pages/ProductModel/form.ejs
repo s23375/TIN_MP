@@ -2,11 +2,7 @@
 <main>
     <h2>New product</h2>
 
-    <form class="form" novalidate onsubmit="return validateForm();"> <!-- added onsubmti variable, novalidate - turned off standard html5 validation -->
-        <!-- <label for="IDproduct">IDproduct: <span class="symbol-required">*</span></label> -- ADDED <span> FOR CSS --> 
-        <!-- <input type="number" name="IDproduct" id="IDproduct" class="error-input" disabled> -- ADDED error-input CLASS FOR CSS-->
-        <!-- <span id="errorIDproduct" class="errors-text">Field required dummy.</span> -- ADDED errors-text CLASS TO ERROR MESSAGES! -->
-
+    <form class="form" novalidate onsubmit="return validateForm();">
         <label for="productName">Name of product: <span class="symbol-required">*</span></label> 
         <input type="text" name="productName" id="productName" class="error-input" placeholder="2-60 characters" required>
         <span id="errorProductName" class="errors-text">Field required dummy.</span>
