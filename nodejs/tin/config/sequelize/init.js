@@ -4,8 +4,9 @@ const ProductModel = require('../../model/sequelize/ProductModel');
 const OrderedProduct = require('../../model/sequelize/OrderedProduct');
 const Order = require('../../model/sequelize/Order');
 
-// to learn more about .hasMany, .belongsTo(as well as .hasOne and .belongsToMany): https://sequelize.org/docs/v6/core-concepts/assocs/
 /*
+to learn more about .hasMany, .belongsTo(as well as .hasOne and .belongsToMany): https://sequelize.org/docs/v6/core-concepts/assocs/
+
 here's the important bit:
 The A.belongsTo(B) association means that a One-To-One relationship exists between A and B, with the foreign key being defined in the source model (A).
 The A.hasMany(B) association means that a One-To-Many relationship exists between A and B, with the foreign key being defined in the target model (B).

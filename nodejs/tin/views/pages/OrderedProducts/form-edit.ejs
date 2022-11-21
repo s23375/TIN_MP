@@ -3,16 +3,16 @@
     <h2>Edit the order</h2>
 
     <form class="form" novalidate onsubmit="return validateForm();">
-        <label for="IDorderedProduct">IDorderedProduct: </label> 
-        <input type="number" name="IDorderedProduct" id="IDorderedProduct" value="1" disabled> <!-- Removed "class="error-input" as this isn't suposed to be modified "-->
+        <label for="IDorderedProduct">IDorderedProduct: </label>
+        <input type="number" name="IDorderedProduct" id="IDorderedProduct" value="1" disabled>
         <span id="errorIDorderedProduct" class="errors-text"></span>
 
-        <label for="quantity">Quantity: <span class="symbol-required">*</span></label> 
+        <label for="quantity">Quantity: <span class="symbol-required">*</span></label>
         <input type="number" name="quantity" id="quantity" value="1" required>
-        <span id="errorquantity" class="errors-text"></span>
+        <span id="errorQuantity" class="errors-text"></span>
 
-        <label for="IDproduct">Product: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
-        <select name="IDproduct" id="IDproduct" required>
+        <label for="product">Product: <span class="symbol-required">*</span></label>
+        <select name="product" id="product" required>
             <option>Axceletron DB120</option>
             <option value="1"> Axceletron DB120</option>
             <option value="2"> PlasticSeries Friend 350</option>
@@ -22,11 +22,12 @@
 
         <label for="IDorder">IDorder: </label> 
         <input type="number" name="IDorder" id="IDorder" value="1" disabled>
+        <span id="errorIDorder" class="errors-text"></span>
 
         <div class="form-buttons">
             <p id="errorsSummary" class="errors-text"></p>
             <input type="submit" value="Add" class="form-button-submit">
-            <a href="list.ejs" class="form-button-cancel">Cancel</a>
+            <a href="/OrderedProducts/" class="form-button-cancel">Cancel</a>
         </div>
     </form>
 </main>

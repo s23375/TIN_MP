@@ -19,7 +19,7 @@ exports.getProductById = (req, res, next) => {
                     message: 'Product with id: '+IDproduct+' not found'
                 })
             } else {
-                res.status.json(product);
+                res.status(202).json(product); // had to add (202) to status for this to work, otherwise it'd throw a .json is not a function
             }
         });
 };

@@ -22,23 +22,23 @@ exports.getProductById = (IDproduct) => {
 
 exports.createProduct = (newProductData) => {
     return ProductModel.create({
-        name: 'addProductTest',
-        price: 69,
-        productionDate: '1996-11-01',
-        endDistributionDate: null
+        name: newProductData.name,
+        price: newProductData.price,
+        productionDate: newProductData.productionDate,
+        endDistributionDate: newProductData.endDistributionDate
     });
 };
 
 exports.updateProduct = (IDproduct, productData) => {
-    const name = productData.name;
-    const price = productData.price;
-    const productionDate = productData.productionDate;
-    const endDistributionDate = productData.endDistributionDate;
+    // const name = productData.name;
+    // const price = productData.price;
+    // const productionDate = productData.productionDate;
+    // const endDistributionDate = productData.endDistributionDate;
     return ProductModel.update(productData, {where: {IDproduct: IDproduct}});
 };
 
 exports.deleteProduct = (IDproduct) => {
-    return Employee.destroy({
+    return ProductModel.destroy({
         where: {IDproduct: IDproduct}
     });
 };
