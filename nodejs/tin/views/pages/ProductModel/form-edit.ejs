@@ -3,30 +3,24 @@
     <h2>Edit product</h2>
 
     <form class="form" novalidate onsubmit="return validateForm();">
-        <!--
-        <label for="IDproduct">IDproduct: <span class="symbol-required">*</span></label> 
-        <input type="number" name="IDproduct" id="IDproduct" value="1" class="error-input" required>
-        <span id="errorIDproduct" class="errors-text">Field required dummy.</span>
-        -->
-
         <label for="productName">Name of product: <span class="symbol-required">*</span></label> 
-        <input type="text" name="productName" id="productName" value="Axceletron DB120" class="error-input" required>
-        <span id="errorProductName" class="errors-text">Field required dummy.</span>
+        <input type="text" name="productName" id="productName" value="Axceletron DB120" required>
+        <span id="errorProductName" class="errors-text"></span>
 
         <label for="productPrice">Price: <span class="symbol-required">*</span></label> 
-        <input type="number" name="productPrice" id="productPrice" value="100" class="error-input" required>
-        <span id="errorProductPrice" class="errors-text">Field required dummy.</span>
+        <input type="number" name="productPrice" id="productPrice" value="100" required>
+        <span id="errorProductPrice" class="errors-text"></span>
 
         <label for="productionDate">Production date: <span class="symbol-required">*</span></label> 
-        <input type="date" name="productionDate" id="productionDate" value="2022-09-16" class="error-input" required>
-        <span id="errorProductionDate" class="errors-text">Field required dummy.</span>
+        <input type="date" name="productionDate" id="productionDate" value="2022-09-16" required>
+        <span id="errorProductionDate" class="errors-text"></span>
 
         <label for="endDistributionDate">Distribution end date: </label> 
-        <input type="date" name="endDistributionDate" id="endDistributionDate" class="error-input">
-        <span id="errorEndDistributionDate" class="errors-text">Entered a date before production date!</span>
+        <input type="date" name="endDistributionDate" id="endDistributionDate" >
+        <span id="errorEndDistributionDate" class="errors-text"></span>
 
         <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text">There are errors in the form!</p>
+            <p id="errorsSummary" class="errors-text"></p>
             <input type="submit" value="Edit" class="form-button-submit">
             <a href="/ProductModel/" class="form-button-cancel">Cancel</a>
         </div>

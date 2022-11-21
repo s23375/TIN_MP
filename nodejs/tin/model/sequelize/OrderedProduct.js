@@ -21,3 +21,5 @@ const OrderedProduct = sequelize.define('OrderedProduct', {
         allowNull: false
     }
 });
+
+module.exports = OrderedProduct;

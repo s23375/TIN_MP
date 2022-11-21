@@ -8,8 +8,8 @@
         <span id="errorIDorder" class="errors-text"></span>
 
         <label for="clientContactInfo">Contact info: <span class="symbol-required">*</span></label> 
-        <input type="text" name="clientContactInfo" id="clientContactInfo" value="BMIgeneral@bmi.com" class="error-input" required>
-        <span id="errorClientContactInfo" class="errors-text">Field required dummy.</span>
+        <input type="text" name="clientContactInfo" id="clientContactInfo" value="BMIgeneral@bmi.com" required>
+        <span id="errorClientContactInfo" class="errors-text"></span>
 
         <label for="shippingCompany"> Shipping method: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
         <select name="shippingCompany" id="shippingCompany" required>
@@ -25,7 +25,7 @@
         <span id="errorPremiumDelivery"></span>
 
         <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text">There are errors in the form!</p>
+            <p id="errorsSummary" class="errors-text"></p>
             <input type="submit" value="Add" class="form-button-submit">
             <a href="/Order/" class="form-button-cancel">Cancel</a>
         </div>

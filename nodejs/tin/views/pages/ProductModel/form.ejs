@@ -4,23 +4,23 @@
 
     <form class="form" novalidate onsubmit="return validateForm();">
         <label for="productName">Name of product: <span class="symbol-required">*</span></label> 
-        <input type="text" name="productName" id="productName" class="error-input" placeholder="2-60 characters" required>
-        <span id="errorProductName" class="errors-text">Field required dummy.</span>
+        <input type="text" name="productName" id="productName"  placeholder="2-60 characters" required>
+        <span id="errorProductName" class="errors-text"></span>
 
         <label for="productPrice">Price: <span class="symbol-required">*</span></label> 
-        <input type="number" name="productPrice" id="productPrice" class="error-input" required>
-        <span id="errorProductPrice" class="errors-text">Field required dummy.</span>
+        <input type="number" name="productPrice" id="productPrice" required>
+        <span id="errorProductPrice" class="errors-text"></span>
 
         <label for="productionDate">Production date: <span class="symbol-required">*</span></label> 
-        <input type="date" name="productionDate" id="productionDate" class="error-input" required>
-        <span id="errorProductionDate" class="errors-text">Field required dummy.</span>
+        <input type="date" name="productionDate" id="productionDate" required>
+        <span id="errorProductionDate" class="errors-text"></span>
 
         <label for="endDistributionDate">Distribution end date: </label> 
-        <input type="date" name="endDistributionDate" id="endDistributionDate" class="error-input">
-        <span id="errorEndDistributionDate" class="errors-text">Entered a date before production date!</span>
+        <input type="date" name="endDistributionDate" id="endDistributionDate">
+        <span id="errorEndDistributionDate" class="errors-text"></span>
 
         <div class="form-buttons"> <!-- ADDED form-buttons CLASS TO DIV FOR "ADD" BUTTON -->
-            <p id="errorsSummary" class="errors-text">There are errors in the form!</p>
+            <p id="errorsSummary"></p>
             <input type="submit" value="Add" class="form-button-submit"> <!-- ADDED CLASS NAMES IN ALL 3 LINES HERE -->
             <a href="/ProductModel/" class="form-button-cancel">Cancel</a>
         </div>

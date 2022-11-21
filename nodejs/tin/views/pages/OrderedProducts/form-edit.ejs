@@ -8,8 +8,8 @@
         <span id="errorIDorderedProduct" class="errors-text"></span>
 
         <label for="quantity">Quantity: <span class="symbol-required">*</span></label> 
-        <input type="number" name="quantity" id="quantity" value="1" class="error-input" required>
-        <span id="errorquantity" class="errors-text">Field required dummy.</span>
+        <input type="number" name="quantity" id="quantity" value="1" required>
+        <span id="errorquantity" class="errors-text"></span>
 
         <label for="IDproduct">Product: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
         <select name="IDproduct" id="IDproduct" required>
@@ -24,7 +24,7 @@
         <input type="number" name="IDorder" id="IDorder" value="1" disabled>
 
         <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text">There are errors in the form!</p>
+            <p id="errorsSummary" class="errors-text"></p>
             <input type="submit" value="Add" class="form-button-submit">
             <a href="list.ejs" class="form-button-cancel">Cancel</a>
         </div>

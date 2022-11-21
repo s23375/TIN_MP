@@ -25,3 +25,5 @@ const ProductModel = sequelize.define('ProductModel', {
         allowNull: true
     }
 });
+
+module.exports = ProductModel;

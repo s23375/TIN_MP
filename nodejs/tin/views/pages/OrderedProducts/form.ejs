@@ -4,29 +4,29 @@
 
     <form class="form" novalidate onsubmit="return validateForm();">
         <label for="quantity">Quantity: <span class="symbol-required">*</span></label> 
-        <input type="number" name="quantity" id="quantity" class="error-input" required>
-        <span id="errorQuantity" class="errors-text">Field required dummy.</span>
+        <input type="number" name="quantity" id="quantity" required>
+        <span id="errorQuantity" class="errors-text"></span>
 
         <label for="product">Product: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
-        <select name="product" id="product" class="error-input" required>
+        <select name="product" id="product" required>
             <option>-- Choose product --</option>
             <option value="1"> Axceletron DB120</option>
             <option value="2"> PlasticSeries Friend 350</option>
             <option value="3"> Basix e11</option>
         </select>
-        <span id="errorIDproduct" class="errors-text">Field required dummy.</span>
+        <span id="errorIDproduct" class="errors-text"></span>
 
         <label for="IDorder">For: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
-        <select name="IDorder" id="IDorder" class="error-input" required>
+        <select name="IDorder" id="IDorder" required>
             <option>-- Choose the order --</option>
             <option value="1">IDorder 1 - BMIgeneral@bmi.com</option>
             <option value="2">IDorder 2 - daniel@gmail.com</option>
             <option value="3">IDorder 3 - eilenedover@gmail.com</option>
         </select>
-        <span id="errorIDorder" class="errors-text">Field required dummy.</span>
+        <span id="errorIDorder" class="errors-text"></span>
 
         <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text">There are errors in the form!</p>
+            <p id="errorsSummary" class="errors-text"></p>
             <input type="submit" value="Add" class="form-button-submit">
             <a href="/OrderedProducts/" class="form-button-cancel">Cancel</a>
         </div>

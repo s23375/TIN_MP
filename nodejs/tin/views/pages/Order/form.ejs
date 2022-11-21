@@ -4,17 +4,17 @@
 
     <form class="form" novalidate onsubmit="return validateForm();">
         <label for="clientContactInfo">Contact info: <span class="symbol-required">*</span></label> 
-        <input type="text" name="clientContactInfo" id="clientContactInfo" class="error-input" placeholder="e-mail address" required>
-        <span id="errorClientContactInfo" class="errors-text">Field required dummy.</span>
+        <input type="text" name="clientContactInfo" id="clientContactInfo" placeholder="e-mail address" required>
+        <span id="errorClientContactInfo" class="errors-text"></span>
 
         <label for="shippingCompany"> Shipping method: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
-        <select name="shippingCompany" id="shippingCompany" class="error-input" required>
+        <select name="shippingCompany" id="shippingCompany" required>
             <option>-- Choose shipping method --</option>
             <option value="1"> DHL</option>
             <option value="2"> Inpost</option>
             <option value="3"> Poczta Polska</option>
         </select>
-        <span id="errorShippingCompany" class="errors-text">Field required dummy.</span> <!-- added class errors-text because validation form wasn't able to get over the lack of it apparently -->
+        <span id="errorShippingCompany" class="errors-text"></span> <!-- added class errors-text because validation form wasn't able to get over the lack of it apparently -->
 
         <label for="premiumDelivery">Premium delivery: </label>  <!-- premiumDelivery is nullable therefore no "required" keyword-->
         <input type="checkbox" name="premiumDelivery" id="premiumDelivery">
