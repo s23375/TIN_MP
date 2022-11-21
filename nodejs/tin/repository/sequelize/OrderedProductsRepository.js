@@ -17,6 +17,12 @@ exports.getOrdereds = () => {
     });
 };
 
+//TODO in case I needed a get to grab all Ordereds simply implement the thing below
+
+// exports.getOrdereds = () => {
+//     return OrderedProduct.findAll();
+// };
+
 exports.getOrderedById = (IDordered) => {
     return OrderedProduct.findByPk(IDordered, {include: [
             {

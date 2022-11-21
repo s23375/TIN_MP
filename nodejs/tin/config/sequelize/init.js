@@ -49,7 +49,7 @@ module.exports = () => {
                     {datePlaced: '2022-10-13', clientContactInfo: 'eilenedover@gmail.com', shippingCompany: 'DHL', premiumDelivery: false}
                 ])
                     .then ( () => {
-                        return ProductModel.findAll();
+                        return Order.findAll(); //TODO 2. changed from ProductModel. to Order.
                     });
             } else {
                 return orders;
@@ -57,15 +57,15 @@ module.exports = () => {
         })
         .then( orders => {
             allOrders = orders;
-            return ProductModel.findAll();
+            return OrderedProduct.findAll(); //TODO 3. changed from ProductModel to OrderedProduct, the tutorial was pretty flawless until now..
         })
         .then( ordereds => {
             if(!ordereds || ordereds.length === 0) {
-                return Order.bulkCreate([
-                    {quantity: 1, ProductModel_IDproduct: allProducts[0].IDproduct, Order_IDorder: allOrders[0]},
-                    {quantity: 2, ProductModel_IDproduct: allProducts[1].IDproduct, Order_IDorder: allOrders[0]},
-                    {quantity: 2, ProductModel_IDproduct: allProducts[0].IDproduct, Order_IDorder: allOrders[1]},
-                    {quantity: 7, ProductModel_IDproduct: allProducts[2].IDproduct, Order_IDorder: allOrders[2]}
+                return OrderedProduct.bulkCreate([ //TODO 1. appears to not work, changed from Order. to OrderedProduct.
+                    {quantity: 1, ProductModel_IDproduct: allProducts[0].IDproduct, Order_IDorder: allOrders[0].IDorder}, //don't forget about .IDorder lol
+                    {quantity: 2, ProductModel_IDproduct: allProducts[1].IDproduct, Order_IDorder: allOrders[0].IDorder},
+                    {quantity: 2, ProductModel_IDproduct: allProducts[0].IDproduct, Order_IDorder: allOrders[1].IDorder},
+                    {quantity: 7, ProductModel_IDproduct: allProducts[2].IDproduct, Order_IDorder: allOrders[2].IDorder}
                 ]);
             } else {
                 return ordereds;

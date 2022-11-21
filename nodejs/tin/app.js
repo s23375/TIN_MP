@@ -37,7 +37,10 @@ sequelizeInit()
 
 // adding API routes
 const productApiRoute = require('./routes/api/ProductModelApiRoute');
+const orderedApiRoute = require('./routes/api/OrderedProductsApiRoute');
+
 app.use('/api/products', productApiRoute);
+app.use('/api/ordereds', orderedApiRoute);
 
 //app.use('/users', usersRouter); // if we type /user it sends us here
 // there aren't actually files, if our path is localhost/users/1/books/5
