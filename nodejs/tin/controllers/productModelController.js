@@ -25,7 +25,7 @@ exports.showProductModelDetails = (req, res, next) => {
     const productID = req.params.IDproduct;
     ProductModelRepository.getProductById(productID)
         .then(product => {
-            res.render('pages/ProductModel/form-detail', {
+            res.render('pages/ProductModel/form', { // changed this to just "form"...
                 product: product,
                 pageTitle: "Details of productModel",
                 formMode: "showDetails",
@@ -40,7 +40,7 @@ exports.showProductModelEdit = (req, res, next) => {
     const productID = req.params.IDproduct;
     ProductModelRepository.getProductById(productID)
         .then(product => {
-            res.render('pages/ProductModel/form-edit', {
+            res.render('pages/ProductModel/form', {
                 product: product,
                 pageTitle: "Edit productModel",
                 formMode: "edit",

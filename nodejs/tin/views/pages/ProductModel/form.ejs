@@ -44,10 +44,10 @@
             </tr>
             </thead>
             <tbody>
-            <% for (let e of product.ordereds) { %>
+            <% for (let e of product.orderedProducts) { %> <!-- .orderedProducts is the name assigned when creating connections in init.js -->
             <tr>
                 <td>
-                    <a href="/ordereds/details/<%= e.ordered.IDorderedProduct %>"> <%= e.ordered.IDorderedProduct %> </a>
+                    <a href="/OrderedProducts/details/<%= e.orderedProducts.IDorderedProduct %>"> <%= e.orderedProducts.IDorderedProduct %> </a>
                 </td>
                 <td><%= e.quantity %></td>
                 <td><%= e.ProductModel_IDproduct %></td>
