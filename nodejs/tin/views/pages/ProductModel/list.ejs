@@ -6,73 +6,39 @@
             <tr>
                 <th>IDproduct</th>
                 <th>Name</th>
-                <th>Production Date</th>
                 <th>Price</th>
+                <th>Production Date</th>
                 <th>Distribution End Date</th>
                 <th>Options</th>
             </tr>
         </thead>
         <tbody>
+        <% for (let product of products) { %>
             <tr>
-                <td data-label="IDproduct">1</td>
-                <td data-label="Name">Axceletron DB120</td>
-                <td data-label="Production Date">16-09-2022</td>
-                <td data-label="Price">$100</td>
-                <td data-label="Distribution End date"> - </td>
+                <td data-label="IDproduct"><%= product.IDproduct %></td>
+                <td data-label="Name"><%= product.name %></td>
+                <td data-label="Price"><%= product.price %></td>
+                <td data-label="Production Date"><%= product.productionDate.toISOString().split("T") [0] %></td> <!-- formatting js Date format -->
+                <% if(!product.endDistributionDate) { %>
+                    <td data-label="Distribution End date"><%= product.endDistributionDate %></td>
+                <% } else { %>
+                <td data-label="Distribution End date"><%= product.endDistributionDate.toISOString().split("T") [0] %></td>
+                    <% } %>
                 <td>
                     <ul class="list-actions"> <!-- add class list-actions to align buttons horizontally -->
                         <li>
-                            <a href="/ProductModel/details/1" class="list-actions-button-details">Details</a>
+                            <a href="/ProductModel/details/<%= product.IDproduct%>" class="list-actions-button-details">Details</a>
                         </li>
                         <li>
-                            <a href="/ProductModel/edit/1" class="list-actions-button-edit">Edit</a>
+                            <a href="/ProductModel/edit/<%= product.IDproduct%>" class="list-actions-button-edit">Edit</a>
                         </li>
                         <li>
-                            <a href="" class="list-actions-button-delete">Delete</a>
+                            <a href="/ProductModel/delete/<%= product.IDproduct%>" class="list-actions-button-delete">Delete</a>
                         </li>
                     </ul>
                 </td>
             </tr>
-            <tr>
-                <td data-label="IDproduct">2</td>
-                <td data-label="Name">PlasticSeries Friend 350</td>
-                <td data-label="Production Date">04-02-2021</td>
-                <td data-label="Price">$50</td>
-                <td data-label="Distribution End date"> - </td>
-                <td>
-                    <ul class="list-actions">
-                        <li>
-                            <a href="/ProductModel/details/1" class="list-actions-button-details">Details</a>
-                        </li>
-                        <li>
-                            <a href="/ProductModel/edit/1" class="list-actions-button-edit">Edit</a>
-                        </li>
-                        <li>
-                            <a href="" class="list-actions-button-delete">Delete</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            <tr> 
-                <td data-label="IDproduct">3</td>
-                <td data-label="Name">Basix e11</td>
-                <td data-label="Production Date">04-02-2021</td>
-                <td data-label="Price">$5</td>
-                <td data-label="Distribution End date">09-11-2022</td>
-                <td>
-                    <ul class="list-actions">
-                        <li>
-                            <a href="/ProductModel/details/1" class="list-actions-button-details">Details</a>
-                        </li>
-                        <li>
-                            <a href="/ProductModel/edit/1" class="list-actions-button-edit">Edit</a>
-                        </li>
-                        <li>
-                            <a href="" class="list-actions-button-delete">Delete</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+        <% } %>
         </tbody>
     </table>
     <div>
