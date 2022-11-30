@@ -12,6 +12,6 @@ the paths defined here will be used in hrefs when you want to refer to them, lik
  */
 router.post("/add", productModelController.addProductModel);
 router.post("/edit", productModelController.updateProductModel);
-router.post("/delete/:IDproduct", productModelController.deleteProductModel);
+router.get("/delete/:IDproduct", productModelController.deleteProductModel);
 
 module.exports = router; // exporting router so it can be used elsewhere

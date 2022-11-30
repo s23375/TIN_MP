@@ -69,5 +69,9 @@ exports.updateProductModel = (req, res, next) => {
 };
 
 exports.deleteProductModel = (req, res, next) => {
-
+    const IDproduct = req.params.IDproduct;// use params not body (??)
+    ProductModelRepository.deleteProduct(IDproduct)
+        .then( () => {
+            res.redirect("/ProductModel/")
+        })
 };
