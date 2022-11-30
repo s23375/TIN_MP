@@ -15,58 +15,72 @@
                 <%= (formMode == "showDetails") ? "disabled" : "" %> required>
         <span id="errorProductPrice" class="errors-text"></span>
 
-        <label for="productionDate">Production date: <span class="symbol-required">*</span></label> 
+        <label for="productionDate">Production date: <span class="symbol-required">*</span></label>
+        <% if(!product.productionDate) { %>
         <input type="date" name="productionDate" id="productionDate" value="<%= product.productionDate %>"
                 <%= (formMode == "showDetails") ? "disabled" : "" %> required>
+        <% } else { %>
+            <input type="date" name="productionDate" id="productionDate" value="<%= product.productionDate.toISOString().split("T") [0] %>"
+                    <%= (formMode == "showDetails") ? "disabled" : "" %> required>
+        <% } %>
         <span id="errorProductionDate" class="errors-text"></span>
 
-        <label for="endDistributionDate">Distribution end date: </label> 
+        <label for="endDistributionDate">Distribution end date: </label>
+        <% if(!product.endDistributionDate) { %>
         <input type="date" name="endDistributionDate" id="endDistributionDate" value="<%= product.endDistributionDate %>"
                 <%= (formMode == "showDetails") ? "disabled" : "" %> >
+        <% } else { %>
+            <input type="date" name="endDistributionDate" id="endDistributionDate" value="<%= product.endDistributionDate.toISOString().split("T") [0] %>"
+                    <%= (formMode == "showDetails") ? "disabled" : "" %> >
+        <% } %>
         <span id="errorEndDistributionDate" class="errors-text"></span>
 
         <% if (formMode == "showDetails") { %>
-        <div class="section-buttons">
-            <a href="/ProductModel/edut/<%= product.IDproduct %>" class="button-edit"> Edit</a>
+        <div class = "form-buttons">
+            <a href="/ProductModel/edit/<%= product.IDproduct %>" class="form-button-edit"> Edit</a>
         </div>
         <% } %>
 
+        <div class = "form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if (formMode != "showDetails") { %>
+                <input class="form-button-submit" type="submit" value="<%= btnLabel %>" />
+                <a class="form-button-cancel" href="/ProductModel/">Cancel</a>
+            <% } %>
+        </div>
+    </form>
+
         <% if (formMode == "showDetails" || formMode == "edit") { %>
         <h2> Details for this product</h2>
-        <table class="table-list">
-            <thead>
-            <tr>
-                <th>IDproduct</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Production Date</th>
-                <th>Distribution End Date</th>
-            </tr>
-            </thead>
+            <table class="table-list">
+
+                    <tr>
+                        <th>IDorderedProduct</th>
+                        <th>Quantity</th>
+                        <th>IDproduct</th>
+                        <th>IDorder</th>
+                    </tr>
+                </thead>
             <tbody>
             <% for (let e of product.orderedProducts) { %> <!-- .orderedProducts is the name assigned when creating connections in init.js -->
             <tr>
-                <td>
-                    <a href="/OrderedProducts/details/<%= e.orderedProducts.IDorderedProduct %>"> <%= e.orderedProducts.IDorderedProduct %> </a>
+                <td data-label="IDorderedProduct">
+                    <a href="/OrderedProducts/details/<%= e.IDorderedProduct %>"> <%= e.IDorderedProduct %> </a>
                 </td>
-                <td><%= e.quantity %></td>
-                <td><%= e.ProductModel_IDproduct %></td>
-                <td><%= e.Order_IDorder %></td>
+                <td data-label="Quantity"><%= e.quantity %></td> <!-- remember to add data-label in other places!! -->
+                <td data-label="IDproduct"><%= e.ProductModel_IDproduct %></td>
+                <td data-label="IDorder"><%= e.Order_IDorder %></td>
             </tr>
             <% } %>
             </tbody>
         </table>
         <% } %>
 
-        <div class = "form-buttons">
-            <p id="errorsSummary" class="errors-text"></p>
-            <% if (formMode != "showDetails") { %>
-            <input class="form-button-submit" type="submit" value="<%= btnLabel %>" />
-            <a class="form-button-cancel" href="/ProductModel/">Cancel</a>
-            <% } else { %>
-            <a class="form-button-cancel" href="/ProductModel/">Go back</a>
-            <% } %>
-        </div>
+    <% if(formMode == "showDetails") { %>
+    <a class="form-button-back" href="/ProductModel/">Go back</a>
+    <% } %>
+
+
 
         <!--
         <div class="form-buttons">
@@ -75,6 +89,6 @@
             <a href="/ProductModel/" class="form-button-cancel">Cancel</a>
         </div>
         -->
-    </form>
+
 </main>
 <%- include('../../fragments/footer.ejs') %>
