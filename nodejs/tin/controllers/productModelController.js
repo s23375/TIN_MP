@@ -60,7 +60,12 @@ exports.addProductModel = (req, res, next) => {
 };
 
 exports.updateProductModel = (req, res, next) => {
-
+    const IDproduct = req.body.IDproduct;
+    const productData = { ...req.body};
+    ProductModelRepository.updateProduct(IDproduct, productData)
+        .then( result => {
+            res.redirect("/ProductModel/")
+        })
 };
 
 exports.deleteProductModel = (req, res, next) => {

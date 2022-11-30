@@ -21,6 +21,8 @@ exports.getProductById = (IDproduct) => {
 };
 
 exports.createProduct = (newProductData) => {
+    if(!newProductData.endDistributionDate) newProductData.endDistributionDate = null; // without this endDistributionDate will be passed as undefined and crash the server
+
     return ProductModel.create({ // turns out that names of the files assigned in .html(or .ejs now) are used in the request. Good to know it mattered.
         name: newProductData.name,
         price: newProductData.price,
@@ -30,10 +32,7 @@ exports.createProduct = (newProductData) => {
 };
 
 exports.updateProduct = (IDproduct, productData) => {
-    // const name = productData.name;
-    // const price = productData.price;
-    // const productionDate = productData.productionDate;
-    // const endDistributionDate = productData.endDistributionDate;
+    if(!productData.endDistributionDate) productData.endDistributionDate = null;
     return ProductModel.update(productData, {where: {IDproduct: IDproduct}});
 };
 
