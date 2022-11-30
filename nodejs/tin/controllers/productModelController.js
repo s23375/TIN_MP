@@ -50,3 +50,19 @@ exports.showProductModelEdit = (req, res, next) => {
             });
         });
 };
+
+exports.addProductModel = (req, res, next) => {
+    const productData = { ...req.body};
+    ProductModelRepository.createProduct(productData)
+        .then(result => {
+            res.redirect("/ProductModel/");
+        })
+};
+
+exports.updateProductModel = (req, res, next) => {
+
+};
+
+exports.deleteProductModel = (req, res, next) => {
+
+};

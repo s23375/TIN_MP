@@ -5,13 +5,13 @@
     <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="IDproduct" value="<%= product.IDproduct %>">
 
-        <label for="productName">Name of product: <span class="symbol-required">*</span></label> 
-        <input type="text" name="productName" id="productName"  placeholder="2-60 characters" value="<%= product.name %>"
+        <label for="name">Name of product: <span class="symbol-required">*</span></label>
+        <input type="text" name="name" id="name" placeholder="2-60 characters" value="<%= product.name %>"
                <%= (formMode == "showDetails") ? "disabled" : "" %> required>
         <span id="errorProductName" class="errors-text"></span>
 
-        <label for="productPrice">Price: <span class="symbol-required">*</span></label> 
-        <input type="number" name="productPrice" id="productPrice" value="<%= product.price %>"
+        <label for="price">Price: <span class="symbol-required">*</span></label>
+        <input type="number" name="price" id="price" value="<%= product.price %>"
                 <%= (formMode == "showDetails") ? "disabled" : "" %> required>
         <span id="errorProductPrice" class="errors-text"></span>
 

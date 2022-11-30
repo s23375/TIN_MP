@@ -21,7 +21,7 @@ exports.getProductById = (IDproduct) => {
 };
 
 exports.createProduct = (newProductData) => {
-    return ProductModel.create({
+    return ProductModel.create({ // turns out that names of the files assigned in .html(or .ejs now) are used in the request. Good to know it mattered.
         name: newProductData.name,
         price: newProductData.price,
         productionDate: newProductData.productionDate,
