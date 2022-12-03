@@ -1,6 +1,6 @@
 function validateForm() {
-    const productNameInput = document.getElementById('productName');
-    const priceInput = document.getElementById('productPrice');
+    const productNameInput = document.getElementById('name');
+    const priceInput = document.getElementById('price');
     const productionDateInput = document.getElementById('productionDate');
     const endDistributionDateInput = document.getElementById('endDistributionDate');
 

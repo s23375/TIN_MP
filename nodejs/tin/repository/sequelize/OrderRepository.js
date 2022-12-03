@@ -21,6 +21,17 @@ exports.getOrderById = (IDorder) => {
 };
 
 exports.createOrder = (newOrderData) => {
+    if(!newOrderData.datePlaced) newOrderData.datePlaced = Date.now();
+
+    if(newOrderData.premiumDelivery === undefined) newOrderData.premiumDelivery = false
+    else newOrderData.premiumDelivery = true
+
+    //it'll be this way for now at least
+    //I TRIED USING A SWITCH BUT IT JUST DOES WHATEVER IT WANTS
+    if(newOrderData.shippingCompany === "1") newOrderData.shippingCompany = "DHL";
+    else if(newOrderData.shippingCompany === "2") newOrderData.shippingCompany = "Inpost";
+    else if(newOrderData.shippingCompany === "3") newOrderData.shippingCompany = "Poczta Polska";
+
     return Order.create({
         datePlaced: newOrderData.datePlaced,
         clientContactInfo: newOrderData.clientContactInfo,
@@ -29,8 +40,13 @@ exports.createOrder = (newOrderData) => {
     });
 };
 
-exports.updateOrder = (IDorder, orderData) => {
-    return Order.update(orderData, {where: {IDorder: IDorder}});
+exports.updateOrder = (IDorder, newOrderData) => {
+    if(!newOrderData.datePlaced) newOrderData.datePlaced = Date.now();
+
+    if(newOrderData.premiumDelivery === undefined) newOrderData.premiumDelivery = false
+    else newOrderData.premiumDelivery = true
+
+    return Order.update(newOrderData, {where: {IDorder: IDorder}});
 };
 
 exports.deleteOrder = (IDorder) => {
