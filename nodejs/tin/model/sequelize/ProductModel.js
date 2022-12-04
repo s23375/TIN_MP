@@ -10,19 +10,35 @@ const ProductModel = sequelize.define('ProductModel', {
     },
     name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            len: {
+                args: [2, 60],
+                msg: "This field should have from 2 to 60 characters"
+            }
+        }
     },
     price: {
       type: Sequelize.DECIMAL(10, 2),
-      allowNull: false
+      allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field cannot be empty"
+            }
+        }
     },
     productionDate: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field cannot be empty"
+            }
+        }
     },
     endDistributionDate: {
         type: Sequelize.DATE,
-        allowNull: true
+        allowNull: true,
     }
 });
 

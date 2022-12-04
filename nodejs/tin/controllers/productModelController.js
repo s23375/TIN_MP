@@ -17,7 +17,8 @@ exports.showAddProductModelForm = (req, res, next) => {
         formMode: "createNew",
         btnLabel: "Add productModel",
         formAction: "/ProductModel/add",
-        navLocation: "productModel"
+        navLocation: "productModel",
+        validationErrors: []
     });
 }
 
@@ -57,6 +58,17 @@ exports.addProductModel = (req, res, next) => {
         .then(result => {
             res.redirect("/ProductModel/");
         })
+        .catch(err => {
+            res.render("pages/ProductModel/form", {
+                product: productData,
+                pageTitle: "New productModel",
+                formMode: "createNew",
+                btnLabel: "Add productModel",
+                formAction: "/ProductModel/add",
+                navLocation: "productModel",
+                validationErrors: err.errors
+            })
+        })
 };
 
 exports.updateProductModel = (req, res, next) => {
@@ -65,6 +77,17 @@ exports.updateProductModel = (req, res, next) => {
     ProductModelRepository.updateProduct(IDproduct, productData)
         .then( result => {
             res.redirect("/ProductModel/")
+        })
+        .catch(err => {
+            res.render("/ProductModel/form", {
+                product: productData,
+                pageTitle: "Edit productModel",
+                formMode: "edit",
+                btnLabel: "Edit productModel",
+                formAction: "/ProductModel/edit",
+                navLocation: "productModel",
+                validationErrors: err.errors
+            })
         })
 };
 

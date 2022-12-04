@@ -7,33 +7,55 @@
 
         <label for="name">Name of product: <span class="symbol-required">*</span></label>
         <input type="text" name="name" id="name" placeholder="2-60 characters" value="<%= product.name %>"
+               class="<%= validationErrors.find(e => e.path.includes("name")) ? "error-input" : "" %>"
                <%= (formMode == "showDetails") ? "disabled" : "" %> required>
-        <span id="errorProductName" class="errors-text"></span>
+        <span id="errorProductName" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes("name"))) { %>
+            <%= validationErrors.find(e => e.path.includes("name")).message %>
+            <% } %>
+        </span>
 
         <label for="price">Price: <span class="symbol-required">*</span></label>
         <input type="number" name="price" id="price" value="<%= product.price %>"
+               class="<%= validationErrors.find(e => e.path.includes("price")) ? "error-input" : "" %>"
                 <%= (formMode == "showDetails") ? "disabled" : "" %> required>
-        <span id="errorProductPrice" class="errors-text"></span>
+        <span id="errorProductPrice" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes("price"))) { %>
+                <%= validationErrors.find(e => e.path.includes("price")).message %>
+            <% } %>
+        </span>
 
         <label for="productionDate">Production date: <span class="symbol-required">*</span></label>
         <% if(!product.productionDate) { %>
         <input type="date" name="productionDate" id="productionDate" value="<%= product.productionDate %>"
+               class="<%= validationErrors.find(e => e.path.includes("productionDate")) ? "error-input" : "" %>"
                 <%= (formMode == "showDetails") ? "disabled" : "" %> required>
         <% } else { %>
             <input type="date" name="productionDate" id="productionDate" value="<%= product.productionDate.toISOString().split("T") [0] %>"
+                   class="<%= validationErrors.find(e => e.path.includes("productionDate")) ? "error-input" : "" %>"
                     <%= (formMode == "showDetails") ? "disabled" : "" %> required>
         <% } %>
-        <span id="errorProductionDate" class="errors-text"></span>
+        <span id="errorProductionDate" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes("productionDate"))) { %>
+                <%= validationErrors.find(e => e.path.includes("productionDate")).message %>
+            <% } %>
+        </span>
 
         <label for="endDistributionDate">Distribution end date: </label>
         <% if(!product.endDistributionDate) { %>
         <input type="date" name="endDistributionDate" id="endDistributionDate" value="<%= product.endDistributionDate %>"
+               class="<%= validationErrors.find(e => e.path.includes("endDistributionDate")) ? "error-input" : "" %>"
                 <%= (formMode == "showDetails") ? "disabled" : "" %> >
         <% } else { %>
             <input type="date" name="endDistributionDate" id="endDistributionDate" value="<%= product.endDistributionDate.toISOString().split("T") [0] %>"
+                   class="<%= validationErrors.find(e => e.path.includes("endDistributionDate")) ? "error-input" : "" %>"
                     <%= (formMode == "showDetails") ? "disabled" : "" %> >
         <% } %>
-        <span id="errorEndDistributionDate" class="errors-text"></span>
+        <span id="errorEndDistributionDate" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes("endDistributionDate"))) { %>
+                <%= validationErrors.find(e => e.path.includes("endDistributionDate")).message %>
+            <% } %>
+        </span>
 
         <% if (formMode == "showDetails") { %>
         <div class = "form-buttons">
