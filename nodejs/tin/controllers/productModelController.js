@@ -47,7 +47,8 @@ exports.showProductModelEdit = (req, res, next) => {
                 formMode: "edit",
                 btnLabel: "Edit productModel",
                 formAction: "/ProductModel/edit",
-                navLocation: "productModel"
+                navLocation: "productModel",
+                validationErrors: []
             });
         });
 };
@@ -79,7 +80,7 @@ exports.updateProductModel = (req, res, next) => {
             res.redirect("/ProductModel/")
         })
         .catch(err => {
-            res.render("/ProductModel/form", {
+            res.render("pages/ProductModel/form", {
                 product: productData,
                 pageTitle: "Edit productModel",
                 formMode: "edit",
