@@ -10,5 +10,8 @@ router.get('/edit/:IDorderedProduct', orderedProductsController.showOrderedProdu
 the paths defined here will be used in hrefs when you want to refer to them, like
 /ProductModel/add leads to "Add new product" page
  */
+router.post("/add", orderedProductsController.addOrderedProduct);
+router.post("/edit", orderedProductsController.updateOrderedProduct);
+router.get("/delete/:IDorderedProduct", orderedProductsController.deleteOrderedProduct);
 
 module.exports = router; // exporting router so it can be used elsewhere

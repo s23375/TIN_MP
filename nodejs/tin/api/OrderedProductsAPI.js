@@ -39,7 +39,7 @@ exports.createOrdered = (req, res, next) => {
 
 exports.updateOrdered = (req, res, next) => {
     const IDordered = req.params.IDorderedProduct;
-    OrderedProductsRepository.updateProduct(IDordered, req.body)
+    OrderedProductsRepository.updateOrderedProduct(IDordered, req.body)
         .then(result => {
             res.status(200).json({message: 'OrderedProduct updated!', ordered: result});
         })
@@ -53,7 +53,7 @@ exports.updateOrdered = (req, res, next) => {
 
 exports.deleteProduct = (req, res, next) => {
     const IDordered = req.params.IDorderedProduct;
-    OrderedProductsRepository.deleteProduct(IDordered)
+    OrderedProductsRepository.deleteOrderedProduct(IDordered)
         .then(result => {
             res.status(200).json({message: 'Removed orderedProducts ID: '+IDordered, ordered: result});
         })

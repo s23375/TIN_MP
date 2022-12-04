@@ -23,7 +23,7 @@ function validateForm() {
         errorClientContactInfo.innerText = "This field must be a valid e-mail address.";
     }
 
-    if(!checkDropdownList(shippingCompanyInput.value)) {
+    if(!checkOrderDropdownList(shippingCompanyInput.value)) {
         valid = false;
         shippingCompanyInput.classList.add("error-input");
         errorShippingCompany.innerText = "Choose shipping method."

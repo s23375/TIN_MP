@@ -66,6 +66,13 @@ function checkDropdownList(value) {
     return true;
 }
 
+function checkOrderDropdownList(value) {
+    if(!value) {
+        return false;
+    }
+    return true;
+}
+
 function checkDate(value) {
     if(!value) {
         return false;

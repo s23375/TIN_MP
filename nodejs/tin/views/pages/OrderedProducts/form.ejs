@@ -1,35 +1,87 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Add products to an order</h2>
+    <h2><%= pageTitle %></h2>
 
-    <form class="form" novalidate onsubmit="return validateForm();">
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+        <input type="hidden" name="IDorderedProduct" value="<%= ordered.IDorderedProduct %>">
+
         <label for="quantity">Quantity: <span class="symbol-required">*</span></label> 
-        <input type="number" name="quantity" id="quantity" required>
+        <input type="number" name="quantity" id="quantity" value="<%= ordered.quantity %>"
+                <%= (formMode == "showDetails") ? "disabled" : "" %> required>
         <span id="errorQuantity" class="errors-text"></span>
 
-        <label for="product">Product: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
-        <select name="product" id="product" required>
-            <option>-- Choose product --</option>
+        <label for="ProductModel_IDproduct">Product: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
+        <select name="ProductModel_IDproduct" id="ProductModel_IDproduct" <%= (formMode == "showDetails") ? "disabled" : "" %> required>
+            <% if(formMode == "showDetails" || formMode == "edit") { %>
+                <option value="<%= ordered.ProductModel_IDproduct %>"><%= ordered.ProductModel_IDproduct %></option>
+            <% } else { %>
+            <option value="<%= ordered.ProductModel_IDproduct %>">-- Choose product --</option>
+            <% } %>
             <option value="1"> Axceletron DB120</option>
             <option value="2"> PlasticSeries Friend 350</option>
             <option value="3"> Basix e11</option>
         </select>
         <span id="errorIDproduct" class="errors-text"></span>
 
-        <label for="IDorder">For: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
-        <select name="IDorder" id="IDorder" required>
-            <option>-- Choose the order --</option>
-            <option value="1">IDorder 1 - BMIgeneral@bmi.com</option>
-            <option value="2">IDorder 2 - daniel@gmail.com</option>
-            <option value="3">IDorder 3 - eilenedover@gmail.com</option>
+        <label for="Order_IDorder">For: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
+        <select name="Order_IDorder" id="Order_IDorder" <%= (formMode == "showDetails") ? "disabled" : "" %> required>
+            <% if(formMode == "showDetails" || formMode == "edit") { %>
+                <option value="<%= ordered.Order_IDorder %>"><%= "IDorder " + ordered.Order_IDorder %></option>
+            <% } else { %>
+                <option value="<%= ordered.Order_IDorder %>">-- Choose product --</option>
+            <% } %>
+            <% for(let i=1; i < 4; i++) { %>
+            <option value="<%= i %>" ><%= "IDorder " + i %>  </option>
+            <% } %>
         </select>
         <span id="errorIDorder" class="errors-text"></span>
 
-        <div class="form-buttons">
+        <% if (formMode == "showDetails") { %>
+            <div class = "form-buttons">
+                <a href="/OrderedProducts/edit/<%= ordered.IDorderedProduct %>" class="form-button-edit"> Edit</a>
+            </div>
+        <% } %>
+
+        <div class = "form-buttons">
             <p id="errorsSummary" class="errors-text"></p>
-            <input type="submit" value="Add" class="form-button-submit">
-            <a href="/OrderedProducts/" class="form-button-cancel">Cancel</a>
+            <% if (formMode != "showDetails") { %>
+                <input class="form-button-submit" type="submit" value="<%= btnLabel %>" />
+                <a class="form-button-cancel" href="/OrderedProducts/">Cancel</a>
+            <% } %>
         </div>
     </form>
+
+    <% if (formMode == "showDetails" || formMode == "edit") { %>
+        <h2> Details for this orderedProduct</h2>
+        <table class="table-list">
+
+            <tr>
+                <th>Order ID</th>
+                <th>Date of placing order</th>
+                <th>Contact info</th>
+                <th>Shipping company</th>
+                <th>Premium delivery</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% e = ordered.order  %>
+            <tr>
+                <td data-label="Order ID">
+                    <a href="/Order/details/<%= e.IDorder %>"> <%= e.IDorder %> </a>
+                </td>
+                <td data-label="Date of placing order"><%= e.datePlaced.toISOString().split("T") [0] %></td> <!-- remember to add data-label in other places!! -->
+                <td data-label="Contact info"><%= e.clientContactInfo %></td>
+                <td data-label="Shipping company"><%= e.shippingCompany %></td>
+                <td data-label="Premium delivery"><%= e.premiumDelivery %></td>
+            </tr>
+            <%  %>
+            </tbody>
+        </table>
+
+    <% } %>
+
+    <% if(formMode == "showDetails") { %>
+        <a class="form-button-back" href="/OrderedProducts/">Go back</a>
+    <% } %>
 </main>
 <%- include('../../fragments/footer.ejs') %>

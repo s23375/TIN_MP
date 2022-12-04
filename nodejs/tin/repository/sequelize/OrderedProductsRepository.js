@@ -40,19 +40,18 @@ exports.createOrdered = (newOrderedData) => {
     console.log(JSON.stringify(newOrderedData)); //TODO if you're looking for the one command printing something, here it is
 
     return OrderedProduct.create({
-        IDorderedProduct: newOrderedData.IDorderedProduct,
         quantity: newOrderedData.quantity,
         ProductModel_IDproduct: newOrderedData.ProductModel_IDproduct,
         Order_IDorder: newOrderedData.Order_IDorder
     });
 };
 
-exports.updateProduct = (IDordered, orderedData) => {
+exports.updateOrderedProduct = (IDordered, orderedData) => {
     return OrderedProduct.update(orderedData, {where: {IDorderedProduct: IDordered}}
     );
 }
 
-exports.deleteProduct = (IDordered) => {
+exports.deleteOrderedProduct = (IDordered) => {
     return OrderedProduct.destroy({
         where: {IDorderedProduct: IDordered}
     });

@@ -12,7 +12,7 @@
 
         <label for="shippingCompany"> Shipping method: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
         <select name="shippingCompany" id="shippingCompany" <%= (formMode == "showDetails") ? "disabled" : "" %> required>
-            <% if(formMode == "showDetails" || formMode == "edit") {%>
+            <% if(formMode == "showDetails" || formMode == "edit") { %>
             <option value="<%= order.shippingCompany %>" selected><%= order.shippingCompany %></option>
             <% } else { %>
             <option value="<%= order.shippingCompany %>" selected>-- Choose shipping method --</option>
@@ -44,7 +44,7 @@
     </form>
 
     <% if (formMode == "showDetails" || formMode == "edit") { %>
-    <h2> Details for this product</h2>
+    <h2> Details for this order</h2>
         <table class="table-list">
 
             <tr>

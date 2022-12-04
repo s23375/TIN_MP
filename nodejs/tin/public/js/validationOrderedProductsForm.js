@@ -1,7 +1,7 @@
 function validateForm() {
     const quantityInput = document.getElementById('quantity');
-    const productInput = document.getElementById('product');
-    const IDorderInput = document.getElementById('IDorder');
+    const productInput = document.getElementById('ProductModel_IDproduct');
+    const IDorderInput = document.getElementById('Order_IDorder');
 
     const errorQuantity = document.getElementById('errorQuantity');
     const errorIDproduct = document.getElementById('errorIDproduct');

@@ -12,82 +12,27 @@
             </tr>
         </thead>
         <tbody>
+        <% for (let ordered of orderds) { %>
             <tr>
-                <td data-label="IDorderedProduct">1</td>
-                <td data-label="Quantity">1</td>
-                <td data-label="Product">Axceletron DB120</td>
-                <td data-label="IDorder">1</td>
+                <td data-label="IDorderedProduct"><%= ordered.IDorderedProduct %></td>
+                <td data-label="Quantity"><%= ordered.quantity %></td>
+                <td data-label="Product"><%= ordered.ProductModel_IDproduct %></td>
+                <td data-label="IDorder"><%= ordered.Order_IDorder %></td>
                 <td>
                     <ul class="list-actions"> <!-- add class list-actions to align buttons horizontally -->
                         <li>
-                            <a href="/OrderedProducts/details/1" class="list-actions-button-details">Details</a>
+                            <a href="/OrderedProducts/details/<%= ordered.IDorderedProduct %>" class="list-actions-button-details">Details</a>
                         </li>
                         <li>
-                            <a href="/OrderedProducts/edit/1" class="list-actions-button-edit">Edit</a>
+                            <a href="/OrderedProducts/edit/<%= ordered.IDorderedProduct %>" class="list-actions-button-edit">Edit</a>
                         </li>
                         <li>
-                            <a href="" class="list-actions-button-delete">Delete</a>
+                            <a href="/OrderedProducts/delete/<%= ordered.IDorderedProduct %>" class="list-actions-button-delete">Delete</a>
                         </li>
                     </ul>
                 </td>
             </tr>
-            <tr>
-                <td data-label="IDorderedProduct">2</td>
-                <td data-label="Quantity">2</td>
-                <td data-label="Product">PlasticSeries Friend 350</td>
-                <td data-label="IDorder">1</td>
-                <td>
-                    <ul class="list-actions">
-                        <li>
-                            <a href="/OrderedProducts/details/1" class="list-actions-button-details">Details</a>
-                        </li>
-                        <li>
-                            <a href="/OrderedProducts/edit/1" class="list-actions-button-edit">Edit</a>
-                        </li>
-                        <li>
-                            <a href="" class="list-actions-button-delete">Delete</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            <tr> 
-                <td data-label="IDorderedProduct">3</td>
-                <td data-label="Quantity">2</td>
-                <td data-label="Product">Axceletron DB120</td>
-                <td data-label="IDorder">2</td>
-                <td>
-                    <ul class="list-actions">
-                        <li>
-                            <a href="/OrderedProducts/details/1" class="list-actions-button-details">Details</a>
-                        </li>
-                        <li>
-                            <a href="/OrderedProducts/edit/1" class="list-actions-button-edit">Edit</a>
-                        </li>
-                        <li>
-                            <a href="" class="list-actions-button-delete">Delete</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            <tr> 
-                <td data-label="IDorderedProduct">4</td>
-                <td data-label="Quantity">7</td>
-                <td data-label="Product">Basix e11</td>
-                <td data-label="IDorder">3</td>
-                <td>
-                    <ul class="list-actions">
-                        <li>
-                            <a href="/OrderedProducts/details/1" class="list-actions-button-details">Details</a>
-                        </li>
-                        <li>
-                            <a href="/OrderedProducts/edit/1" class="list-actions-button-edit">Edit</a>
-                        </li>
-                        <li>
-                            <a href="" class="list-actions-button-delete">Delete</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+        <% } %>
         </tbody>
     </table>
     <div>
