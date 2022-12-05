@@ -27,7 +27,7 @@ exports.createOrder = (newOrderData) => {
     else newOrderData.premiumDelivery = true
 
     //it'll be this way for now at least
-    //I TRIED USING A SWITCH BUT IT JUST DOES WHATEVER IT WANTS
+    //I tried to use switch but a javascript later I gave up
     if(newOrderData.shippingCompany === "1") newOrderData.shippingCompany = "DHL";
     else if(newOrderData.shippingCompany === "2") newOrderData.shippingCompany = "Inpost";
     else if(newOrderData.shippingCompany === "3") newOrderData.shippingCompany = "Poczta Polska";

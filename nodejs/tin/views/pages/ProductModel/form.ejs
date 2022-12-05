@@ -30,8 +30,8 @@
         <input type="date" name="productionDate" id="productionDate" value="<%= product.productionDate %>"
                class="<%= validationErrors.find(e => e.path.includes("productionDate")) ? "error-input" : "" %>"
                 <%= (formMode == "showDetails") ? "disabled" : "" %> required>
-        <% } else { %>
-            <input type="date" name="productionDate" id="productionDate" value="<%= product.productionDate.toISOString().split("T") [0] %>"
+        <% } else { %> <!-- the fix to date not displaying: remove toStringblablabla, not necessary in the "date box" -->
+            <input type="date" name="productionDate" id="productionDate" value="<%= product.productionDate %>"
                    class="<%= validationErrors.find(e => e.path.includes("productionDate")) ? "error-input" : "" %>"
                     <%= (formMode == "showDetails") ? "disabled" : "" %> required>
         <% } %>
