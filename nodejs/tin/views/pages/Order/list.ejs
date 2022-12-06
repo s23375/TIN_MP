@@ -35,7 +35,7 @@
                             <a href="/Order/edit/<%= order.IDorder %>" class="list-actions-button-edit">Edit</a>
                         </li>
                         <li>
-                            <a href="/Order/delete/<%= order.IDorder %>" class="list-actions-button-delete">Delete</a>
+                            <a href="/Order/delete/<%= order.IDorder %>" class="list-actions-button-delete" onclick="alert('Deleted successfully')">Delete</a>
                         </li>
                     </ul>
                 </td>
@@ -45,7 +45,7 @@
     </table>
     <div>
         <p><a href="/Order/add" class="button-add">Add new order</a></p>
-        <p class="delete-message">Product deleted successfully</p>
+        <p class="delete-message"></p>
     </div>
     
 </main>

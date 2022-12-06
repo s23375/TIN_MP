@@ -33,7 +33,7 @@
                             <a href="/ProductModel/edit/<%= product.IDproduct%>" class="list-actions-button-edit">Edit</a>
                         </li>
                         <li>
-                            <a href="/ProductModel/delete/<%= product.IDproduct%>" class="list-actions-button-delete">Delete</a>
+                            <a href="/ProductModel/delete/<%= product.IDproduct%>" class="list-actions-button-delete" onclick="alert('Deleted successfully')">Delete</a>
                         </li>
                     </ul>
                 </td>
@@ -43,7 +43,7 @@
     </table>
     <div>
         <p><a href="/ProductModel/add" class="button-add">Add new product</a></p>
-        <p class="delete-message">Product deleted successfully</p>
+        <p class="delete-message"></p>
     </div>
     
 </main>
