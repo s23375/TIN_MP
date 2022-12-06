@@ -2,7 +2,7 @@
 <main>
     <h2><%= pageTitle %></h2>
 
-    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+    <form class="form" method="post" action="<%=formAction%>" novalidate >
         <input type="hidden" name="IDproduct" value="<%= product.IDproduct %>">
 
         <label for="name">Name of product: <span class="symbol-required">*</span></label>
@@ -25,11 +25,12 @@
             <% } %>
         </span>
 
+
         <label for="productionDate">Production date: <span class="symbol-required">*</span></label>
         <% if(!product.productionDate) { %>
-        <input type="date" name="productionDate" id="productionDate" value="<%= product.productionDate %>"
-               class="<%= validationErrors.find(e => e.path.includes("productionDate")) ? "error-input" : "" %>"
-                <%= (formMode == "showDetails") ? "disabled" : "" %> required>
+            <input type="date" name="productionDate" id="productionDate" value="<%= product.productionDate %>"
+                   class="<%= validationErrors.find(e => e.path.includes("productionDate")) ? "error-input" : "" %>"
+                    <%= (formMode == "showDetails") ? "disabled" : "" %> required>
         <% } else { %>
             <input type="date" name="productionDate" id="productionDate" value="<%= product.productionDate.toISOString().split("T") [0] %>"
                    class="<%= validationErrors.find(e => e.path.includes("productionDate")) ? "error-input" : "" %>"
@@ -47,7 +48,7 @@
                class="<%= validationErrors.find(e => e.path.includes("endDistributionDate")) ? "error-input" : "" %>"
                 <%= (formMode == "showDetails") ? "disabled" : "" %> >
         <% } else { %>
-            <input type="date" name="endDistributionDate" id="endDistributionDate" value="<%= product.endDistributionDate.toISOString().split("T") [0] %>"
+            <input type="date" name="endDistributionDate" id="endDistributionDate" value="<%= product.endDistributionDate %>"
                    class="<%= validationErrors.find(e => e.path.includes("endDistributionDate")) ? "error-input" : "" %>"
                     <%= (formMode == "showDetails") ? "disabled" : "" %> >
         <% } %>

@@ -24,6 +24,11 @@ const ProductModel = sequelize.define('ProductModel', {
         validate: {
             notEmpty: {
                 msg: "This field cannot be empty"
+            },
+            isPositive(value) { // custom validator, it's cool tbh
+                if(parseInt(value) < 0) {
+                    throw new Error("Price cannot be a negative")
+                }
             }
         }
     },
@@ -39,6 +44,13 @@ const ProductModel = sequelize.define('ProductModel', {
     endDistributionDate: {
         type: Sequelize.DATE,
         allowNull: true,
+        validate: {
+            isAfterProductionDate: function(endDistributionDate) {
+                if(this.endDistributionDate && this.productionDate > this.endDistributionDate) {
+                    throw new Error("End distribution date cannot be a date before the product's production date")
+                }
+            }
+        }
     }
 });
 

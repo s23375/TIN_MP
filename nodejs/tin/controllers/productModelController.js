@@ -32,7 +32,8 @@ exports.showProductModelDetails = (req, res, next) => {
                 formMode: "showDetails",
                 //btnLabel: "Details of productModel",
                 formAction: "",
-                navLocation: "productModel"
+                navLocation: "productModel",
+                validationErrors: []
             });
         });
 }
