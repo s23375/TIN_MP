@@ -48,7 +48,7 @@
                class="<%= validationErrors.find(e => e.path.includes("endDistributionDate")) ? "error-input" : "" %>"
                 <%= (formMode == "showDetails") ? "disabled" : "" %> >
         <% } else { %>
-            <input type="date" name="endDistributionDate" id="endDistributionDate" value="<%= product.endDistributionDate %>"
+            <input type="date" name="endDistributionDate" id="endDistributionDate" value="<%= product.endDistributionDate.toISOString().split("T") [0] %>"
                    class="<%= validationErrors.find(e => e.path.includes("endDistributionDate")) ? "error-input" : "" %>"
                     <%= (formMode == "showDetails") ? "disabled" : "" %> >
         <% } %>
