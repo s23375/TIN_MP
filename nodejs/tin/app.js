@@ -22,6 +22,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//date formatting placed BEFORE routes
+const fmt = require("./utils/dateFormatting");
+app.use((req, res, next) => {
+    res.locals.fmt = fmt;
+    next();
+})
+
 // using routes
 app.use('/', indexRoute); // default router
 app.use('/ProductModel', productModelRoute);
