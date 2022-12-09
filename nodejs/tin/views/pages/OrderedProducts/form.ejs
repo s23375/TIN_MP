@@ -12,14 +12,11 @@
 
         <label for="ProductModel_IDproduct">Product: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
         <select name="ProductModel_IDproduct" id="ProductModel_IDproduct" <%= (formMode == "showDetails") ? "disabled" : "" %> required>
-            <% if(formMode == "showDetails" || formMode == "edit") { %>
-                <option value="<%= ordered.ProductModel_IDproduct %>"><%= ordered.ProductModel_IDproduct %></option>
-            <% } else { %>
-            <option value="<%= ordered.ProductModel_IDproduct %>">-- Choose product --</option>
+            <option value="" selected>-- Choose product --</option>
+            <% for(let i=0; i<allProducts.length; i++) { let product = allProducts[i] %>
+            <option value="<%= product.IDproduct %>" label="<%= product.name %>"
+            <%= (ordered.IDorderedProduct && product.IDproduct.toString() == ordered.productModel.IDproduct.toString()) ? 'selected' : ''%>> </option>
             <% } %>
-            <option value="1"> Axceletron DB120</option>
-            <option value="2"> PlasticSeries Friend 350</option>
-            <option value="3"> Basix e11</option>
         </select>
         <span id="errorIDproduct" class="errors-text"></span>
 

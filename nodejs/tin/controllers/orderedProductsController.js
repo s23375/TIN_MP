@@ -1,4 +1,5 @@
 const OrderedProductRepository = require('../repository/sequelize/OrderedProductsRepository');
+const ProductModelRepository = require('../repository/sequelize/ProductModelRepository');
 
 exports.showOrderedProductsList = (req, res, next) => {
     OrderedProductRepository.getOrdereds()
@@ -11,43 +12,56 @@ exports.showOrderedProductsList = (req, res, next) => {
 }
 
 exports.showAddOrderedProductsForm = (req, res, next) => {
-    res.render('pages/OrderedProducts/form', {
-        ordered: {},
-        pageTitle: "New orderedProduct",
-        formMode: "createNew",
-        btnLabel: "Add orderedProduct",
-        formAction: "/OrderedProducts/add",
-        navLocation: 'orderedProducts'
-    });
+    ProductModelRepository.getProducts()
+        .then(allProducts => {
+            res.render('pages/OrderedProducts/form', {
+                ordered: {},
+                allProducts: allProducts,
+                pageTitle: "New orderedProduct",
+                formMode: "createNew",
+                btnLabel: "Add orderedProduct",
+                formAction: "/OrderedProducts/add",
+                navLocation: 'orderedProducts'
+            });
+        });
 }
 
 exports.showOrderedProductsDetails = (req, res, next) => {
     const IDordered = req.params.IDorderedProduct;
-    OrderedProductRepository.getOrderedById(IDordered)
-        .then(ordered => {
-            res.render("pages/OrderedProducts/form", {
-                ordered: ordered,
-                pageTitle: "Details of ordered product",
-                formMode: "showDetails",
-                formAction: "",
-                navLocation: 'orderedProducts'
-            });
+    ProductModelRepository.getProducts()
+        .then( allProducts => {
+            OrderedProductRepository.getOrderedById(IDordered)
+                .then(ordered => {
+                    res.render("pages/OrderedProducts/form", {
+                        ordered: ordered,
+                        allProducts: allProducts,
+                        pageTitle: "Details of ordered product",
+                        formMode: "showDetails",
+                        formAction: "",
+                        navLocation: 'orderedProducts'
+                    });
+                });
         });
 }
 
 exports.showOrderedProductsEdit = (req, res, next) => {
     const IDordered = req.params.IDorderedProduct;
-    OrderedProductRepository.getOrderedById(IDordered)
-        .then(ordered => {
-            res.render("pages/OrderedProducts/form", {
-                ordered: ordered,
-                pageTitle: "Edit ordered product",
-                formMode: "edit",
-                btnLabel: "Edit orderedProduct",
-                formAction: "/OrderedProducts/edit",
-                navLocation: 'orderedProducts'
-            });
-        });
+    ProductModelRepository.getProducts()
+        .then( allProducts => {
+            OrderedProductRepository.getOrderedById(IDordered)
+                .then(ordered => {
+                    res.render("pages/OrderedProducts/form", {
+                        ordered: ordered,
+                        allProducts: allProducts,
+                        pageTitle: "Edit ordered product",
+                        formMode: "edit",
+                        btnLabel: "Edit orderedProduct",
+                        formAction: "/OrderedProducts/edit",
+                        navLocation: 'orderedProducts'
+                    });
+                });
+        })
+
 }
 
 exports.addOrderedProduct = (req, res, next) => {

@@ -61,7 +61,7 @@
                     <a href="/OrderedProducts/details/<%= e.IDorderedProduct %>"> <%= e.IDorderedProduct %> </a>
                 </td>
                 <td data-label="Quantity"><%= e.quantity %></td> <!-- remember to add data-label in other places!! -->
-                <td data-label="IDproduct"><%= e.ProductModel_IDproduct %></td>
+                <td data-label="IDproduct"><%= " ID: " + e.ProductModel_IDproduct + " - " + e.productModel.name %></td>
                 <td data-label="IDorder"><%= e.Order_IDorder %></td>
             </tr>
             <% } %>

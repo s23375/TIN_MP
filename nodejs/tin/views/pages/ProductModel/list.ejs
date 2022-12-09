@@ -18,12 +18,9 @@
                 <td data-label="IDproduct"><%= product.IDproduct %></td>
                 <td data-label="Name"><%= product.name %></td>
                 <td data-label="Price"><%= product.price %></td>
-                <td data-label="Production Date"><%= product.productionDate.toISOString().split("T") [0] %></td> <!-- formatting js Date format -->
-                <% if(!product.endDistributionDate) { %>
-                    <td data-label="Distribution End date"><%= product.endDistributionDate %></td>
-                <% } else { %>
-                <td data-label="Distribution End date"><%= product.endDistributionDate.toISOString().split("T") [0] %></td>
-                    <% } %>
+                <td data-label="Production Date"><%= fmt.formatDate(product.productionDate) %></td> <!-- formatting js Date format -->
+                <td data-label="Distribution End date"><%= fmt.formatDate(product.endDistributionDate) %></td>
+
                 <td>
                     <ul class="list-actions"> <!-- add class list-actions to align buttons horizontally -->
                         <li>
