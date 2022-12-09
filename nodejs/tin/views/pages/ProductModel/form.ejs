@@ -2,7 +2,7 @@
 <main>
     <h2><%= pageTitle %></h2>
 
-    <form class="form" method="post" action="<%=formAction%>" novalidate >
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="IDproduct" value="<%= product.IDproduct %>">
 
         <label for="name">Name of product: <span class="symbol-required">*</span></label>

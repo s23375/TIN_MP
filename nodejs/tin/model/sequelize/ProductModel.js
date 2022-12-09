@@ -7,6 +7,14 @@ const ProductModel = sequelize.define('ProductModel', {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
+        validation: {
+            notEmpty: {
+                msg: "The ID field with a certain name I will not give you here cannot be empty"
+            },
+            isInt: {
+                msg: "The ID field has to be an Integer"
+            }
+        }
     },
     name: {
         type: Sequelize.STRING,
@@ -25,6 +33,9 @@ const ProductModel = sequelize.define('ProductModel', {
             notEmpty: {
                 msg: "This field cannot be empty"
             },
+            isDecimal: {
+              msg: "This field has to be a float type number"
+            },
             isPositive(value) { // custom validator, it's cool tbh
                 if(parseInt(value) < 0) {
                     throw new Error("Price cannot be a negative")
@@ -38,6 +49,9 @@ const ProductModel = sequelize.define('ProductModel', {
         validate: {
             notEmpty: {
                 msg: "This field cannot be empty"
+            },
+            isDate: {
+                msg: "This field has to be a date"
             }
         }
     },
@@ -45,6 +59,9 @@ const ProductModel = sequelize.define('ProductModel', {
         type: Sequelize.DATE,
         allowNull: true,
         validate: {
+            isDate: {
+                msg: "This field has to be a date"
+            },
             isAfterProductionDate: function(endDistributionDate) {
                 if(this.endDistributionDate && this.productionDate > this.endDistributionDate) {
                     throw new Error("End distribution date cannot be a date before the product's production date")
