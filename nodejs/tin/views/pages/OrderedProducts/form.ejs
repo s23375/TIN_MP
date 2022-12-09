@@ -22,13 +22,10 @@
 
         <label for="Order_IDorder">For: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
         <select name="Order_IDorder" id="Order_IDorder" <%= (formMode == "showDetails") ? "disabled" : "" %> required>
-            <% if(formMode == "showDetails" || formMode == "edit") { %>
-                <option value="<%= ordered.Order_IDorder %>"><%= "IDorder " + ordered.Order_IDorder %></option>
-            <% } else { %>
-                <option value="<%= ordered.Order_IDorder %>">-- Choose product --</option>
-            <% } %>
-            <% for(let i=1; i < 4; i++) { %>
-            <option value="<%= i %>" ><%= "IDorder " + i %>  </option>
+            <option value="">-- Choose product --</option>
+            <% for(let i=0; i < allOrders.length; i++) { let order = allOrders[i] %>
+            <option value="<%= order.IDorder %>" label="<%= "ID: " + order.IDorder + " - " + order.clientContactInfo%>"
+                    <%= (ordered.IDorderedProduct && order.IDorder.toString() == ordered.order.IDorder.toString()) ? 'selected' : ''%>></option>
             <% } %>
         </select>
         <span id="errorIDorder" class="errors-text"></span>
