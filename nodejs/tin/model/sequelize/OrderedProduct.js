@@ -7,7 +7,7 @@ const OrderedProduct = sequelize.define('OrderedProduct', {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
-        validation: {
+        validate: {
             notEmpty: {
                 msg: "The ID field with a certain name I will not give you here cannot be empty"
             },
@@ -19,7 +19,7 @@ const OrderedProduct = sequelize.define('OrderedProduct', {
     quantity: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        validation: {
+        validate: {
             notEmpty: {
                 msg: "This field cannot be empty"
             },
@@ -36,7 +36,7 @@ const OrderedProduct = sequelize.define('OrderedProduct', {
     ProductModel_IDproduct: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        validation: {
+        validate: {
             notEmpty: {
                 msg: "The ID field with a certain name I will not give you here cannot be empty"
             },
@@ -48,7 +48,7 @@ const OrderedProduct = sequelize.define('OrderedProduct', {
     Order_IDorder: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        validation: {
+        validate: {
             notEmpty: {
                 msg: "The ID field with a certain name I will not give you here cannot be empty"
             },

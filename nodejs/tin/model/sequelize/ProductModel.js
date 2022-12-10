@@ -7,7 +7,7 @@ const ProductModel = sequelize.define('ProductModel', {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
-        validation: {
+        validate: {
             notEmpty: {
                 msg: "The ID field with a certain name I will not give you here cannot be empty"
             },
