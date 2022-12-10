@@ -42,8 +42,6 @@ exports.showProductModelEdit = (req, res, next) => {
     const productID = req.params.IDproduct;
     ProductModelRepository.getProductById(productID)
         .then(product => {
-            console.log(JSON.stringify(new Date(product.productionDate)).split("T")[0]);
-            product.productionDate = JSON.stringify(new Date(product.productionDate)).split("T")[0]
             res.render('pages/ProductModel/form', {
                 product: product,
                 pageTitle: "Edit productModel",

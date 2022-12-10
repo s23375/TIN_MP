@@ -17,7 +17,8 @@ exports.showAddOrderForm = (req, res, next) => {
         formMode: "createNew",
         btnLabel: "Add order",
         formAction: "/Order/add",
-        navLocation: 'order'
+        navLocation: 'order',
+        validationErrors: []
     });
 }
 
@@ -30,7 +31,8 @@ exports.showOrderDetails = (req, res, next) => {
                 pageTitle: "Details of order",
                 formMode: "showDetails",
                 formAction: "",
-                navLocation: "order"
+                navLocation: "order",
+                validationErrors: []
             });
         });
 }
@@ -45,7 +47,8 @@ exports.showOrderEdit = (req, res, next) => {
                 formMode: "edit",
                 btnLabel: "Edit order",
                 formAction: "/Order/edit",
-                navLocation: "order"
+                navLocation: "order",
+                validationErrors: []
             });
         });
 }
@@ -56,6 +59,17 @@ exports.addOrder = (req, res, next) => {
         .then(result => {
             res.redirect("/Order/");
         })
+        .catch(err => {
+            res.render("pages/Order/form", {
+                order: orderData,
+                pageTitle: "New order",
+                formMode: "createNew",
+                btnLabel: "Add order",
+                formAction: "/Order/add",
+                navLocation: 'order',
+                validationErrors: err.errors
+            })
+        })
 };
 
 exports.updateOrder = (req, res, next) => {
@@ -64,6 +78,17 @@ exports.updateOrder = (req, res, next) => {
     OrderRepository.updateOrder(IDorder, orderData)
         .then( result => {
             res.redirect("/Order/")
+        })
+        .catch(err => {
+            res.render("pages/Order/form", {
+                order: orderData,
+                pageTitle: "Edit order",
+                formMode: "edit",
+                btnLabel: "Edit order",
+                formAction: "/Order/edit",
+                navLocation: "order",
+                validationErrors: err.errors
+            })
         })
 };
 

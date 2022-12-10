@@ -34,7 +34,7 @@ const ProductModel = sequelize.define('ProductModel', {
                 msg: "This field cannot be empty"
             },
             isDecimal: {
-              msg: "This field has to be a float type number"
+              msg: "This field has to be a decimal type number"
             },
             isPositive(value) { // custom validator, it's cool tbh
                 if(parseInt(value) < 0) {

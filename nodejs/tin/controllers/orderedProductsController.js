@@ -25,7 +25,8 @@ exports.showAddOrderedProductsForm = (req, res, next) => {
                         formMode: "createNew",
                         btnLabel: "Add orderedProduct",
                         formAction: "/OrderedProducts/add",
-                        navLocation: 'orderedProducts'
+                        navLocation: 'orderedProducts',
+                        validationErrors: []
                     });
                 });
         })
@@ -47,7 +48,8 @@ exports.showOrderedProductsDetails = (req, res, next) => {
                                 pageTitle: "Details of ordered product",
                                 formMode: "showDetails",
                                 formAction: "",
-                                navLocation: 'orderedProducts'
+                                navLocation: 'orderedProducts',
+                                validationErrors: []
                             });
                         });
                 });
@@ -71,7 +73,8 @@ exports.showOrderedProductsEdit = (req, res, next) => {
                                 formMode: "edit",
                                 btnLabel: "Edit orderedProduct",
                                 formAction: "/OrderedProducts/edit",
-                                navLocation: 'orderedProducts'
+                                navLocation: 'orderedProducts',
+                                validationErrors: []
                             });
                         });
                 })
@@ -80,19 +83,60 @@ exports.showOrderedProductsEdit = (req, res, next) => {
 
 exports.addOrderedProduct = (req, res, next) => {
     const orderedData = {...req.body};
-    OrderedProductRepository.createOrdered(orderedData)
-    .then(result => {
-        res.redirect("/OrderedProducts/");
-    });
+
+    OrderRepository.getOrders()
+        .then( allOrders => {
+            ProductModelRepository.getProducts()
+                .then( allProducts => {
+                    OrderedProductRepository.createOrdered(orderedData)
+                        .then(result => {
+                            res.redirect("/OrderedProducts/");
+                        })
+                        .catch(err => {
+                            res.render("pages/OrderedProducts/form", {
+                                ordered: orderedData,
+                                allProducts: allProducts,
+                                allOrders: allOrders,
+                                pageTitle: "New orderedProduct",
+                                formMode: "createNew",
+                                btnLabel: "Add orderedProduct",
+                                formAction: "/OrderedProducts/add",
+                                navLocation: 'orderedProducts',
+                                validationErrors: err.errors
+                            })
+                        })
+                })
+        })
 };
 
 exports.updateOrderedProduct = (req, res, next) => {
     const IDordered = req.body.IDorderedProduct;
     const orderedData = {...req.body};
-    OrderedProductRepository.updateOrderedProduct(IDordered, orderedData)
-        .then(result => {
-            res.redirect("/OrderedProducts/");
-        });
+
+    OrderRepository.getOrders()
+        .then( allOrders => {
+            ProductModelRepository.getProducts()
+                .then( allProducts => {
+                    OrderedProductRepository.updateOrderedProduct(IDordered, orderedData)
+                        .then(result => {
+                            res.redirect("/OrderedProducts/");
+                        })
+                        .catch(err => {
+                            res.render("pages/OrderedProducts/form", {
+                                ordered: orderedData,
+                                allProducts: allProducts,
+                                allOrders: allOrders,
+                                pageTitle: "Edit ordered product",
+                                formMode: "edit",
+                                btnLabel: "Edit orderedProduct",
+                                formAction: "/OrderedProducts/edit",
+                                navLocation: 'orderedProducts',
+                                validationErrors: err.errors
+                            })
+                        })
+                })
+        })
+
 }
 
 exports.deleteOrderedProduct = (req, res, next) => {
