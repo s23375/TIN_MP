@@ -26,12 +26,6 @@ exports.createOrder = (newOrderData) => {
     if(newOrderData.premiumDelivery === undefined) newOrderData.premiumDelivery = false
     else newOrderData.premiumDelivery = true
 
-    //it'll be this way for now at least
-    //I tried to use switch but a javascript later I gave up
-    if(newOrderData.shippingCompany === "1") newOrderData.shippingCompany = "DHL";
-    else if(newOrderData.shippingCompany === "2") newOrderData.shippingCompany = "Inpost";
-    else if(newOrderData.shippingCompany === "3") newOrderData.shippingCompany = "Poczta Polska";
-
     return Order.create({
         datePlaced: newOrderData.datePlaced,
         clientContactInfo: newOrderData.clientContactInfo,
@@ -42,10 +36,6 @@ exports.createOrder = (newOrderData) => {
 
 exports.updateOrder = (IDorder, newOrderData) => {
     if(!newOrderData.datePlaced) newOrderData.datePlaced = Date.now();
-
-    if(newOrderData.shippingCompany === "1") newOrderData.shippingCompany = "DHL";
-    else if(newOrderData.shippingCompany === "2") newOrderData.shippingCompany = "Inpost";
-    else if(newOrderData.shippingCompany === "3") newOrderData.shippingCompany = "Poczta Polska";
 
     if(newOrderData.premiumDelivery === undefined) newOrderData.premiumDelivery = false
     else newOrderData.premiumDelivery = true

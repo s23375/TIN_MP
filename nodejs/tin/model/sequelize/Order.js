@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../config/sequelize/sequelize');
+const {BOOLEAN} = require("sequelize");
 
 const Order = sequelize.define('Order', {
     IDorder: {
@@ -47,7 +48,7 @@ const Order = sequelize.define('Order', {
             notEmpty: {
                 msg: "This field cannot be empty"
             },
-            isAlpha: {
+            isAlphanumeric: {
                 msg: "This field has to be a String"
             }
         }
@@ -60,7 +61,7 @@ const Order = sequelize.define('Order', {
                 msg: "This field cannot be empty"
             },
             isBool(value) {
-                if(!(value instanceof Boolean)) {
+                if(!(value === true || value === false)) {
                     throw new Error("This field has to be either true or false")
                 }
             }

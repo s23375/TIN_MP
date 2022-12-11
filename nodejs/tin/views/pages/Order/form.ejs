@@ -8,7 +8,7 @@
         <label for="clientContactInfo">Contact info: <span class="symbol-required">*</span></label> 
         <input type="text" name="clientContactInfo" id="clientContactInfo" placeholder="e-mail address" value="<%= order.clientContactInfo %>"
                class="<%= validationErrors.find(e => e.path.includes("clientContactInfo")) ? "error-input" : "" %>"
-                <%= (formMode == "showDetails") ? "disabled" : "" %> required>
+                <%= (formMode === "showDetails") ? "disabled" : "" %> required>
         <span id="errorClientContactInfo" class="errors-text">
             <% if(validationErrors.find(e => e.path.includes("clientContactInfo"))) { %>
                 <%= validationErrors.find(e => e.path.includes("clientContactInfo")).message %>
@@ -18,15 +18,21 @@
         <label for="shippingCompany"> Shipping method: <span class="symbol-required">*</span></label> <!-- Can't figure out displaying a "Field required" message for this field -->
         <select name="shippingCompany" id="shippingCompany"
                 class="<%= validationErrors.find(e => e.path.includes("shippingCompany")) ? "error-input" : "" %>"
-                <%= (formMode == "showDetails") ? "disabled" : "" %> required>
-            <% if(formMode == "showDetails" || formMode == "edit") { %>
-            <option value="<%= order.shippingCompany %>" selected><%= order.shippingCompany %></option>
+                <%= (formMode === "showDetails") ? "disabled" : "" %> required>
+            <% if(!order.shippingCompany) { %>
+            <option value="" selected>-- Choose shipping method --</option>
             <% } else { %>
-            <option value="<%= order.shippingCompany %>" selected>-- Choose shipping method --</option>
+            <option value="<%= order.shippingCompany %>" selected><%= order.shippingCompany %></option>
             <% } %>
-            <option value="1"> DHL</option>
-            <option value="2"> Inpost</option>
-            <option value="3"> Poczta Polska</option>
+            <% if(!(order.shippingCompany === "DHL")) { %>
+                <option value="DHL"> DHL</option>
+            <% } %>
+            <% if(!(order.shippingCompany === "Inpost")) { %>
+                <option value="Inpost"> Inpost</option>
+            <% } %>
+            <% if(!(order.shippingCompany === "PocztaPolska")) { %>
+                <option value="PocztaPolska"> PocztaPolska</option>
+            <% } %>
         </select>
         <span id="errorShippingCompany" class="errors-text">
             <% if(validationErrors.find(e => e.path.includes("shippingCompany"))) { %>
@@ -35,16 +41,17 @@
         </span> <!-- added class errors-text because validation form wasn't able to get over the lack of it apparently -->
 
         <label for="premiumDelivery">Premium delivery: </label>  <!-- premiumDelivery is nullable therefore no "required" keyword-->
-        <input type="checkbox" name="premiumDelivery" id="premiumDelivery" value="<%= order.premiumDelivery %>"
+        <input type="checkbox" name="premiumDelivery" id="premiumDelivery"
+               <%= (order.premiumDelivery === true) ? "checked" : ""%>
                class="<%= validationErrors.find(e => e.path.includes("premiumDelivery")) ? "error-input" : "" %>"
-                <%= (formMode == "showDetails") ? "disabled" : "" %>>
-        <span id="errorPremiumDelivery">
+                <%= (formMode === "showDetails") ? "disabled" : "" %>>
+        <span id="errorPremiumDelivery" class="errors-text">
             <% if(validationErrors.find(e => e.path.includes("premiumDelivery"))) { %>
                 <%= validationErrors.find(e => e.path.includes("premiumDelivery")).message %>
             <% } %>
         </span>
 
-        <% if (formMode == "showDetails") { %>
+        <% if (formMode === "showDetails") { %>
             <div class = "form-buttons">
                 <a href="/Order/edit/<%= order.IDorder %>" class="form-button-edit"> Edit</a>
             </div>
@@ -52,17 +59,17 @@
 
         <div class = "form-buttons">
             <p id="errorsSummary" class="errors-text"></p>
-            <% if (formMode != "showDetails") { %>
+            <% if (formMode !== "showDetails") { %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>" />
                 <a class="form-button-cancel" href="/Order/">Cancel</a>
             <% } %>
         </div>
     </form>
 
-    <% if (formMode == "showDetails" || formMode == "edit") { %>
+    <% if (formMode === "showDetails" || formMode === "edit") { %>
     <h2> Details for this order</h2>
         <table class="table-list">
-
+            <thead>
             <tr>
                 <th>IDorderedProduct</th>
                 <th>Quantity</th>
@@ -86,7 +93,7 @@
 
     <% } %>
 
-    <% if(formMode == "showDetails") { %>
+    <% if(formMode === "showDetails") { %>
         <a class="form-button-back" href="/Order/">Go back</a>
     <% } %>
 </main>
