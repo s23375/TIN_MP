@@ -75,20 +75,32 @@ exports.addOrder = (req, res, next) => {
 exports.updateOrder = (req, res, next) => {
     const IDorder = req.body.IDorder;
     const orderData = { ...req.body};
+    OrderRepository.getOrderById(IDorder)
+        .then(gf => {
+            console.log(gf)
+        })
+    //try .then and replace data with orderData
+
+    console.log(OrderRepository.getOrderById(IDorder))
     OrderRepository.updateOrder(IDorder, orderData)
         .then( result => {
             res.redirect("/Order/")
         })
         .catch(err => {
-            res.render("pages/Order/form", {
-                order: orderData,
-                pageTitle: "Edit order",
-                formMode: "edit",
-                btnLabel: "Edit order",
-                formAction: "/Order/edit",
-                navLocation: "order",
-                validationErrors: err.errors
-            })
+            const qwe = OrderRepository.getOrderById(IDorder)
+                .then(yt => {
+                    res.render("pages/Order/form", {
+                        order: orderData,
+                        pageTitle: "Edit order",
+                        formMode: "edit",
+                        btnLabel: "Edit order",
+                        formAction: "/Order/edit",
+                        navLocation: "order",
+                        validationErrors: err.errors
+                    })
+                })
+
+
         })
 };
 

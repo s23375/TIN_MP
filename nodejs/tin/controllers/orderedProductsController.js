@@ -122,17 +122,22 @@ exports.updateOrderedProduct = (req, res, next) => {
                             res.redirect("/OrderedProducts/");
                         })
                         .catch(err => {
-                            res.render("pages/OrderedProducts/form", {
-                                ordered: orderedData,
-                                allProducts: allProducts,
-                                allOrders: allOrders,
-                                pageTitle: "Edit ordered product",
-                                formMode: "edit",
-                                btnLabel: "Edit orderedProduct",
-                                formAction: "/OrderedProducts/edit",
-                                navLocation: 'orderedProducts',
-                                validationErrors: err.errors
-                            })
+                            OrderedProductRepository.getOrderedById(IDordered)
+                                .then(hey => {
+                                    // do the same as in orderController
+                                    res.render("pages/OrderedProducts/form", {
+                                        ordered: hey,
+                                        allProducts: allProducts,
+                                        allOrders: allOrders,
+                                        pageTitle: "Edit ordered product",
+                                        formMode: "edit",
+                                        btnLabel: "Edit orderedProduct",
+                                        formAction: "/OrderedProducts/edit",
+                                        navLocation: 'orderedProducts',
+                                        validationErrors: err.errors
+                                    })
+                                })
+
                         })
                 })
         })
