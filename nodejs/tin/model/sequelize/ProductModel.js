@@ -19,6 +19,12 @@ const ProductModel = sequelize.define('ProductModel', {
     name: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: {
+            // the downside of putting this error message here in this way: it displays only after all other errors in the form have been fixed
+            // the upside: it works
+            name: 'name',
+            msg: "Name of the product has to be unique"
+        },
         validate: {
             len: {
                 args: [2, 60],

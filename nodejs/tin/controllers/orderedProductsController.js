@@ -83,6 +83,21 @@ exports.showOrderedProductsEdit = (req, res, next) => {
 
 exports.addOrderedProduct = (req, res, next) => {
     const orderedData = {...req.body};
+    const template = {
+        OrderedProduct: {
+            // the tutorial told us to check in the form if there is AN ID when displaying the drop-down list, so I just put whatever there so it works
+                IDorderedProduct: 999,
+                quantity: orderedData.quantity,
+                ProductModel_IDproduct: orderedData.ProductModel_IDproduct,
+                Order_IDorder: orderedData.Order_IDorder,
+                productModel: {
+                    IDproduct: orderedData.ProductModel_IDproduct
+                },
+                order: {
+                    IDorder: orderedData.Order_IDorder
+                }
+        }
+    }
 
     OrderRepository.getOrders()
         .then( allOrders => {
@@ -94,7 +109,7 @@ exports.addOrderedProduct = (req, res, next) => {
                         })
                         .catch(err => {
                             res.render("pages/OrderedProducts/form", {
-                                ordered: orderedData,
+                                ordered: template.OrderedProduct,
                                 allProducts: allProducts,
                                 allOrders: allOrders,
                                 pageTitle: "New orderedProduct",
