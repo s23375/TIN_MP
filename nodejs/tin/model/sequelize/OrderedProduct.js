@@ -27,9 +27,13 @@ const OrderedProduct = sequelize.define('OrderedProduct', {
                 msg: "This field has to be an Integer type number"
             },
             isPositive(value) {
-                if(parseInt(value) < 0) {
-                    throw new Error("Price cannot be a negative")
+                if(parseInt(value) < 1) {
+                    throw new Error("Quantity has to be a number bigger than 0")
                 }
+            },
+            len: {
+                args: [1, 9],
+                msg: "This field has to have a number with 1 to 9 numbers because that's the non-crashing limit apparently"
             }
         }
     },

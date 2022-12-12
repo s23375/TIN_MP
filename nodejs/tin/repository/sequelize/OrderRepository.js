@@ -1,6 +1,7 @@
 const ProductModel = require('../../model/sequelize/ProductModel');
 const OrderedProduct = require('../../model/sequelize/OrderedProduct');
 const Order = require('../../model/sequelize/Order');
+const {getOrderById} = require("../../api/OrderAPI");
 
 exports.getOrders = () => {
     return Order.findAll();

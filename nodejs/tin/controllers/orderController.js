@@ -75,22 +75,22 @@ exports.addOrder = (req, res, next) => {
 exports.updateOrder = (req, res, next) => {
     const IDorder = req.body.IDorder;
     const orderData = { ...req.body};
-    OrderRepository.getOrderById(IDorder)
-        .then(gf => {
-            console.log(gf)
-        })
-    //try .then and replace data with orderData
 
-    console.log(OrderRepository.getOrderById(IDorder))
     OrderRepository.updateOrder(IDorder, orderData)
         .then( result => {
             res.redirect("/Order/")
         })
         .catch(err => {
-            const qwe = OrderRepository.getOrderById(IDorder)
-                .then(yt => {
+            OrderRepository.getOrderById(IDorder)
+                .then(oldInfo => {
+                    //I tried making this as a method in Repository but it was throwing weird errors, sometimes even saying IDorder is undefined
+                    // when it printed "1" a few lines before, truly a DS of back-end functionalities
+                    oldInfo.clientContactInfo = orderData.clientContactInfo;
+                    oldInfo.shippingCompany = orderData.shippingCompany;
+                    oldInfo.premiumDelivery = orderData.premiumDelivery;
+
                     res.render("pages/Order/form", {
-                        order: orderData,
+                        order: oldInfo,
                         pageTitle: "Edit order",
                         formMode: "edit",
                         btnLabel: "Edit order",
@@ -99,8 +99,6 @@ exports.updateOrder = (req, res, next) => {
                         validationErrors: err.errors
                     })
                 })
-
-
         })
 };
 

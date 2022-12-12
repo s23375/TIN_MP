@@ -123,10 +123,16 @@ exports.updateOrderedProduct = (req, res, next) => {
                         })
                         .catch(err => {
                             OrderedProductRepository.getOrderedById(IDordered)
-                                .then(hey => {
-                                    // do the same as in orderController
+                                .then(oldInfo => {
+                                    oldInfo.quantity = orderedData.quantity;
+                                    oldInfo.ProductModel_IDproduct = orderedData.ProductModel_IDproduct;
+                                    oldInfo.Order_IDorder = orderedData.Order_IDorder;
+                                    // dataValues idk
+                                    oldInfo.productModel.dataValues.IDproduct = orderedData.ProductModel_IDproduct;
+                                    oldInfo.order.dataValues.IDorder = orderedData.Order_IDorder;
+
                                     res.render("pages/OrderedProducts/form", {
-                                        ordered: hey,
+                                        ordered: oldInfo,
                                         allProducts: allProducts,
                                         allOrders: allOrders,
                                         pageTitle: "Edit ordered product",
