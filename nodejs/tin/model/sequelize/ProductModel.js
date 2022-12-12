@@ -25,6 +25,10 @@ const ProductModel = sequelize.define('ProductModel', {
             name: 'name',
             msg: "Name of the product has to be unique"
         },
+        isAlpha: {
+          args: true,
+          msg: "this appears to not work and I have no idea why"
+        },
         validate: {
             len: {
                 args: [2, 60],
