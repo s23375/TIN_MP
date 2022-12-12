@@ -42,6 +42,10 @@ const ProductModel = sequelize.define('ProductModel', {
             isDecimal: {
               msg: "This field has to be a decimal type number"
             },
+            len: {
+                args: [1, 11],
+                msg: "This field has to have from 1 to 11 numbers and signs"
+            },
             isPositive(value) { // custom validator, it's cool tbh
                 if(parseInt(value) < 0) {
                     throw new Error("Price cannot be a negative")

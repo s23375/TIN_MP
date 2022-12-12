@@ -33,7 +33,7 @@ const OrderedProduct = sequelize.define('OrderedProduct', {
             },
             len: {
                 args: [1, 9],
-                msg: "This field has to have a number with 1 to 9 numbers because that's the non-crashing limit apparently"
+                msg: "This field has to have from 1 to 9 characters(numbers)"
             }
         }
     },
