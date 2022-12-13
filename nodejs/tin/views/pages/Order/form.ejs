@@ -2,7 +2,7 @@
 <main>
     <h2><%= pageTitle %></h2>
 
-    <form class="form" method="post" action="<%=formAction%>" novalidate >
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="IDorder" value="<%= order.IDorder %>"> <!-- THIS IS VERY FUCKING IMPORTANT-->
 
         <label for="clientContactInfo">Contact info: <span class="symbol-required">*</span></label> 

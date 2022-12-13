@@ -56,6 +56,19 @@ function checkPriceRange(value) {
     return true;
 }
 
+function checkQuantityRange(value) {
+    if (!value) {
+        return false;
+    }
+    if(isNaN(value)) {
+        return false;
+    }
+    if(value < 1) {
+        return false;
+    }
+    return true;
+}
+
 function checkDropdownList(value) {
     if(!value) {
         return false;

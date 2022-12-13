@@ -2,8 +2,7 @@
 <main>
     <h2><%= pageTitle %></h2>
 
-    <form class="form" method="post" action="<%=formAction%>" novalidate >
-        <!-- onsubmit="return validateForm();" -->
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="IDorderedProduct" value="<%= ordered.IDorderedProduct %>">
 
         <label for="quantity">Quantity: <span class="symbol-required">*</span></label> 

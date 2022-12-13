@@ -17,10 +17,10 @@ function validateForm() {
         valid = false;
         quantityInput.classList.add("error-input");
         errorQuantity.innerText = "This field is required.";
-    } else if(!checkPriceRange(quantityInput.value)) {
+    } else if(!checkQuantityRange(quantityInput.value)) {
         valid = false;
         quantityInput.classList.add("error-input");
-        errorQuantity.innerText = "This field cannot be negative";
+        errorQuantity.innerText = "This field has to contain a number bigger than 0";
     }
 
     if(!checkDropdownList(productInput.value)) {
