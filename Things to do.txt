@@ -5,7 +5,7 @@ BYT:
 ZPR:
 -	6. Project schedule and resources
 -	7. Stakeholder Identification - somewhat done for now
--	8. Scrum User Stories
+-	8. Scrum User Stories - done
 -	9. Scrum software support
 -	11. Communication plan
 TIN:
