@@ -4,7 +4,7 @@ BYT:
 -	Test preparation
 ZPR:
 -	6. Project schedule and resources
--	7. Stakeholder Identification
+-	7. Stakeholder Identification - somewhat done for now
 -	8. Scrum User Stories
 -	9. Scrum software support
 -	11. Communication plan
