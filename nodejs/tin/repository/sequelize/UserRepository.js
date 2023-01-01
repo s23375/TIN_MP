@@ -26,3 +26,9 @@ exports.deleteUser = (IDuser) => {
         where: {IDuser: IDuser}
     });
 };
+
+exports.findByEmail = (email) => {
+    return User.findOne({
+        where: {email: email}
+    });
+};
