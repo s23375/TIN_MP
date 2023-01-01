@@ -3,6 +3,7 @@ const sequelize = require('./sequelize');
 const ProductModel = require('../../model/sequelize/ProductModel');
 const OrderedProduct = require('../../model/sequelize/OrderedProduct');
 const Order = require('../../model/sequelize/Order');
+const User = require("../../model/sequelize/User");
 
 /*
 to learn more about .hasMany, .belongsTo(as well as .hasOne and .belongsToMany): https://sequelize.org/docs/v6/core-concepts/assocs/
@@ -68,6 +69,18 @@ module.exports = () => {
                 ]);
             } else {
                 return ordereds;
+            }
+        })
+        .then( ordereds => {
+            return User.findAll();
+        })
+        .then(users => {
+            if(!users || users.length === 0) {
+                return User.bulkCreate([
+                {firstName: "Bartek", lastName: "Janowski", email: "guwnoimejl@gmail.com"}
+                ]);
+            } else {
+                return users;
             }
         });
 };
