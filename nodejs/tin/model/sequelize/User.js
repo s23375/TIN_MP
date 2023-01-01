@@ -56,6 +56,20 @@ const User = sequelize.define("User", {
                 msg: "This has to be an email!"
             }
         }
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        isAlpha: {
+            args: true,
+            msg: "this appears to not work and I have no idea why"
+        },
+        validate: {
+            len: {
+                args: [2, 60],
+                msg: "This field should have from 2 to 60 characters"
+            }
+        }
     }
 });
 

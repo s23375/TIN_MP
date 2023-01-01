@@ -12,7 +12,8 @@ exports.createUser = (newUserData) => {
     return User.create({
         firstName: newUserData.firstName,
         lastName: newUserData.lastName,
-        email: newUserData.email
+        email: newUserData.email,
+        password: newUserData.password
     });
 };
 

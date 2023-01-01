@@ -77,7 +77,7 @@ module.exports = () => {
         .then(users => {
             if(!users || users.length === 0) {
                 return User.bulkCreate([
-                {firstName: "Bartek", lastName: "Janowski", email: "guwnoimejl@gmail.com"}
+                {firstName: "Bartek", lastName: "Janowski", email: "guwnoimejl@gmail.com", password: "123"}
                 ]);
             } else {
                 return users;
