@@ -53,11 +53,9 @@ exports.updateUser = (req, res, next) => {
 
 exports.deleteUser = (req, res, next) => {
     const IDuser = req.params.IDuser;
-    const userName = req.params.firstName; //TODO doesn't work for now(sends undefined), don't care
-    const userSurname = req.params.lastName;
     UserRepository.deleteUser(IDuser)
         .then(result => {
-            res.status(200).json({message: 'Removed user ID: '+IDuser+" name and surname: "+userName+" "+userSurname, user: result});
+            res.status(200).json({message: 'Removed user ID: '+IDuser, user: result});
         })
         .catch(err => {
             if(!err.statusCode) {
