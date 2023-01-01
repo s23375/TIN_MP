@@ -29,6 +29,13 @@ app.use((req, res, next) => {
     next();
 })
 
+// session stuff
+const session = require('express-session');
+app.use(session({
+    secret: "my_secret_password",
+    resave: false
+}));
+
 // using routes
 app.use('/', indexRoute); // default router
 app.use('/ProductModel', productModelRoute);
@@ -36,7 +43,7 @@ app.use('/Order', orderRoute);
 app.use('/OrderedProducts', orderedProductsRoute);
 
 // calling the monstrosity that is config/sequelize/init.js
-const sequelizeInit = require('./config/sequelize/init'); //TODO causing a crash, go to config/sequelize/sequelize.js
+const sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
     .catch(err => {
       console.log(err);
