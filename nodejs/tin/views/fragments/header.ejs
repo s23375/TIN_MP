@@ -32,13 +32,15 @@
                 <label for="loginPassword">Password:</label>
                 <input type="password" id="loginPassword" name="password">
 
-                <input type="submit" value="Log in">
+                <input type="submit" class="form-button-edit" value="Log in">
                 <span id="loginErrors"><%= loginError ? loginError : "" %></span>
             </form>
         </div>
     <% } else { %>
+    <div class="form-buttons" >
         <span> You are logged in as: <%= loggedUser.firstName + " " + loggedUser.lastName %></span>
-        <a href="/logout">Log out</a>
+        <a href="/logout" class="form-button-cancel">Log out</a>
+    </div>
     <% } %>
 </header>
 <nav>
