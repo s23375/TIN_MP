@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const authUtil = require("./utils/authUtil");
 
 /*routers */
 var indexRoute = require('./routes/indexRoute');
@@ -47,9 +48,9 @@ app.use( (req, res, next) => {
 
 // using routes
 app.use('/', indexRoute); // default router
-app.use('/ProductModel', productModelRoute);
-app.use('/Order', orderRoute);
-app.use('/OrderedProducts', orderedProductsRoute);
+app.use('/ProductModel', authUtil.permitAuthenticatedUser, productModelRoute);
+app.use('/Order', authUtil.permitAuthenticatedUser, orderRoute);
+app.use('/OrderedProducts', authUtil.permitAuthenticatedUser,orderedProductsRoute);
 
 // calling the monstrosity that is config/sequelize/init.js
 const sequelizeInit = require('./config/sequelize/init');
@@ -63,6 +64,7 @@ const productApiRoute = require('./routes/api/ProductModelApiRoute');
 const orderedApiRoute = require('./routes/api/OrderedProductsApiRoute');
 const orderApiRoute = require('./routes/api/OrderApiRoute');
 const userApiRoute = require("./routes/api/UserApiRoute");
+
 
 app.use('/api/products', productApiRoute);
 app.use('/api/ordereds', orderedApiRoute);

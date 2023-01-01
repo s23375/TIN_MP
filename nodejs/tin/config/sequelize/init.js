@@ -5,6 +5,9 @@ const OrderedProduct = require('../../model/sequelize/OrderedProduct');
 const Order = require('../../model/sequelize/Order');
 const User = require("../../model/sequelize/User");
 
+const authUtil = require("../../utils/authUtil");
+const passHash = authUtil.hashPassword("123");
+
 /*
 to learn more about .hasMany, .belongsTo(as well as .hasOne and .belongsToMany): https://sequelize.org/docs/v6/core-concepts/assocs/
 here's the important bit:
@@ -77,7 +80,7 @@ module.exports = () => {
         .then(users => {
             if(!users || users.length === 0) {
                 return User.bulkCreate([
-                {firstName: "Bartek", lastName: "Janowski", email: "guwnoimejl@gmail.com", password: "123"}
+                {firstName: "Bartek", lastName: "Janowski", email: "guwnoimejl@gmail.com", password: passHash}
                 ]);
             } else {
                 return users;

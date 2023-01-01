@@ -1,4 +1,5 @@
 const UserRepository = require("../repository/sequelize/UserRepository");
+const authUtil = require("../utils/authUtil");
 
 exports.login = (req, res, next) => {
     const email = req.body.email;
@@ -10,7 +11,7 @@ exports.login = (req, res, next) => {
                     navLocation: "",
                     loginError: "Incorrect email address or password"
                 })
-            } else if(user.password === password) {
+            } else if(authUtil.comparePasswords(password, user.password) === true) {
                 req.session.loggedUser = user;
                 res.redirect("/");
             } else {

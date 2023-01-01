@@ -43,9 +43,11 @@
 </header>
 <nav>
     <ul>
+        <% if(loggedUser) { %>
         <li><a href="/" class="<%= navLocation === 'main' ? 'active' : ''%>">Main page</a></li> <!-- class "active" marks which tab we are currently on-->
         <li><a href="/ProductModel" class="<%= navLocation === 'productModel' ? 'active' : ''%>">ProductModel</a></li>
         <li><a href="/Order" class="<%= navLocation === 'order' ? 'active' : ''%>">Order</a></li>
         <li><a href="/OrderedProducts" class="<%= navLocation === 'orderedProducts' ? 'active' : ''%>">OrderedProducts</a></li>
+        <% } %>
     </ul>
 </nav>
