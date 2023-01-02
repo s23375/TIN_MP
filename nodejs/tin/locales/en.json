@@ -1,60 +1,61 @@
 {
-  "main-page": {
-    "content": "Main page"
-  },
-  "nav": {
-    "main-page": "Main page",
-    "productModel": "Product model",
-    "order": "Order",
-    "orderedProducts": "Ordered products"
-  },
-  "list": {
-    "actions": {
-      "title": "Options",
-      "details": "Details",
-      "edit": "Edit",
-      "delete": "Delete"
-    }
-  },
-  "form": {
-    "actions": {
-      "return": "Return",
-      "edit": "Edit",
-      "cancel": "Cancel"
-    }
-  },
-  "product": {
-    "fields": {
-      "IDproduct": "ID of product",
-      "name": "Name",
-      "price": "Price",
-      "productionDate": "Production date",
-      "endDistributionDate": "Distribution end date"
-    },
-    "list": {
-      "title": "All products",
-      "addNew": "Add new product",
-      "noData": "No products in the database",
-      "pageTitle": "List of products"
-    },
-    "form": {
-      "details": "Details for this product",
-      "add": {
-        "pageTitle": "New product",
-        "btnLabel": "Add product",
-        "confirm": {
-          "header": "Confirmation",
-          "text": "Product successfully added"
-        }
-      },
-      "edit": {
-        "pageTitle": "Edit product",
-        "btnLabel": "Save changes",
-        "confirm": {
-          "header": "Confirmation",
-          "text": "Product successfully updated"
-        }
-      }
-    }
-  }
+	"main-page": {
+		"content": "Main page"
+	},
+	"nav": {
+		"main-page": "Main page",
+		"productModel": "Product model",
+		"order": "Order",
+		"orderedProducts": "Ordered products"
+	},
+	"list": {
+		"actions": {
+			"title": "Options",
+			"details": "Details",
+			"edit": "Edit",
+			"delete": "Delete"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Return",
+			"edit": "Edit",
+			"cancel": "Cancel"
+		}
+	},
+	"product": {
+		"fields": {
+			"IDproduct": "ID of product",
+			"name": "Name",
+			"price": "Price",
+			"productionDate": "Production date",
+			"endDistributionDate": "Distribution end date",
+			"produtionDate": "product.fields.produtionDate"
+		},
+		"list": {
+			"title": "All products",
+			"addNew": "Add new product",
+			"noData": "No products in the database",
+			"pageTitle": "List of products"
+		},
+		"form": {
+			"details": "Details for this product",
+			"add": {
+				"pageTitle": "New product",
+				"btnLabel": "Add product",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "Product successfully added"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edit product",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "Product successfully updated"
+				}
+			}
+		}
+	}
 }

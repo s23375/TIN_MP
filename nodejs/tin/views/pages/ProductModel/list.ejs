@@ -15,11 +15,11 @@
         <tbody>
         <% for (let product of products) { %>
             <tr>
-                <td data-label="IDproduct"><%= product.IDproduct %></td>
-                <td data-label="Name"><%= product.name %></td>
-                <td data-label="Price"><%= product.price %></td>
-                <td data-label="Production Date"><%= fmt.formatDate(product.productionDate) %></td> <!-- formatting js Date format -->
-                <td data-label="Distribution End date"><%= fmt.formatDate(product.endDistributionDate) %></td>
+                <td data-label="<%= __("product.fields.IDproduct") %>"><%= product.IDproduct %></td>
+                <td data-label="<%= __("product.fields.name") %>"><%= product.name %></td>
+                <td data-label="<%= __("product.fields.price") %>"><%= product.price %></td>
+                <td data-label="<%= __("product.fields.produtionDate") %>"><%= fmt.formatDate(product.productionDate) %></td> <!-- formatting js Date format -->
+                <td data-label="<%= __("product.fields.endDistributionDate") %>"><%= fmt.formatDate(product.endDistributionDate) %></td>
 
                 <td>
                     <ul class="list-actions"> <!-- add class list-actions to align buttons horizontally -->

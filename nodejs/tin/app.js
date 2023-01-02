@@ -62,6 +62,9 @@ app.use((req, res, next) => {
     }
     next();
 })
+app.locals.__ = function(key) {
+    return i18n.__(key);
+}
 
 // using routes
 app.use('/', indexRoute); // default router
