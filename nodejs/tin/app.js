@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 
 // session stuff
 const session = require('express-session');
-app.use(session({
+app.use(session({ //TODO deprecated???
     secret: "my_secret_password",
     resave: false
 }));
@@ -54,6 +54,7 @@ i18n.configure({
     objectNotation: true, //enables using nested keys in object notation
     cookie: "cookie-lang" // the name of cookies where language info is stored
 });
+app.use(i18n.init);
 app.use(cookieParser("secret"));
 app.use((req, res, next) => {
     if(!res.locals.lang) {
@@ -62,9 +63,7 @@ app.use((req, res, next) => {
     }
     next();
 })
-app.locals.__ = function(key) {
-    return i18n.__(key);
-}
+
 
 // using routes
 app.use('/', indexRoute); // default router
