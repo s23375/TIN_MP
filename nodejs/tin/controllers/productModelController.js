@@ -13,7 +13,7 @@ exports.showProductModelList = (req, res, next) => {
 exports.showAddProductModelForm = (req, res, next) => {
     res.render('pages/ProductModel/form', {
         product: {},
-        pageTitle: "New productModel",
+        pageTitle: req.__("product.form.add.pageTitle"),
         formMode: "createNew",
         btnLabel: "Add productModel",
         formAction: "/ProductModel/add",

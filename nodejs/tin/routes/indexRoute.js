@@ -11,4 +11,8 @@ router.get('/', function(req, res, next) {
 router.post("/login", AuthController.login);
 router.get("/logout", AuthController.logout);
 
+//internationalization
+const langController = require("../controllers/langController");
+router.get("/changeLang/:lang", langController.changeLang);
+
 module.exports = router;

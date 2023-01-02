@@ -46,6 +46,23 @@ app.use( (req, res, next) => {
     next();
 })
 
+//internationalization stuff
+const i18n = require("i18n");
+i18n.configure({
+    locales: ["pl", "en"], //languages available
+    directory: path.join(__dirname, "locales"), //path to directory where dictionaries are stored
+    objectNotation: true, //enables using nested keys in object notation
+    cookie: "cookie-lang" // the name of cookies where language info is stored
+});
+app.use(cookieParser("secret"));
+app.use((req, res, next) => {
+    if(!res.locals.lang) {
+        const currentLang = req.cookies["cookie-lang"];
+        res.locals.lang = currentLang;
+    }
+    next();
+})
+
 // using routes
 app.use('/', indexRoute); // default router
 app.use('/ProductModel', authUtil.permitAuthenticatedUser, productModelRoute);
