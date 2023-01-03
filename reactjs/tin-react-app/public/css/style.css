@@ -1,0 +1,429 @@
+html {
+    background-color: #3281af;
+    font-family: sans-serif;
+}
+body {
+    min-width: 600px;
+}
+
+header,
+main,
+footer {
+    background-color: white;
+}
+
+header,
+main,
+footer,
+nav {
+    margin: 1rem;
+    border: none;
+    border-radius: 10px;
+}
+
+header,
+footer {
+    background-color: #59a0e7; /* background panel color */
+    color:#313131; /* text color*/
+    padding: 1rem;
+    
+}
+
+/* 4.1 change - replacing 3 header thigs with one */
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 0.6;
+    max-inline-size: 15ch;
+}
+ /* 4.2 changes to nav things */
+nav {
+    background-color: #59a0e7;
+}
+
+nav ul {
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+}
+
+nav ul li a {
+    display: inline-block;
+    color: #131212;
+    padding: 1rem 2rem;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #52d7ff;
+    color: #1b191b;
+    border: none;
+    border-radius: 10px;
+}
+
+nav ul li a.active {
+    background-color: #83c8f7;
+    color: #313131;
+    border: none;
+    border-radius: 10px;
+}
+
+main {
+    padding: 1.5rem;
+}
+
+footer {
+    text-align: center;
+}
+
+
+/* 5. RECORD LIST */
+/* 5.2 Header of content section */
+main h2 {
+    border-bottom: 1px solid #7f8c8d;
+    margin-bottom: 2rem;
+}
+
+/* 5.3 Table */
+.table-list {
+    border-collapse: collapse;
+    color: #313131; /* color of all text within the list */
+    width: 100%;
+    margin-bottom: 1rem; /* move the "back" button lower */
+}
+
+.table-list,
+.table-list th,
+.table-list td {
+    border: 1px solid #bdc3c7 /* border color */
+}
+
+.table-list th,
+.table-list td {
+    padding: 0.5rem;
+}
+
+.table-list th,
+.table-list tbody tr:nth-child(even) {
+    background-color: #ecf0f1;
+}
+
+/* 5.3.1 Options buttons */
+.list-actions {
+    margin: 0;
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-actions li {
+    display: inline-block;
+}
+
+.list-actions-button-details,
+.list-actions-button-edit,
+.list-actions-button-delete {
+    display:inline-block;
+    width: 75px;
+    padding: 0.25rem 0.5rem;
+}
+
+/* 5.3.2 Add new product button */
+.list-actions-button-details, /* this is separate from section above deliberately */
+.list-actions-button-edit,
+.list-actions-button-delete,
+.button-add,
+.form-button-submit, /* buttons from point 6.2 */
+.form-button-cancel,
+.form-button-edit,
+.form-button-back 
+{
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+/* changed margin-right to margin here */
+.list-actions-button-details,
+.list-actions-button-edit,
+.list-actions-button-delete {
+    margin: 1rem; 
+}
+
+.list-actions-button-details,
+.form-button-back { /* colors of buttons */
+    background-color: #5aa2d1;
+}
+
+.list-actions-button-details:hover,
+.form-button-back:hover {
+    background-color: #3498db;
+}
+
+.list-actions-button-edit,
+.form-button-edit {
+    background-color: #f8c067;
+}
+
+.list-actions-button-edit:hover,
+.form-button-edit:hover {
+    background-color: #fcb900;
+}
+
+.list-actions-button-delete,
+.form-button-cancel {
+    background-color: #e96d5f;
+}
+
+.list-actions-button-delete:hover,
+.form-button-cancel:hover { 
+    background-color: #e74c3c;
+}
+
+/* RIGHT HEREEEEEEEEEEEEEEEEEEEEEE */
+
+.button-add,
+.form-button-submit, /* buttons from point 6.2 */
+.form-button-cancel,
+.form-button-edit,
+.form-button-back  
+{
+    padding: 0.5rem 1rem;
+}
+
+.button-add,
+.form-button-submit {
+    background-color: #59a0e7;
+}
+
+.button-add:hover,
+.form-button-submit:hover {
+    background-color: #2782dd;
+}
+/* end of colors of buttons */
+
+
+/* 6. NEW RECORD FORM */
+/* 6.1 Fields */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    box-sizing: border-box;
+    padding: 0; margin: 0;
+}
+
+textarea {
+    overflow: auto;
+}
+
+/* 5.1 remove width: 300px; from form, add grid type layout */
+.form {
+    display: grid;
+    grid-template-columns: 150px 300px 1fr;
+    gap: 1rem;
+}
+
+.form select,
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="date"],
+.form input[type="email"] {
+    border: 1px solid #7f8c8d;
+    color: #2c3e50;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.form label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.symbol-required {
+    color: black;
+}
+
+/* 6.2 Buttons */
+/* 5.1 add grid attribute for buttons */
+.form-buttons {
+    margin-top: 2rem;
+    grid-column: 1 / span 2;
+}
+
+.form-button-submit,
+.form-button-cancel {
+    width: 100%;
+}
+
+.form-button-cancel {
+    box-sizing: border-box;
+    display: block;
+}
+
+.form-button-submit {
+    margin-bottom: 0.5rem;
+}
+
+/*6.3 Form validation errors */
+.form input.error-input,
+.form select.error-input {
+    border: 3px solid #e74c3c;
+}
+
+.errors-text {
+    display: block;
+    font-size: 0.85rem;
+    line-height: 2.25rem;
+    margin-top: 0.5rem;
+    color: #e74c3c;
+}
+
+
+
+/* additional stuff */
+.delete-message {
+    margin-top: 2rem;
+    color: #ff1900;
+}
+
+input[type=checkbox] { /* checkbox size */
+    margin-top: 1rem;
+    transform: scale(1);
+}
+
+/* 6. Media queries, defining things for different sizes, put them AFTER all the previous styling */
+/* an explanation for myself: we "mainly" do changes for "tablet size" devices because they also apply to the mobile below, the block for mobile only is executed after the tablet
+section so that we don't have to re-write every style definition for mobile separately */
+
+@media all and (max-width: 768px) { /* tablets, 768px because of ipads */
+
+    body {
+        min-width: 360px;
+    }
+
+    /* 6.2 Header */
+    header {
+        flex-direction: column;
+    }
+
+    header h1 { 
+        text-align: center;
+    }
+
+    header img {
+        align-self: center;
+    }
+
+    /* 6.3 Navigation menu */
+    nav ul {
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        flex-basis: 50%;
+        text-align: center;
+    }
+    
+    nav ul li a {
+        display: block;
+    }
+
+
+
+    /* 6.4 Forms */
+    .form {
+        grid-template-columns: 1fr;
+        row-gap: unset;
+        margin-left: unset;
+    }
+
+    .form-buttons {
+        grid-column: 1 / 1;
+    }
+
+    input[type=checkbox] { /* checkbox size */
+        transform: scale(1.6);
+    }
+
+    /* buttons */
+    /* OPTIONAL - to make buttons always appear in a single line on tablets and mobile
+    .list-actions {
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+    }
+    */
+    
+    /* 6. Tables - there's no actual tutorial so hang on tight */
+    
+    table {
+        border: 0;
+      }
+      
+      table thead {
+        display: none;
+      }
+      
+      table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625rem;
+      }
+      
+      table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8rem;
+        text-align: right;
+      }
+      
+      table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+      }
+}
+
+@media all and (max-width: 414px) { /* smartphones */
+
+    /* removing border-radius for mobile because it looks trash */
+    body, nav, nav ul, header, main, footer {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    nav ul li {
+        flex-basis: 100%;
+    }
+
+    /* removing border-radius for mobile because it looks trash */
+    nav ul li a:hover {
+        border-radius: 0px;
+    }
+    
+    nav ul li a.active {
+        border-radius: 0px;
+    }
+    
+
+    .list-actions-button-details,
+    .list-actions-button-edit,
+    .list-actions-button-delete {
+        margin: 0rem; 
+    }
+
+}
