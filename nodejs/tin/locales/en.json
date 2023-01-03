@@ -55,7 +55,29 @@
 					"header": "Confirmation",
 					"text": "Product successfully updated"
 				}
+			},
+			"delete": {
+				"confirm": {
+					"text": "Product successfully deleted"
+				}
 			}
+		}
+	},
+	"order": {
+		"fields": {
+			"IDorder": "ID of order",
+			"datePlaced": "Date of placing the order",
+			"clientContactInfo": "Contact info",
+			"shippingCompany": "Shipping company",
+			"premiumDelivery": "Premium delivery"
+		}
+	},
+	"orderedProducts": {
+		"fields": {
+			"IDorderedProduct": "ID of the order of products",
+			"quantity": "Quantity",
+			"IDproductModel": "ID of the product",
+			"IDorder": "ID of the order"
 		}
 	}
 }

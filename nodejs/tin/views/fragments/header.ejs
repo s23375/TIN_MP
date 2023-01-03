@@ -46,10 +46,10 @@
 <nav>
     <ul>
         <% if(loggedUser) { %>
-        <li><a href="/" class="<%= navLocation === 'main' ? 'active' : ''%>">Main page</a></li> <!-- class "active" marks which tab we are currently on-->
-        <li><a href="/ProductModel" class="<%= navLocation === 'productModel' ? 'active' : ''%>">ProductModel</a></li>
-        <li><a href="/Order" class="<%= navLocation === 'order' ? 'active' : ''%>">Order</a></li>
-        <li><a href="/OrderedProducts" class="<%= navLocation === 'orderedProducts' ? 'active' : ''%>">OrderedProducts</a></li>
+        <li><a href="/" class="<%= navLocation === 'main' ? 'active' : ''%>"><%= __("nav.main-page") %></a></li> <!-- class "active" marks which tab we are currently on-->
+        <li><a href="/ProductModel" class="<%= navLocation === 'productModel' ? 'active' : ''%>"><%= __("nav.productModel") %></a></li>
+        <li><a href="/Order" class="<%= navLocation === 'order' ? 'active' : ''%>"><%= __("nav.order") %></a></li>
+        <li><a href="/OrderedProducts" class="<%= navLocation === 'orderedProducts' ? 'active' : ''%>"><%= __("nav.orderedProducts") %></a></li>
         <% } %>
     </ul>
     <ul>

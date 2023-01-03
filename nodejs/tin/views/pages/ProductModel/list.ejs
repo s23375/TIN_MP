@@ -1,6 +1,6 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>All products</h2>
+    <h2><%= __("product.list.title") %></h2>
     <table class="table-list"> <!-- Table with first table's fields--> <!-- ADDED TABLE-LIST CLASS FOR CSS TO WORK-->
         <thead>
             <tr>
@@ -24,13 +24,13 @@
                 <td>
                     <ul class="list-actions"> <!-- add class list-actions to align buttons horizontally -->
                         <li>
-                            <a href="/ProductModel/details/<%= product.IDproduct%>" class="list-actions-button-details">Details</a>
+                            <a href="/ProductModel/details/<%= product.IDproduct%>" class="list-actions-button-details"><%= __("list.actions.details") %></a>
                         </li>
                         <li>
-                            <a href="/ProductModel/edit/<%= product.IDproduct%>" class="list-actions-button-edit">Edit</a>
+                            <a href="/ProductModel/edit/<%= product.IDproduct%>" class="list-actions-button-edit"><%= __("list.actions.edit") %></a>
                         </li>
                         <li>
-                            <a href="/ProductModel/delete/<%= product.IDproduct%>" class="list-actions-button-delete" onclick="alert('Deleted successfully')">Delete</a>
+                            <a href="/ProductModel/delete/<%= product.IDproduct%>" class="list-actions-button-delete" onclick="alert('<%= __("product.form.delete.confirm.text") %>')"><%= __("list.actions.delete") %></a>
                         </li>
                     </ul>
                 </td>
@@ -39,7 +39,7 @@
         </tbody>
     </table>
     <div>
-        <p><a href="/ProductModel/add" class="button-add">Add new product</a></p>
+        <p><a href="/ProductModel/add" class="button-add"><%= __("product.list.addNew") %></a></p>
         <p class="delete-message"></p>
     </div>
     

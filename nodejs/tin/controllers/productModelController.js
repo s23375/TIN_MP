@@ -15,7 +15,7 @@ exports.showAddProductModelForm = (req, res, next) => {
         product: {},
         pageTitle: req.__("product.form.add.pageTitle"),
         formMode: "createNew",
-        btnLabel: "Add productModel",
+        btnLabel: req.__("product.form.add.btnLabel"),
         formAction: "/ProductModel/add",
         navLocation: "productModel",
         validationErrors: []
@@ -28,7 +28,7 @@ exports.showProductModelDetails = (req, res, next) => {
         .then(product => {
             res.render('pages/ProductModel/form', { // changed this to just "form"...
                 product: product,
-                pageTitle: "Details of productModel",
+                pageTitle: req.__("product.form.details"),
                 formMode: "showDetails",
                 //btnLabel: "Details of productModel",
                 formAction: "",
@@ -44,9 +44,9 @@ exports.showProductModelEdit = (req, res, next) => {
         .then(product => {
             res.render('pages/ProductModel/form', {
                 product: product,
-                pageTitle: "Edit productModel",
+                pageTitle: req.__("product.form.edit.pageTitle"),
                 formMode: "edit",
-                btnLabel: "Edit productModel",
+                btnLabel: req.__("product.form.edit.btnLabel"),
                 formAction: "/ProductModel/edit",
                 navLocation: "productModel",
                 validationErrors: []

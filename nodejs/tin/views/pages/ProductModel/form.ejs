@@ -5,7 +5,7 @@
     <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="IDproduct" value="<%= product.IDproduct %>">
 
-        <label for="name">Name of product: <span class="symbol-required">*</span></label>
+        <label for="name"><%= __("product.fields.name") %><span class="symbol-required">*</span></label>
         <input type="text" name="name" id="name" placeholder="2-60 characters" value="<%= product.name %>"
                class="<%= validationErrors.find(e => e.path.includes("name")) ? "error-input" : "" %>"
                <%= (formMode === "showDetails") ? "disabled" : "" %> required>
@@ -15,7 +15,7 @@
             <% } %>
         </span>
 
-        <label for="price">Price: <span class="symbol-required">*</span></label>
+        <label for="price"><%= __("product.fields.price") %><span class="symbol-required">*</span></label>
         <input type="number" name="price" id="price" value="<%= product.price %>"
                class="<%= validationErrors.find(e => e.path.includes("price")) ? "error-input" : "" %>"
                 <%= (formMode === "showDetails") ? "disabled" : "" %> required>
@@ -26,7 +26,7 @@
         </span>
 
 
-        <label for="productionDate">Production date: <span class="symbol-required">*</span></label>
+        <label for="productionDate"><%= __("product.fields.productionDate") %><span class="symbol-required">*</span></label>
         <input type="date" name="productionDate" id="productionDate" value="<%= fmt.formatDate(product.productionDate) %>"
                class="<%= validationErrors.find(e => e.path.includes("productionDate")) ? "error-input" : "" %>"
                 <%= (formMode === "showDetails") ? "disabled" : "" %> required>
@@ -36,7 +36,7 @@
             <% } %>
         </span>
 
-        <label for="endDistributionDate">Distribution end date: </label>
+        <label for="endDistributionDate"><%= __("product.fields.endDistributionDate") %></label>
         <input type="date" name="endDistributionDate" id="endDistributionDate" value="<%= fmt.formatDate(product.endDistributionDate) %>"
                class="<%= validationErrors.find(e => e.path.includes("endDistributionDate")) ? "error-input" : "" %>"
                 <%= (formMode === "showDetails") ? "disabled" : "" %> >
@@ -48,7 +48,7 @@
 
         <% if (formMode === "showDetails") { %>
         <div class = "form-buttons">
-            <a href="/ProductModel/edit/<%= product.IDproduct %>" class="form-button-edit"> Edit</a>
+            <a href="/ProductModel/edit/<%= product.IDproduct %>" class="form-button-edit"><%= __("form.actions.edit") %></a>
         </div>
         <% } %>
 
@@ -56,31 +56,31 @@
             <p id="errorsSummary" class="errors-text"></p>
             <% if (formMode !== "showDetails") { %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>" />
-                <a class="form-button-cancel" href="/ProductModel/">Cancel</a>
+                <a class="form-button-cancel" href="/ProductModel/"><%= __("form.actions.cancel") %></a>
             <% } %>
         </div>
     </form>
 
         <% if (formMode === "showDetails" || formMode === "edit") { %>
-        <h2> Details for this product</h2>
+        <h2><%= __("product.form.details") %></h2>
             <table class="table-list">
                 <thead>
                     <tr>
-                        <th>IDorderedProduct</th>
-                        <th>Quantity</th>
-                        <th>IDproduct</th>
-                        <th>IDorder</th>
+                        <th><%= __("orderedProducts.fields.IDorderedProduct") %></th>
+                        <th><%= __("orderedProducts.fields.quantity") %></th>
+                        <th><%= __("orderedProducts.fields.IDproductModel") %></th>
+                        <th><%= __("orderedProducts.fields.IDorder") %></th>
                     </tr>
                 </thead>
             <tbody>
             <% for (let e of product.orderedProducts) { %> <!-- .orderedProducts is the name assigned when creating connections in init.js -->
             <tr>
-                <td data-label="IDorderedProduct">
+                <td data-label="<%= __("orderedProducts.fields.IDorderedProduct") %>">
                     <a href="/OrderedProducts/details/<%= e.IDorderedProduct %>"> <%= e.IDorderedProduct %> </a>
                 </td>
-                <td data-label="Quantity"><%= e.quantity %></td> <!-- remember to add data-label in other places!! -->
-                <td data-label="IDproduct"><%= e.ProductModel_IDproduct %></td>
-                <td data-label="IDorder"><%= e.Order_IDorder %></td>
+                <td data-label="<%= __("orderedProducts.fields.quantity") %>"><%= e.quantity %></td> <!-- remember to add data-label in other places!! -->
+                <td data-label="<%= __("orderedProducts.fields.IDproductModel") %>"><%= e.ProductModel_IDproduct %></td>
+                <td data-label="<%= __("orderedProducts.fields.IDorder") %>"><%= e.Order_IDorder %></td>
             </tr>
             <% } %>
             </tbody>
@@ -88,7 +88,7 @@
         <% } %>
 
     <% if(formMode === "showDetails") { %>
-    <a class="form-button-back" href="/ProductModel/">Go back</a>
+    <a class="form-button-back" href="/ProductModel/"><%= __("form.actions.return") %></a>
     <% } %>
 
 
