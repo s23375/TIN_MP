@@ -19,7 +19,7 @@ function App() {
             <Header />
             <Navigation />
             <Routes>
-                <Route exact path="/" element={MainContent} />
+                <Route exact path="/" element={<MainContent />} />
                 <Route exact path="/ProductModel" element={ProductModelList} />
                 <Route exact path="/ProductModel/details/:IDproduct" element={ProductModelDetails} />
             </Routes>
