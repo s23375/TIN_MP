@@ -3,22 +3,22 @@ export const productModelList = [
         "IDproduct": 1,
         "name": "AxceletronDB120",
         "price": 100,
-        "productionDate": "2022.04.19T00:00:00.000Z",
-        "endDistributionDate": "2023.11.23T00:00:00.000Z"
+        "productionDate": "2022.04.19",
+        "endDistributionDate": "2023.11.23"
     },
     {
         "IDproduct": 2,
         "name": "Basix",
         "price": 50,
-        "productionDate": "2021.12.03T00:00:00.000Z",
+        "productionDate": "2021.12.03",
         "endDistributionDate": ""
     },
     {
         "IDproduct": 3,
         "name": "PlasticSeries Friend 360",
         "price": 20,
-        "productionDate": "2022.10.28T00:00:00.000Z",
-        "endDistributionDate": "2023.03.11T00:00:00.000Z"
+        "productionDate": "2022.10.28",
+        "endDistributionDate": "2023.03.11"
     }
 ]
 
@@ -27,8 +27,8 @@ export const productModelDetailsList = [
         "IDproduct": 1,
         "name": "AxceletronDB120",
         "price": 100,
-        "productionDate": "2022.04.19T00:00:00.000Z",
-        "endDistributionDate": "2023.11.23T00:00:00.000Z",
+        "productionDate": "2022.04.19",
+        "endDistributionDate": "2023.11.23",
         "ordereds": [
             {
                 "IDorderedProduct": 1,
@@ -48,7 +48,7 @@ export const productModelDetailsList = [
         "IDproduct": 2,
         "name": "Basix",
         "price": 50,
-        "productionDate": "2021.12.03T00:00:00.000Z",
+        "productionDate": "2021.12.03",
         "endDistributionDate": "",
         "ordereds": [
             {
@@ -69,8 +69,8 @@ export const productModelDetailsList = [
         "IDproduct": 3,
         "name": "PlasticSeries Friend 360",
         "price": 20,
-        "productionDate": "2022.10.28T00:00:00.000Z",
-        "endDistributionDate": "2023.03.11T00:00:00.000Z",
+        "productionDate": "2022.10.28",
+        "endDistributionDate": "2023.03.11",
         "ordereds": [
             {
                 "IDorderedProduct": 5,

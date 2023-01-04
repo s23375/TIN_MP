@@ -53,4 +53,4 @@ function productModelList() {
     )
 }
 
-export default productModelList();
+export default productModelList;
