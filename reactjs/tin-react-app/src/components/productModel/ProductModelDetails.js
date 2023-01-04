@@ -4,9 +4,8 @@ import{ getProductModelByIdApiCall} from "../../apiCalls/productModelApiCalls";
 import {getFormattedDate} from "../../helpers/dateHelper";
 
 function ProductModelDetails() {
-    let { IDproduct } = <useParams />; //changed () to < /> and it stopped throwing the error??????????????????????????????????????
-    IDproduct = 1
-    //IDproduct = parseInt(IDproduct);
+    let { IDproduct } = useParams(); //changed () to < /> and it stopped throwing the error??????????????????????????????????????
+    IDproduct = parseInt(IDproduct);
     const product = getProductModelByIdApiCall(IDproduct);
 
     return (
@@ -29,7 +28,7 @@ function ProductModelDetails() {
                 </tr>
                 </thead>
                 <tbody>
-                {product.ordered.map( ordereds =>
+                {product.ordereds.map( ordereds =>
                     <tr key={ordereds.IDorderedProduct}>
                         <td data-label="IDorderedProduct">{ordereds.IDorderedProduct}</td>
                         <td data-label="Quantity">{ordereds.quantity}</td>
@@ -47,4 +46,4 @@ function ProductModelDetails() {
     )
 }
 
-export default ProductModelDetails();
+export default ProductModelDetails;
