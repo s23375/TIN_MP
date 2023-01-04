@@ -30,6 +30,10 @@ app.use((req, res, next) => {
     next();
 })
 
+// something to avoid errors with Cross-Origin Resource Sharing
+var cors = require("cors");
+app.use(cors());
+
 // session stuff
 const session = require('express-session');
 app.use(session({ //TODO deprecated???
