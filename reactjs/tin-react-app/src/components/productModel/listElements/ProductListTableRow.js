@@ -3,9 +3,10 @@ import {getFormattedDate} from "../../../helpers/dateHelper";
 import {Link} from "react-router-dom";
 
 function ProductListTableRow(props) {
-    const product = props.productModelList;
+    const product = props.productData;
     return (
-        <tr>
+        <tr key={product.IDproduct}>
+            <td data-label="IDproduct">{product.IDproduct}</td>
             <td data-label="Name">{product.name}</td>
             <td data-label="Price">{product.price}</td>
             <td data-label="Production date">{product.productionDate ? getFormattedDate(product.productionDate) : ""}</td>

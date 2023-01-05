@@ -1,5 +1,5 @@
 import React from "react";
-import ProductListTableRow from "../ProductModelForm";
+import ProductListTableRow from "./ProductListTableRow";
 
 function ProductListTable(props) {
     const products = props.productModelList
@@ -12,6 +12,7 @@ function ProductListTable(props) {
                 <th>Price</th>
                 <th>Production date</th>
                 <th>Distribution end date</th>
+                <th>Options</th>
             </tr>
             </thead>
             <tbody>

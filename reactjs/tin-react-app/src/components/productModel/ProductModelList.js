@@ -2,7 +2,7 @@ import React from "react"
 import {Link} from "react-router-dom"
 
 import { getProductModelApiCall } from "../../apiCalls/productModelApiCalls";
-import ProductModelList from "./ProductModelList";
+import ProductListTable from "./listElements/ProductListTable";
 
 class productModelList extends React.Component {
     constructor(props) {
@@ -45,7 +45,7 @@ class productModelList extends React.Component {
         } else if(!isLoaded) {
             content = <p>Loading data...</p>
         } else {
-            content = <ProductModelList productModelList={products} />
+            content = <ProductListTable productModelList={products} />
         }
 
         return (
@@ -57,7 +57,7 @@ class productModelList extends React.Component {
                     <p className="delete-message"></p>
                 </div>
             </main>
-        )
+        );
     }
 }
 
