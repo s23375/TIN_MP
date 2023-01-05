@@ -1,7 +1,9 @@
-import {productModelList, productModelDetailsList} from "./productModelApiMockData";
+import { productModelDetailsList} from "./productModelApiMockData";
 
+const productModelBaseUrl = "http://localhost:3000/api/products"
 export function getProductModelApiCall() {
-    return productModelList
+    const promise = fetch(productModelBaseUrl)
+    return promise;
 }
 
 export function getProductModelByIdApiCall(IDproduct) {
