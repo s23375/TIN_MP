@@ -7,7 +7,7 @@ export function withRouter(Children){ // thanks(answer with 17 upvotes, wish I u
     return(props)=>{
 
         const match  = {params: useParams()};
-        return <Children {...props}  match = {match}/>
+        return <Children {...props}  match = {match}/> //TIP: change property name to access props.whateverYouWant
     }
 }
 

@@ -1,16 +1,26 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 
 import { getProductModelApiCall } from "../../apiCalls/productModelApiCalls";
 import ProductListTable from "./listElements/ProductListTable";
 
-class productModelList extends React.Component {
+export function withRouter(Children){
+    return(props)=>{
+
+        const location  = {params: useParams()};
+        return <Children {...props}  location = {location}/> //TIP: change property name to access props.whateverYouWant
+    }
+}
+
+class ProductModelList extends React.Component {
     constructor(props) {
         super(props);
+        let notice = props.location.state && props.location.notice ? props.location.state.notice: ""
         this.state = {
             error: null,
             isLoaded: false,
-            products: []
+            products: [],
+            notice: notice
         }
     }
 
@@ -52,6 +62,7 @@ class productModelList extends React.Component {
             <main>
                 <h2>All products</h2>
                 { content }
+                <p className="success">{this.state.notice}</p>
                 <div>
                     <p><Link to="/ProductModel/add" className="button-add">Add new product</Link></p>
                     <p className="delete-message"></p>
@@ -62,4 +73,4 @@ class productModelList extends React.Component {
 }
 
 
-export default productModelList;
+export default withRouter(ProductModelList);
