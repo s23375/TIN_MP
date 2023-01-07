@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 function FormButtons(props) {
     const submitButtonLabel = props.formMode === formMode.NEW ? "Add" : "Edit"
 
-    console.log("This is form buttons: " + props.error)
     return (
         <div className="form-buttons">
             <p id="errorsSummary" className="errors-text">{props.error}</p>
