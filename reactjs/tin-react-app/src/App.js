@@ -6,6 +6,10 @@ import Footer from "./components/fragments/footer";
 import ProductModelList from "./components/productModel/ProductModelList";
 import ProductModelDetails from "./components/productModel/ProductModelDetails";
 import ProductModelForm from "./components/productModel/ProductModelForm";
+import OrderList from "./components/order/OrderList";
+import OrderForm from "./components/order/OrderForm";
+import OrderDetails from "./components/order/OrderDetails";
+
 
 import {
     BrowserRouter as Router,
@@ -25,6 +29,11 @@ function App() {
                 <Route exact path="/ProductModel/details/:IDproduct" element={< ProductModelDetails />  } />
                 <Route exact path="/ProductModel/add" element={< ProductModelForm />  } />
                 <Route exact path="/ProductModel/edit/:IDproduct" element={< ProductModelForm />  } />
+
+                <Route exact path="/Order" element={<OrderList />} />
+                <Route exact path="/Order/add" element={<OrderForm />} />
+                <Route exact path="/Order/edit/:IDorder" element={<OrderForm />} />
+                <Route exact path="/Order/details/:IDorder" element={<OrderDetails />} />
             </Routes>
             <Footer />
         </div>
