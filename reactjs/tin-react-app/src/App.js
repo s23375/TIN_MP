@@ -8,14 +8,14 @@ import ProductModelDetails from "./components/productModel/ProductModelDetails";
 import ProductModelForm from "./components/productModel/ProductModelForm";
 import OrderList from "./components/order/OrderList";
 import OrderForm from "./components/order/OrderForm";
+import OrderDetails from "./components/order/OrderDetails";
+
 
 import {
     BrowserRouter as Router,
     Routes,
     Route
 } from "react-router-dom"
-
-
 
 function App() {
   return ( // "return" has to return one component, so we pack things in a "div"
@@ -33,6 +33,7 @@ function App() {
                 <Route exact path="/Order" element={<OrderList />} />
                 <Route exact path="/Order/add" element={<OrderForm />} />
                 <Route exact path="/Order/edit/:IDorder" element={<OrderForm />} />
+                <Route exact path="/Order/details/:IDorder" element={<OrderDetails />} />
             </Routes>
             <Footer />
         </div>
