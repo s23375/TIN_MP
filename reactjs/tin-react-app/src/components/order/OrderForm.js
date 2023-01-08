@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Navigate, useParams} from "react-router-dom";
+import { Navigate, useParams} from "react-router-dom";
 import formMode from "../../helpers/formHelper";
 import FormInput from "../form/FormInput";
 import FormButtons from "../form/FormButtons";
@@ -25,7 +25,7 @@ class OrderForm extends React.Component {
         this.state = {
             IDorder: IDorderParams,
             order: {
-                datePlaced: "",
+                datePlaced: new Date(),
                 clientContactInfo: "",
                 shippingCompany: "",
                 premiumDelivery: ""
@@ -42,12 +42,15 @@ class OrderForm extends React.Component {
             isListOpen: false,
             shippingList: [
                 {
+                    id: 0,
                     companyName: "DHL"
                 },
                 {
+                    id: 1,
                     companyName: "Inpost"
                 },
                 {
+                    id: 2,
                     companyName: "Poczta Polska"
                 }
             ]
@@ -203,9 +206,11 @@ class OrderForm extends React.Component {
     }
 
     selectItem = (item) => {
-        this.setState( () => {
-            this.state.order.shippingCompany = item
-        })
+        const order = { ...this.state.order }
+        order.shippingCompany = item.companyName
+        this.setState( () => ({
+            order: order
+        }))
     }
 
     componentDidMount() {
@@ -242,15 +247,6 @@ class OrderForm extends React.Component {
                 <h2>{pageTitle}</h2>
                 <form className="form" onSubmit={this.handleSubmit}>
                     <FormInput
-                        type="date"
-                        label="Date of placing the order" required hidden
-                        error={this.state.errors.datePlaced}
-                        name="datePlaced"
-                        placeholder=""
-                        onChange={this.handleChange}
-                        value={new Date()} //TODO make sure that works
-                    />
-                    <FormInput
                         type="text"
                         label="Client contact info" required
                         error={this.state.errors.clientContactInfo}
@@ -276,6 +272,7 @@ class OrderForm extends React.Component {
                                 <button
                                     type="button"
                                     className="dd-list-item"
+                                    key={item.id}
                                     onClick={() => this.selectItem(item)}
                                 >
                                     {item.companyName}
