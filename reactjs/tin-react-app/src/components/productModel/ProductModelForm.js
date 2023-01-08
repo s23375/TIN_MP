@@ -106,7 +106,9 @@ class ProductModelForm extends React.Component {
             }
         }
         if(fieldName === "endDistributionDate") {
-
+            if(fieldValue < this.state.product.productionDate) {
+                errorMessage = "End distribution date has to be a date after the product's production date"
+            }
         }
 
         return errorMessage;

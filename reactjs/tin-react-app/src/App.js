@@ -7,12 +7,14 @@ import ProductModelList from "./components/productModel/ProductModelList";
 import ProductModelDetails from "./components/productModel/ProductModelDetails";
 import ProductModelForm from "./components/productModel/ProductModelForm";
 import OrderList from "./components/order/OrderList";
+import OrderForm from "./components/order/OrderForm";
 
 import {
     BrowserRouter as Router,
     Routes,
     Route
 } from "react-router-dom"
+
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
                 <Route exact path="/ProductModel/edit/:IDproduct" element={< ProductModelForm />  } />
 
                 <Route exact path="/Order" element={<OrderList />} />
+                <Route exact path="/Order/add" element={<OrderForm />} />
+                <Route exact path="/Order/edit/:IDorder" element={<OrderForm />} />
             </Routes>
             <Footer />
         </div>

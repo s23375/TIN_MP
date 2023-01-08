@@ -3,9 +3,6 @@ import {Link, useParams} from "react-router-dom"
 import {getOrderApiCall} from "../../apiCalls/orderApiCalls";
 import OrderListTable from "./listElement/OrderListTable";
 
-
-
-
 export function withRouter(Children){
     return(props)=>{
 
