@@ -10,6 +10,7 @@ import {
 } from "../../helpers/validationCommon";
 import FormInput from "../form/FormInput";
 import FormButtons from "../form/FormButtons";
+import {getFormattedDate} from "../../helpers/dateHelper";
 
 export function withRouter(Children){
     return(props)=>{
@@ -260,7 +261,7 @@ class ProductModelForm extends React.Component {
                         name="productionDate"
                         placeholder=""
                         onChange={this.handleChange}
-                        value={this.state.product.productionDate}
+                        value={this.state.product.productionDate ? this.state.product.productionDate.slice(0, 10) : ""}
                     />
                     <FormInput
                         type="date"
@@ -269,7 +270,7 @@ class ProductModelForm extends React.Component {
                         name="endDistributionDate"
                         placeholder=""
                         onChange={this.handleChange}
-                        value={this.state.product.endDistributionDate}
+                        value={this.state.product.endDistributionDate ? this.state.product.endDistributionDate.slice(0, 10) : ""}
                     />
                     <FormButtons
                         formMode={this.state.formMode}
