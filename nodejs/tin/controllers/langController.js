@@ -6,5 +6,5 @@ exports.changeLang = (req, res, next) => {
     if(["pl", "en"].includes(newLang)) {
         res.cookie("cookie-lang", newLang);
     }
-    res.redirect("/");
+    res.redirect(req.get('referer'));
 };
