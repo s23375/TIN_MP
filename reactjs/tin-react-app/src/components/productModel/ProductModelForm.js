@@ -75,7 +75,7 @@ class ProductModelForm extends React.Component {
     hasErrors = () => {
         const errors = this.state.errors;
         for (const errorField in this.state.errors) {
-            if (errors[errorField].length > 0) {
+            if (errors[errorField] && errors[errorField].length > 0) {
                 return true;
             }
         }
@@ -169,7 +169,6 @@ class ProductModelForm extends React.Component {
                     })
                     .then( data => {
                         if(!response.ok && response.status === 500) {
-                            console.log(data)
                             for (const i in data) {
                                 const errorItem = data[i]
                                 const errorMessage = errorItem.message
