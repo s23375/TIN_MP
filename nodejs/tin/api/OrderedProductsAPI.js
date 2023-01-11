@@ -30,10 +30,7 @@ exports.createOrdered = (req, res, next) => {
             res.status(201).json(newObj);
         })
         .catch(err => {
-            if(!err.statusCode) {
-                err.statusCode = 500;
-            }
-            next(err);
+            res.status(500).json(err.errors)
         });
 };
 
@@ -44,10 +41,7 @@ exports.updateOrdered = (req, res, next) => {
             res.status(200).json({message: 'OrderedProduct updated!', ordered: result});
         })
         .catch(err => {
-            if(!err.statusCode) {
-                err.statusCode = 500;
-            }
-            next(err);
+            res.status(500).json(err.errors)
         });
 };
 
