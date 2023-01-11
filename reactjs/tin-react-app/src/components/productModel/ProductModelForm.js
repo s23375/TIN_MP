@@ -207,21 +207,8 @@ class ProductModelForm extends React.Component {
             const notice = currentFormMode === formMode.NEW ? "Successfully added a product" : "Successfully updated a product"
 
             return (
-                <Navigate replace to={{
-                            pathname: "/ProductModel/",
-                            state: {
-                                notice: notice
-                            }
-                        }} />
+                <Navigate to="/ProductModel/" state = { notice } />
             )
-            // return (
-            //     <Redirect to={{
-            //         pathname: "/ProductModel/",
-            //         state: {
-            //             notice: notice
-            //         }
-            //     }} />
-            // )
         }
 
         const errorsSummary = this.hasErrors() ? "The form contains errors" : ""

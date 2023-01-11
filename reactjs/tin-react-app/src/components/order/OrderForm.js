@@ -231,12 +231,7 @@ class OrderForm extends React.Component {
             const notice = currentFormMode === formMode.NEW ? "Successfully added an order" : "Successfully updated an order"
 
             return (
-                <Navigate replace to={{
-                    pathname: "/Order/",
-                    state: {
-                        notice: notice
-                    }
-                }} />
+                <Navigate to="/Order/" state = { notice } />
             )
         }
 

@@ -1,12 +1,12 @@
 import React from "react"
-import {Link, useParams} from "react-router-dom"
+import {Link, useLocation} from "react-router-dom"
 import {getOrderApiCall} from "../../apiCalls/orderApiCalls";
 import OrderListTable from "./listElement/OrderListTable";
 
 export function withRouter(Children){
     return(props)=>{
 
-        const location  = {params: useParams()};
+        const location  = {params: useLocation()};
         return <Children {...props}  location = {location}/> //TIP: change property name to access props.whateverYouWant
     }
 }
@@ -14,7 +14,7 @@ export function withRouter(Children){
 class OrderList extends React.Component {
     constructor(props) {
         super(props);
-        let notice = props.location.state && props.location.notice ? props.location.state.notice: ""
+        let notice = props.location.params.state && props.location.params.state ? props.location.params.state : ""
         this.state = {
             error: null,
             isLoaded: false,

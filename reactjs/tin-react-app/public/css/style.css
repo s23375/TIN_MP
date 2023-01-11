@@ -304,6 +304,13 @@ input[type=checkbox] { /* checkbox size */
     transform: scale(1);
 }
 
+/* React.js stuff */
+
+.success {
+    color: #29ff1a
+}
+
+
 /* 6. Media queries, defining things for different sizes, put them AFTER all the previous styling */
 /* an explanation for myself: we "mainly" do changes for "tablet size" devices because they also apply to the mobile below, the block for mobile only is executed after the tablet
 section so that we don't have to re-write every style definition for mobile separately */

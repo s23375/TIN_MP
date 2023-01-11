@@ -1,5 +1,5 @@
 import React from "react"
-import {Link, useParams} from "react-router-dom"
+import {Link, useLocation} from "react-router-dom"
 
 import { getProductModelApiCall } from "../../apiCalls/productModelApiCalls";
 import ProductListTable from "./listElements/ProductListTable";
@@ -7,7 +7,7 @@ import ProductListTable from "./listElements/ProductListTable";
 export function withRouter(Children){
     return(props)=>{
 
-        const location  = {params: useParams()};
+        const location  = {params: useLocation()};
         return <Children {...props}  location = {location}/> //TIP: change property name to access props.whateverYouWant
     }
 }
@@ -15,7 +15,8 @@ export function withRouter(Children){
 class ProductModelList extends React.Component {
     constructor(props) {
         super(props);
-        let notice = props.location.state && props.location.notice ? props.location.state.notice: ""
+        let notice = props.location.params.state && props.location.params.state ? props.location.params.state : ""
+
         this.state = {
             error: null,
             isLoaded: false,
