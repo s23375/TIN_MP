@@ -49,7 +49,8 @@ module.exports = () => {
                 return Order.bulkCreate([
                     {datePlaced: '2022-10-12', clientContactInfo: 'BMIgeneral@bmi.com', shippingCompany: 'DHL', premiumDelivery: true},
                     {datePlaced: '2022-10-13', clientContactInfo: 'daniel@gmail.com', shippingCompany: 'Inpost', premiumDelivery: false},
-                    {datePlaced: '2022-10-13', clientContactInfo: 'eilenedover@gmail.com', shippingCompany: 'DHL', premiumDelivery: false}
+                    {datePlaced: '2022-10-13', clientContactInfo: 'eilenedover@gmail.com', shippingCompany: 'DHL', premiumDelivery: false},
+                    {datePlaced: '2022-12-18', clientContactInfo: 'maleniaBladeOfMiquella@gmail.com', shippingCompany: 'Inpost', premiumDelivery: true}
                 ])
                     .then ( () => {
                         return Order.findAll(); //TODO 2. changed from ProductModel. to Order.
