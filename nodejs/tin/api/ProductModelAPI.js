@@ -30,10 +30,7 @@ exports.createProduct = (req, res, next) => {
             res.status(201).json(newObj);
         })
         .catch(err => {
-            if(!err.statusCode) {
-                err.statusCode = 500;
-            }
-            next(err);
+            res.status(500).json(err.message)
         });
 };
 
@@ -44,10 +41,7 @@ exports.updateProduct = (req, res, next) => {
             res.status(200).json({message: 'Product updated!', product: result});
         })
         .catch(err => {
-            if(!err.statusCode) {
-                err.statusCode = 500;
-            }
-            next(err);
+            res.status(500).json(err.message)
         });
 };
 
