@@ -5,7 +5,8 @@ import FormInput from "../form/FormInput";
 import FormButtons from "../form/FormButtons";
 import {addOrderApiCall, getOrderByIdApiCall, updateOrderApiCall} from "../../apiCalls/orderApiCalls";
 import {checkEmail, checkRequired} from "../../helpers/validationCommon";
-import {menuItems} from "./dropdownMenu/menuItems";
+import {menuOrderItems} from "./dropdownMenu/menuOrderItems";
+import FormDropdown from "../form/FormDropdown";
 
 export function withRouter(Children){
     return(props)=>{
@@ -258,24 +259,14 @@ class OrderForm extends React.Component {
                         onChange={this.handleChange}
                         value={this.state.order.clientContactInfo}
                     />
-                    <label htmlFor="shippingCompany">
-                        Shipping company:  <abbr title="required" aria-label="required">*</abbr>
-                    </label>
-                    <select
-                        value={this.state.order.shippingCompany}
-                        label="Shipping company:" required
-                        className={this.state.errors.shippingCompany === "" ? "" : "error-input"}
+                    <FormDropdown
+                        label="Shipping company" required
+                        error={this.state.errors.shippingCompany}
                         name="shippingCompany"
-                        onChange={this.dropdownHandleChange}>
-                        <option hidden={this.state.order.shippingCompany === "" ? false : true} >-- Choose shipping method --</option>
-                        {menuItems.map( (option) => (
-
-                            <option
-                                value={option.value} >{option.label}
-                            </option>
-                        ))}
-                    </select>
-                    <span id="errorShippingCompany" className="errors-text">{this.state.errors.shippingCompany}</span>
+                        value={this.state.order.shippingCompany}
+                        onChange={this.dropdownHandleChange}
+                        menuItems={menuOrderItems}
+                    />
                     <FormInput
                         type="checkbox"
                         label="Premium delivery"
