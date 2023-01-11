@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Navigate, useParams} from "react-router-dom";
+import { Navigate, useParams} from "react-router-dom";
 import formMode from "../../helpers/formHelper";
 import {addProductApiCall, getProductModelByIdApiCall, updateProductApiCall} from "../../apiCalls/productModelApiCalls";
 import {
@@ -10,7 +10,6 @@ import {
 } from "../../helpers/validationCommon";
 import FormInput from "../form/FormInput";
 import FormButtons from "../form/FormButtons";
-import {getFormattedDate} from "../../helpers/dateHelper";
 
 export function withRouter(Children){
     return(props)=>{
@@ -107,7 +106,7 @@ class ProductModelForm extends React.Component {
             }
         }
         if(fieldName === "endDistributionDate") {
-            if(fieldValue < this.state.product.productionDate) {
+            if(fieldValue && fieldValue < this.state.product.productionDate) {
                 errorMessage = "End distribution date has to be a date after the product's production date"
             }
         }

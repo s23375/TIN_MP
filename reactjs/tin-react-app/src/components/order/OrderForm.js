@@ -5,6 +5,8 @@ import FormInput from "../form/FormInput";
 import FormButtons from "../form/FormButtons";
 import {addOrderApiCall, getOrderByIdApiCall, updateOrderApiCall} from "../../apiCalls/orderApiCalls";
 import {checkEmail, checkRequired} from "../../helpers/validationCommon";
+import {menuOrderItems} from "./dropdownMenu/menuOrderItems";
+import FormDropdown from "../form/FormDropdown";
 
 export function withRouter(Children){
     return(props)=>{
@@ -148,6 +150,22 @@ class OrderForm extends React.Component {
         })
     }
 
+    dropdownHandleChange = (event) => {
+        const { name , value } = event.target.value;
+        const order = { ...this.state.order };
+        order.shippingCompany = event.target.value
+
+
+        const errorMessage = this.validateField(name, value);
+        const errors = { ...this.state.errors };
+        errors[name] = errorMessage;
+
+        this.setState({
+            order: order,
+            errors: errors
+        })
+    }
+
     handleSubmit = (event) => {
         event.preventDefault();
         const isValid = this.validateForm()
@@ -199,20 +217,6 @@ class OrderForm extends React.Component {
         }
     }
 
-    toggleList = () => {
-        this.setState(prevState => ({
-            isListOpen: !prevState.isListOpen
-        }))
-    }
-
-    selectItem = (item) => {
-        const order = { ...this.state.order }
-        order.shippingCompany = item.companyName
-        this.setState( () => ({
-            order: order
-        }))
-    }
-
     componentDidMount() {
         const currentFormMode = this.state.formMode
         if (currentFormMode === formMode.EDIT) {
@@ -255,34 +259,14 @@ class OrderForm extends React.Component {
                         onChange={this.handleChange}
                         value={this.state.order.clientContactInfo}
                     />
-                    <div className="dd-wrapper">
-                    <button
-                        type="button"
-                        className="placeholderClassName"
-                        onClick={this.toggleList}
-                    >
-                        <div className="dd-header-title">Choose shipping company</div>
-                    </button>
-                    {this.state.isListOpen && (
-                        <div
-                        role="list"
-                        className="dd-list"
-                        >
-                            {this.state.shippingList.map( item => (
-                                <button
-                                    type="button"
-                                    className="dd-list-item"
-                                    key={item.id}
-                                    onClick={() => this.selectItem(item)}
-                                >
-                                    {item.companyName}
-                                    {" "}
-                                    {item.selected}
-                                </button>
-                            ))}
-                        </div>
-                    )}
-                    </div>
+                    <FormDropdown
+                        label="Shipping company" required
+                        error={this.state.errors.shippingCompany}
+                        name="shippingCompany"
+                        value={this.state.order.shippingCompany}
+                        onChange={this.dropdownHandleChange}
+                        menuItems={menuOrderItems}
+                    />
                     <FormInput
                         type="checkbox"
                         label="Premium delivery"

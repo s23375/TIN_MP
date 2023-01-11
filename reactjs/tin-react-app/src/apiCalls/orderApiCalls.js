@@ -36,3 +36,15 @@ export function updateOrderApiCall(IDorder, order) {
     const promise = fetch(url, options);
     return promise
 }
+
+export function deleteOrderApiCall(IDorder) {
+    const url = `${orderBaseURL}/${IDorder}`;
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+    const promise = fetch(url, options)
+    return promise
+}
