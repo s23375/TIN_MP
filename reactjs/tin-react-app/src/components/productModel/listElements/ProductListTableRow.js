@@ -1,9 +1,11 @@
 import React from "react";
 import {getFormattedDate} from "../../../helpers/dateHelper";
 import {Link} from "react-router-dom";
+import {deleteProductApiCall} from "../../../apiCalls/productModelApiCalls";
 
 function ProductListTableRow(props) {
     const product = props.productData;
+
     return (
         <tr key={product.IDproduct}>
             <td data-label="IDproduct">{product.IDproduct}</td>
@@ -20,7 +22,7 @@ function ProductListTableRow(props) {
                         <Link to={`/ProductModel/edit/${product.IDproduct}`} className="list-actions-button-edit">Edit</Link>
                     </li>
                     <li>
-                        <Link to={`/ProductModel/delete/${product.IDproduct}`} className="list-actions-button-delete" onClick="alert('Deleted successfully')">Delete</Link>
+                        <Link to={`/ProductModel`} className="list-actions-button-delete" onClick={ () => (deleteProductApiCall(product.IDproduct)) }>Delete</Link>
                     </li>
                 </ul>
             </td>

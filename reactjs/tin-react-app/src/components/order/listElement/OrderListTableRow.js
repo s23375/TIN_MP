@@ -2,6 +2,8 @@ import React from "react";
 import {getFormattedDate} from "../../../helpers/dateHelper";
 import {Link} from "react-router-dom";
 
+import {deleteOrderApiCall} from "../../../apiCalls/orderApiCalls";
+
 function OrderListTableRow(props) {
     const order = props.orderData;
     return (
@@ -20,7 +22,7 @@ function OrderListTableRow(props) {
                         <Link to={`/Order/edit/${order.IDorder}`} className="list-actions-button-edit">Edit</Link>
                     </li>
                     <li>
-                        <Link to={`/Order/delete/${order.IDorder}`} className="list-actions-button-delete" onClick="alert('Deleted successfully')">Delete</Link>
+                        <Link to={`/Order`} className="list-actions-button-delete" onClick={ () => (deleteOrderApiCall(order.IDorder)) }>Delete</Link>
                     </li>
                 </ul>
             </td>

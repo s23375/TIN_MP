@@ -36,3 +36,15 @@ export function updateProductApiCall(IDproduct, product) {
     const promise = fetch(url, options);
     return promise
 }
+
+export function deleteProductApiCall(IDproduct) {
+    const url = `${productModelBaseUrl}/${IDproduct}`;
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+    const promise = fetch(url, options)
+    return promise
+}
