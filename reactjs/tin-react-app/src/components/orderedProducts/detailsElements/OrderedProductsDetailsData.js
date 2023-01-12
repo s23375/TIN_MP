@@ -4,12 +4,18 @@ import {getFormattedDate} from "../../../helpers/dateHelper";
 
 function OrderedProductsDetailsData(props) {
     const ordered = props.orderedData
+    const formatter = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
 
     return (
         <React.Fragment>
             <p>IDordered: {ordered.IDorderedProduct}</p>
             <p>Quantity: {ordered.quantity}</p>
             <p>Product: {ordered.productModel.name}</p>
+            <p>Product price: {ordered.productModel.price}</p>
+            <p>Total price: {formatter.format(ordered.productModel.price * ordered.quantity)}</p>
             <p>Order ID: {ordered.order.IDorder} - {ordered.order.clientContactInfo}</p>
 
             <h2>Details for this ordered product</h2>
