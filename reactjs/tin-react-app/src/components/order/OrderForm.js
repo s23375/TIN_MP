@@ -88,7 +88,7 @@ class OrderForm extends React.Component {
     hasErrors = () => {
         const errors = this.state.errors;
         for (const errorField in this.state.errors) {
-            if (errors[errorField].length > 0) {
+            if (errors[errorField] && errors[errorField].length > 0) {
                 return true;
             }
         }

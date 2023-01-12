@@ -17,6 +17,7 @@ import {
     Routes,
     Route
 } from "react-router-dom"
+import OrderedProductsForm from "./components/orderedProducts/OrderedProductsForm";
 
 
 function App() {
@@ -38,6 +39,8 @@ function App() {
                 <Route exact path="/Order/details/:IDorder" element={<OrderDetails />} />
 
                 <Route exact path="/OrderedProducts" element={<OrderedProductsList />} />
+                <Route exact path="/OrderedProducts/add" element={<OrderedProductsForm />} />
+                <Route exact path="/OrderedProducts/edit/:IDordered" element={<OrderedProductsForm />} />
                 <Route exact path="/OrderedProducts/details/:IDordered" element={< OrderedProductsDetails />  } />
             </Routes>
             <Footer />
