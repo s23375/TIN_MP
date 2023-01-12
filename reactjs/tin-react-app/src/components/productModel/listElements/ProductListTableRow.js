@@ -2,27 +2,29 @@ import React from "react";
 import {getFormattedDate} from "../../../helpers/dateHelper";
 import {Link} from "react-router-dom";
 import {deleteProductApiCall} from "../../../apiCalls/productModelApiCalls";
+import {useTranslation} from "react-i18next";
 
 function ProductListTableRow(props) {
     const product = props.productData;
 
+    const { t } = useTranslation();
     return (
         <tr key={product.IDproduct}>
-            <td data-label="IDproduct">{product.IDproduct}</td>
-            <td data-label="Name">{product.name}</td>
-            <td data-label="Price">{product.price}</td>
-            <td data-label="Production date">{product.productionDate ? getFormattedDate(product.productionDate) : ""}</td>
-            <td data-label="Distribution end date">{product.endDistributionDate ? getFormattedDate(product.endDistributionDate) : ""}</td>
+            <td data-label={t("product.fields.IDproduct")}>{product.IDproduct}</td>
+            <td data-label={t("product.fields.name")}>{product.name}</td>
+            <td data-label={t("product.fields.price")}>{product.price}</td>
+            <td data-label={t("product.fields.productionDate")}>{product.productionDate ? getFormattedDate(product.productionDate) : ""}</td>
+            <td data-label={t("product.fields.endDistributionDate")}>{product.endDistributionDate ? getFormattedDate(product.endDistributionDate) : ""}</td>
             <td>
                 <ul className="list-actions">
                     <li>
-                        <Link to={`/ProductModel/details/${product.IDproduct}`} className="list-actions-button-details">Details</Link>
+                        <Link to={`/ProductModel/details/${product.IDproduct}`} className="list-actions-button-details">{t("list.actions.details")}</Link>
                     </li>
                     <li>
-                        <Link to={`/ProductModel/edit/${product.IDproduct}`} className="list-actions-button-edit">Edit</Link>
+                        <Link to={`/ProductModel/edit/${product.IDproduct}`} className="list-actions-button-edit">{t("list.actions.edit")}</Link>
                     </li>
                     <li>
-                        <Link to={`/ProductModel`} className="list-actions-button-delete" onClick={ () => (deleteProductApiCall(product.IDproduct)) }>Delete</Link>
+                        <Link to={`/ProductModel`} className="list-actions-button-delete" onClick={ () => (deleteProductApiCall(product.IDproduct)) }>{t("list.actions.delete")}</Link>
                     </li>
                 </ul>
             </td>
