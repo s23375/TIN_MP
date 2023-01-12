@@ -52,21 +52,29 @@ nav ul {
     list-style-type: none;
 }
 
-nav ul li a {
+nav ul li button {
+    background-color: transparent;
+    border: 0;
+}
+
+nav ul li a,
+nav ul li button{
     display: inline-block;
     color: #131212;
     padding: 1rem 2rem;
     text-decoration: none;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li button:hover{
     background-color: #52d7ff;
     color: #1b191b;
     border: none;
     border-radius: 10px;
 }
 
-nav ul li a.active {
+nav ul li a.active,
+nav ul li button.active{
     background-color: #83c8f7;
     color: #313131;
     border: none;
@@ -344,7 +352,8 @@ section so that we don't have to re-write every style definition for mobile sepa
         text-align: center;
     }
     
-    nav ul li a {
+    nav ul li a,
+    nav ul li button{
         display: block;
     }
 
@@ -418,11 +427,13 @@ section so that we don't have to re-write every style definition for mobile sepa
     }
 
     /* removing border-radius for mobile because it looks trash */
-    nav ul li a:hover {
+    nav ul li a:hover,
+    nav ul li button:hover{
         border-radius: 0px;
     }
     
-    nav ul li a.active {
+    nav ul li a.active,
+    nav ul li button:hover{
         border-radius: 0px;
     }
     
