@@ -1,0 +1,82 @@
+{
+	"main-page": {
+		"content": "Strona główna"
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"productModel": "Produkty",
+		"order": "Zamówienia",
+		"orderedProducts": "Zamówione produkty"
+	},
+	"list": {
+		"actions": {
+			"title": "Opcje",
+			"details": "Szczegóły",
+			"edit": "Edytuj",
+			"delete": "Usuń"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Powrót",
+			"edit": "Edytuj",
+			"cancel": "Wróć"
+		}
+	},
+	"product": {
+		"fields": {
+			"IDproduct": "Klucz produktu",
+			"name": "Nazwa",
+			"price": "Cena",
+			"productionDate": "Data produkcji",
+			"endDistributionDate": "Data końca dystrybucji"
+		},
+		"list": {
+			"title": "Wszystkie produkty",
+			"addNew": "Dodaj nowy produkt",
+			"noData": "W bazie danych nie ma produktów",
+			"pageTitle": "Lista produktów"
+		},
+		"form": {
+			"details": "Szczegóły dla tego produktu",
+			"add": {
+				"pageTitle": "Nowy produkt",
+				"btnLabel": "Dodaj produkt",
+				"confirm": {
+					"header": "Potwierdzenie",
+					"text": "Produkt został dodany"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edytuj produkt",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwiedzenie",
+					"text": "Produkt został zmodyfikowany"
+				}
+			},
+			"delete": {
+				"confirm": {
+					"text": "Produkt usunięty pomyślnie"
+				}
+			}
+		}
+	},
+	"order": {
+		"fields": {
+			"IDorder": "Klucz zamówienia",
+			"datePlaced": "Data złożenia zamówienia",
+			"clientContactInfo": "Informacje kontaktowe",
+			"shippingCompany": "Firma transportująca",
+			"premiumDelivery": "Dostawa ekspresowa"
+		}
+	},
+	"orderedProducts": {
+		"fields": {
+			"IDorderedProduct": "Klucz zamówienia produktów",
+			"quantity": "Ilość",
+			"IDproductModel": "Klucz produktu",
+			"IDorder": "Klucz zamówienia"
+		}
+	}
+}
