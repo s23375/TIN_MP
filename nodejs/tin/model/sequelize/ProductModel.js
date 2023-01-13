@@ -9,10 +9,10 @@ const ProductModel = sequelize.define('ProductModel', {
         primaryKey: true,
         validate: {
             notEmpty: {
-                msg: "The ID field with a certain name I will not give you here cannot be empty"
+                msg: "notEmpty"
             },
             isInt: {
-                msg: "The ID field has to be an Integer"
+                msg: "isInt"
             }
         }
     },
@@ -23,16 +23,19 @@ const ProductModel = sequelize.define('ProductModel', {
             // the downside of putting this error message here in this way: it displays only after all other errors in the form have been fixed
             // the upside: it works
             name: 'name',
-            msg: "Name of the product has to be unique"
+            msg: "isUniqueName"
         },
         isAlpha: {
           args: true,
-          msg: "this appears to not work and I have no idea why"
+          msg: "isAlpha"
         },
         validate: {
             len: {
                 args: [2, 60],
-                msg: "This field should have from 2 to 60 characters"
+                msg: "len_2_60"
+            },
+            notEmpty: {
+                msg: "notEmpty"
             }
         }
     },
@@ -41,18 +44,18 @@ const ProductModel = sequelize.define('ProductModel', {
       allowNull: false,
         validate: {
             notEmpty: {
-                msg: "This field cannot be empty"
+                msg: "notEmpty"
             },
             isDecimal: {
-              msg: "This field has to be a decimal type number"
+              msg: "isDecimal"
             },
             len: {
                 args: [1, 11],
-                msg: "This field has to have from 1 to 11 numbers and signs"
+                msg: "len_1_11"
             },
             isPositive(value) { // custom validator, it's cool tbh
                 if(parseInt(value) < 0) {
-                    throw new Error("Price cannot be a negative")
+                    throw new Error("isPositive")
                 }
             }
         }
@@ -62,10 +65,10 @@ const ProductModel = sequelize.define('ProductModel', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "This field cannot be empty"
+                msg: "notEmpty"
             },
             isDate: {
-                msg: "This field has to be a date"
+                msg: "isDate"
             }
         }
     },
@@ -74,11 +77,11 @@ const ProductModel = sequelize.define('ProductModel', {
         allowNull: true,
         validate: {
             isDate: {
-                msg: "This field has to be a date"
+                msg: "isDate"
             },
             isAfterProductionDate: function(endDistributionDate) {
                 if(this.endDistributionDate && this.productionDate > this.endDistributionDate) {
-                    throw new Error("End distribution date cannot be a date before the product's production date")
+                    throw new Error("endDistributionDate")
                 }
             }
         }

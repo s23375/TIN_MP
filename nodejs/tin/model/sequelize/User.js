@@ -52,7 +52,7 @@ const User = sequelize.define("User", {
             msg: "this appears to not work and I have no idea why"
         },
         unique: {
-            name: 'name',
+            name: 'email',
             msg: "This email is already registered"
         },
         validate: {
