@@ -11,13 +11,27 @@ import OrderForm from "./components/order/OrderForm";
 import OrderDetails from "./components/order/OrderDetails";
 import OrderedProductsList from "./components/orderedProducts/OrderedProductsList";
 import OrderedProductsDetails from "./components/orderedProducts/OrderedProductsDetails";
+import OrderedProductsForm from "./components/orderedProducts/OrderedProductsForm";
+import LoginForm from "./components/other/LoginForm";
 
 import {
     BrowserRouter as Router,
     Routes,
-    Route
+    Route, Navigate
 } from "react-router-dom"
-import OrderedProductsForm from "./components/orderedProducts/OrderedProductsForm";
+
+
+function handleLogin(user) {
+    localStorage.setItem("user", user)
+}
+
+function handleLogout(user) {
+    localStorage.removeItem("user")
+
+    return (
+        <Navigate to="/"  />
+    )
+}
 
 
 function App() {
@@ -25,8 +39,10 @@ function App() {
       <Router>
           <div>
             <Header />
-            <Navigation />
+            <Navigation handleLogout={handleLogout}/>
             <Routes>
+                <Route exact path="/login"  render={(props) => (<LoginForm />)} element={<LoginForm handleLogin={handleLogin} />} />
+
                 <Route exact path="/" element={<MainContent />} />
                 <Route exact path="/ProductModel" element={<ProductModelList />} />
                 <Route exact path="/ProductModel/details/:IDproduct" element={< ProductModelDetails />  } />

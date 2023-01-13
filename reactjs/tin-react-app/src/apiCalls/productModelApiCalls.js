@@ -1,3 +1,5 @@
+import {getCurrentUser} from "../helpers/authHelper";
+
 const productModelBaseUrl = "http://localhost:3000/api/products"
 export function getProductModelApiCall() {
     const promise = fetch(productModelBaseUrl)
@@ -11,11 +13,17 @@ export function getProductModelByIdApiCall(IDproduct) {
 }
 
 export function addProductApiCall(product) {
+    const user = getCurrentUser()
     const productString = JSON.stringify(product)
+    let token
+    if(user && user.token) {
+        token = user.token
+    }
     const options = {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer" + token
         },
         body: productString
     }
