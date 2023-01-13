@@ -84,5 +84,19 @@
 			"IDproductModel": "Klucz produktu",
 			"IDorder": "Klucz zamówienia"
 		}
+	},
+	"validation" : {
+		"messages": {
+			"notEmpty": "To pole nie może byc puste",
+			"isInt": "To pole musi być liczbą całkowitą dodatnią",
+			"isUniqueName": "Taka nazwa produktu już istnieje w bazie",
+			"isAlpha": "idk to nie działa",
+			"len_2_60": "To pole musi zawierać od 2 do 60 znaków",
+			"len_1_11": "To pole musi zawierać od 1 do 11 znaków",
+			"isDecimal": "To pole musi byc liczbą z maksymalnie setną dokładnością",
+			"isPositive": "Cena nie może być negatywna",
+			"isDate": "To pole musi być datą",
+			"endDistributionDate": "Data końca dystrybucji nie może być datą przed datą produkcji produktu"
+		}
 	}
 }

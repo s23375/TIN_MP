@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, useParams} from "react-router-dom";
-import formMode from "../../helpers/formHelper";
+import formMode, {formValidationKeys} from "../../helpers/formHelper";
 import {addProductApiCall, getProductModelByIdApiCall, updateProductApiCall} from "../../apiCalls/productModelApiCalls";
 import {
     checkRequired,
@@ -87,28 +87,28 @@ class ProductModelForm extends React.Component {
         let errorMessage = "";
         if (fieldName === "name") {
             if(!checkRequired(fieldValue)) {
-                errorMessage = "This field is required"
+                errorMessage = formValidationKeys.notEmpty
             } else if(!checkTextLengthRange(fieldValue, 2, 60)) {
-                errorMessage = "This field should have 2-60 characters"
+                errorMessage = formValidationKeys.len_2_60
             }
         }
         if(fieldName === "price") {
             if(!checkRequired(fieldValue)) {
-                errorMessage = "This field is required"
+                errorMessage = formValidationKeys.notEmpty
             } else if(!checkPriceRange(fieldValue)) {
-                errorMessage = "This field cannot be negative"
+                errorMessage = formValidationKeys.isPositive
             }
         }
         if(fieldName === "productionDate") {
             if(!checkRequired(fieldValue)) {
-                errorMessage = "This field is required"
+                errorMessage = formValidationKeys.notEmpty
             } else if(!checkDate(fieldValue)) {
-                errorMessage = "This field must be in date format"
+                errorMessage = formValidationKeys.isDate
             }
         }
         if(fieldName === "endDistributionDate") {
             if(fieldValue && fieldValue < this.state.product.productionDate) {
-                errorMessage = "End distribution date has to be a date after the product's production date"
+                errorMessage = formValidationKeys.endDistributionDate
             }
         }
 
