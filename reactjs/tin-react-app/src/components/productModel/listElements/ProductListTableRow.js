@@ -3,6 +3,7 @@ import {getFormattedDate} from "../../../helpers/dateHelper";
 import {Link} from "react-router-dom";
 import {deleteProductApiCall} from "../../../apiCalls/productModelApiCalls";
 import {useTranslation} from "react-i18next";
+import {isAuthenticated} from "../../../helpers/authHelper";
 
 function ProductListTableRow(props) {
     const product = props.productData;
@@ -15,6 +16,7 @@ function ProductListTableRow(props) {
             <td data-label={t("product.fields.price")}>{product.price}</td>
             <td data-label={t("product.fields.productionDate")}>{product.productionDate ? getFormattedDate(product.productionDate) : ""}</td>
             <td data-label={t("product.fields.endDistributionDate")}>{product.endDistributionDate ? getFormattedDate(product.endDistributionDate) : ""}</td>
+            {isAuthenticated() &&
             <td>
                 <ul className="list-actions">
                     <li>
@@ -28,6 +30,7 @@ function ProductListTableRow(props) {
                     </li>
                 </ul>
             </td>
+            }
         </tr>
     )
 }
