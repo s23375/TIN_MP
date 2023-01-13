@@ -51,6 +51,10 @@ const User = sequelize.define("User", {
             args: true,
             msg: "this appears to not work and I have no idea why"
         },
+        unique: {
+            name: 'name',
+            msg: "This email is already registered"
+        },
         validate: {
             isEmail: {
                 msg: "This has to be an email!"
