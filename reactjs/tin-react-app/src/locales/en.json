@@ -85,5 +85,19 @@
 			"IDproductModel": "ID of the product",
 			"IDorder": "ID of the order"
 		}
+	},
+	"validation" : {
+		"messages": {
+			"notEmpty": "This field cannot be empty",
+			"isInt": "The ID field has to be an Integer",
+			"isUniqueName": "Name of the product has to be unique",
+			"isAlpha": "this appears to not work and I have no idea why",
+			"len_2_60": "This field should have from 2 to 60 characters",
+			"len_1_11": "This field has to have from 1 to 11 numbers and signs",
+			"isDecimal": "This field has to be a decimal type number",
+			"isPositive": "Price cannot be a negative",
+			"isDate": "This field has to be a date",
+			"endDistributionDate": "End distribution date cannot be a date before the product's production date"
+		}
 	}
 }
