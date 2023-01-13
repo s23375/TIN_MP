@@ -38,6 +38,9 @@
 			"noData": "No products in the database",
 			"pageTitle": "List of products"
 		},
+		"placeholder": {
+			"name": "2-60 characters"
+		},
 		"form": {
 			"details": "Details for this product",
 			"add": {

@@ -37,6 +37,9 @@
 			"noData": "W bazie danych nie ma produktów",
 			"pageTitle": "Lista produktów"
 		},
+		"placeholder": {
+			"name": "2-60 znaków"
+		},
 		"form": {
 			"details": "Szczegóły dla tego produktu",
 			"add": {
