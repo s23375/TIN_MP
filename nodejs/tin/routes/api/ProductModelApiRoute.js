@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const isAuth = require("../../middleware/isAuth")
 
 const productApiController = require('../../api/ProductModelAPI');
 
@@ -7,6 +8,6 @@ router.get('/', productApiController.getProducts); //TODO VERY IMPORTANT LESSON:
 router.get('/:IDproduct', productApiController.getProductById);
 router.post('/', productApiController.createProduct);
 router.put('/:IDproduct', productApiController.updateProduct);
-router.delete('/:IDproduct', productApiController.deleteProduct);
+router.delete('/:IDproduct', isAuth, productApiController.deleteProduct);
 
 module.exports = router;
