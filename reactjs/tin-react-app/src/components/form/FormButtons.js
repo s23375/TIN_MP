@@ -1,15 +1,17 @@
 import React from "react";
 import formMode from "../../helpers/formHelper";
 import {Link} from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function FormButtons(props) {
-    const submitButtonLabel = props.formMode === formMode.NEW ? "Add" : "Edit"
+    const { t } = useTranslation();
+    const submitButtonLabel = props.formMode === formMode.NEW ? t("product.form.add.btnLabel") : t("form.actions.edit")
 
     return (
         <div className="form-buttons">
             <p id="errorsSummary" className="errors-text">{props.error}</p>
             <input className="form-button-submit" type="submit" value={submitButtonLabel} />
-            <Link to={props.cancelPath} className="form-button-cancel">Cancel</Link>
+            <Link to={props.cancelPath} className="form-button-cancel">{t("form.actions.cancel")}</Link>
         </div>
     )
 }

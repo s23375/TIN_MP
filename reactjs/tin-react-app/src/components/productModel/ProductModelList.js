@@ -1,13 +1,13 @@
 import React from "react"
-import {Link, useParams} from "react-router-dom"
-
+import {Link, useLocation} from "react-router-dom"
 import { getProductModelApiCall } from "../../apiCalls/productModelApiCalls";
 import ProductListTable from "./listElements/ProductListTable";
+import { withTranslation } from "react-i18next";
 
 export function withRouter(Children){
     return(props)=>{
 
-        const location  = {params: useParams()};
+        const location  = {params: useLocation()};
         return <Children {...props}  location = {location}/> //TIP: change property name to access props.whateverYouWant
     }
 }
@@ -15,7 +15,8 @@ export function withRouter(Children){
 class ProductModelList extends React.Component {
     constructor(props) {
         super(props);
-        let notice = props.location.state && props.location.notice ? props.location.state.notice: ""
+        let notice = props.location.params.state && props.location.params.state ? props.location.params.state : ""
+
         this.state = {
             error: null,
             isLoaded: false,
@@ -58,13 +59,14 @@ class ProductModelList extends React.Component {
             content = <ProductListTable productModelList={products} />
         }
 
+        const { t } = this.props;
         return (
             <main>
-                <h2>All products</h2>
+                <h2>{t("product.list.title")}</h2>
                 { content }
                 <p className="success">{this.state.notice}</p>
                 <div>
-                    <p><Link to="/ProductModel/add" className="button-add">Add new product</Link></p>
+                    <p><Link to="/ProductModel/add" className="button-add">{t("product.list.addNew")}</Link></p>
                     <p className="delete-message"></p>
                 </div>
             </main>
@@ -73,4 +75,4 @@ class ProductModelList extends React.Component {
 }
 
 
-export default withRouter(ProductModelList);
+export default withTranslation()(withRouter(ProductModelList));

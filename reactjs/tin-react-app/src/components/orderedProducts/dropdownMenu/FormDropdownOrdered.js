@@ -5,6 +5,7 @@ function FormDropdown(props) {
     const name = props.name
     const errorSpanID = "error" + name[0].toUpperCase() + name.slice(1)
 
+
     return (
         <>
             <label htmlFor={props.name}>
@@ -16,10 +17,10 @@ function FormDropdown(props) {
                 id={props.id}
                 value={props.value}
                 onChange={props.onChange}>
-                <option hidden={props.error === ""} >-- Choose shipping method --</option>
+                <option hidden={props.error === ""} >{props.empty}</option>
                 {props.menuItems.map( (option) => (
                     <option
-                        value={option.value} key={option.id} >{option.label}
+                        value={option.value} key={option.value} >{option.label}
                     </option>
                 ))}
             </select>

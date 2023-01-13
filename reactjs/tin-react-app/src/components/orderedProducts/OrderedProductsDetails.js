@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link, useParams} from "react-router-dom";
-import{ getProductModelByIdApiCall} from "../../apiCalls/productModelApiCalls";
-import ProductDetailsData from "./detailsElements/ProductDetailsData";
-import { withTranslation } from "react-i18next";
+import {getOrderedsByIdApiCall} from "../../apiCalls/orderedProductsApiCalls";
+import OrderedProductsDetailsData from "./detailsElements/OrderedProductsDetailsData";
+
 
 export function withRouter(Children){ // thanks(answer with 17 upvotes, wish I understood it) https://stackoverflow.com/questions/64782949/how-to-pass-params-into-link-using-react-router-v6
     return(props)=>{
@@ -12,31 +12,31 @@ export function withRouter(Children){ // thanks(answer with 17 upvotes, wish I u
     }
 }
 
-class ProductModelDetails extends React.Component {
+class OrderedProductsDetails extends React.Component {
     constructor(props) {
         super(props);
-        let {IDproduct} = this.props.match.params
+        let {IDordered} = this.props.match.params
         this.state = {
-            IDproduct: IDproduct,
-            product: null,
+            IDordered: IDordered,
+            ordered: null,
             error: null,
             isLoaded: false,
             message: null
         }
     }
 
-    fetchProductModelDetails = () => {
-        getProductModelByIdApiCall(this.state.IDproduct)
+    fetchOrderedsDetails = () => {
+        getOrderedsByIdApiCall(this.state.IDordered)
             .then(res => res.json())
             .then(data => {
                     if (data.message) {
                         this.setState({
-                            product: null,
+                            ordered: null,
                             message: data.message
                         })
                     } else {
                         this.setState({
-                            product: data,
+                            ordered: data,
                             message: null
                         })
                     }
@@ -53,12 +53,12 @@ class ProductModelDetails extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchProductModelDetails()
+        this.fetchOrderedsDetails()
     }
 
 
     render() {
-        const { product, error, isLoaded, message } = this.state
+        const { ordered, error, isLoaded, message } = this.state
         let content;
 
         if(error) {
@@ -68,16 +68,15 @@ class ProductModelDetails extends React.Component {
         } else if (message) {
             content = <p>{message}</p>
         } else {
-            content = <ProductDetailsData productData={product} />
+            content = <OrderedProductsDetailsData orderedData={ordered} />
         }
 
-        const { t } = this.props
         return (
             <main>
-                <h2>{t("product.form.details")}</h2>
+                <h2>Details for these ordered products</h2>
                 { content }
                 <div className="section-buttons">
-                    <Link to="/ProductModel/" className="form-button-back">{t("form.actions.return")}</Link>
+                    <Link to="/OrderedProducts/" className="form-button-back">Back</Link>
                 </div>
 
             </main>
@@ -85,4 +84,4 @@ class ProductModelDetails extends React.Component {
     }
 }
 
-export default withTranslation()(withRouter(ProductModelDetails));
+export default withRouter(OrderedProductsDetails);

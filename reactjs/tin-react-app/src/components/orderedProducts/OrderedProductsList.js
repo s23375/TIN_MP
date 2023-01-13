@@ -1,7 +1,7 @@
 import React from "react"
 import {Link, useLocation} from "react-router-dom"
-import {getOrderApiCall} from "../../apiCalls/orderApiCalls";
-import OrderListTable from "./listElement/OrderListTable";
+import {getOrderedsApiCall} from "../../apiCalls/orderedProductsApiCalls";
+import OrderedProductsTable from "./listElements/OrderedProductsTable";
 
 export function withRouter(Children){
     return(props)=>{
@@ -11,25 +11,26 @@ export function withRouter(Children){
     }
 }
 
-class OrderList extends React.Component {
+class OrderedProductsList extends React.Component {
     constructor(props) {
         super(props);
         let notice = props.location.params.state && props.location.params.state ? props.location.params.state : ""
+
         this.state = {
             error: null,
             isLoaded: false,
-            orders: [],
+            ordereds: [],
             notice: notice
         }
     }
 
-    fetchOrderList = () => {
-        getOrderApiCall()
+    fetchOrderedsList = () => {
+        getOrderedsApiCall()
             .then(res => res.json())
             .then( data => {
                     this.setState({
                         isLoaded: true,
-                        orders: data
+                        ordereds: data
                     });
                 },
                 (error) => {
@@ -42,11 +43,11 @@ class OrderList extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchOrderList()
+        this.fetchOrderedsList()
     }
 
     render() {
-        const { error, isLoaded, orders } = this.state
+        const { error, isLoaded, ordereds } = this.state
         let content;
 
         if(error) {
@@ -54,16 +55,16 @@ class OrderList extends React.Component {
         } else if(!isLoaded) {
             content = <p>Loading data...</p>
         } else {
-            content = <OrderListTable orderList={orders} />
+            content = <OrderedProductsTable orderededProductsList={ordereds} />
         }
 
         return (
             <main>
-                <h2>All orders</h2>
+                <h2>All ordered products</h2>
                 { content }
                 <p className="success">{this.state.notice}</p>
                 <div>
-                    <p><Link to="/Order/add" className="button-add">Add new order</Link></p>
+                    <p><Link to="/OrderedProducts/add" className="button-add">Add new ordered product</Link></p>
                     <p className="delete-message"></p>
                 </div>
             </main>
@@ -72,4 +73,4 @@ class OrderList extends React.Component {
 }
 
 
-export default withRouter(OrderList);
+export default withRouter(OrderedProductsList);

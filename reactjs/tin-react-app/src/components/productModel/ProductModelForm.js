@@ -10,6 +10,7 @@ import {
 } from "../../helpers/validationCommon";
 import FormInput from "../form/FormInput";
 import FormButtons from "../form/FormButtons";
+import { withTranslation } from "react-i18next";
 
 export function withRouter(Children){
     return(props)=>{
@@ -75,7 +76,7 @@ class ProductModelForm extends React.Component {
     hasErrors = () => {
         const errors = this.state.errors;
         for (const errorField in this.state.errors) {
-            if (errors[errorField].length > 0) {
+            if (errors[errorField] && errors[errorField].length > 0) {
                 return true;
             }
         }
@@ -169,7 +170,6 @@ class ProductModelForm extends React.Component {
                     })
                     .then( data => {
                         if(!response.ok && response.status === 500) {
-                            console.log(data)
                             for (const i in data) {
                                 const errorItem = data[i]
                                 const errorMessage = errorItem.message
@@ -208,28 +208,18 @@ class ProductModelForm extends React.Component {
             const notice = currentFormMode === formMode.NEW ? "Successfully added a product" : "Successfully updated a product"
 
             return (
-                <Navigate replace to={{
-                            pathname: "/ProductModel/",
-                            state: {
-                                notice: notice
-                            }
-                        }} />
+                <Navigate to="/ProductModel/" state = { notice } />
             )
-            // return (
-            //     <Redirect to={{
-            //         pathname: "/ProductModel/",
-            //         state: {
-            //             notice: notice
-            //         }
-            //     }} />
-            // )
         }
 
         const errorsSummary = this.hasErrors() ? "The form contains errors" : ""
         const fetchError = this.state.error ? `Error: ${this.state.error.message}` : ""
-        const pageTitle = this.state.formMode === formMode.NEW ? "New product" : "Edit product"
+
+        const { t } = this.props
+        const pageTitle = this.state.formMode === formMode.NEW ? t("product.form.add.pageTitle") : t("product.form.edit.pageTitle")
 
         const globalErrorMessage = errorsSummary || fetchError || this.state.message
+
 
         return (
             <main>
@@ -237,16 +227,16 @@ class ProductModelForm extends React.Component {
                 <form className="form" onSubmit={this.handleSubmit}>
                     <FormInput
                         type="text"
-                        label="Name" required
+                        label={t("product.fields.name")} required
                         error={this.state.errors.name}
                         name="name"
-                        placeholder="2-60 characters"
+                        placeholder={t("product.placeholder.name")}
                         onChange={this.handleChange}
                         value={this.state.product.name}
                     />
                     <FormInput
                         type="number"
-                        label="Price" required
+                        label={t("product.fields.price")} required
                         error={this.state.errors.price}
                         name="price"
                         placeholder=""
@@ -255,7 +245,7 @@ class ProductModelForm extends React.Component {
                     />
                     <FormInput
                         type="date"
-                        label="Production date" required
+                        label={t("product.fields.productionDate")} required
                         error={this.state.errors.productionDate}
                         name="productionDate"
                         placeholder=""
@@ -264,7 +254,7 @@ class ProductModelForm extends React.Component {
                     />
                     <FormInput
                         type="date"
-                        label="Distribution end date" required
+                        label={t("product.fields.endDistributionDate")} required
                         error={this.state.errors.endDistributionDate}
                         name="endDistributionDate"
                         placeholder=""
@@ -282,4 +272,4 @@ class ProductModelForm extends React.Component {
     }
 }
 
-export default withRouter(ProductModelForm)
+export default withTranslation()(withRouter(ProductModelForm))

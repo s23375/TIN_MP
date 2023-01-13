@@ -1,12 +1,23 @@
 import React from 'react';
 import { Navigate, useParams} from "react-router-dom";
 import formMode from "../../helpers/formHelper";
+import {
+    checkRequired,
+    checkQuantityRange
+} from "../../helpers/validationCommon";
 import FormInput from "../form/FormInput";
 import FormButtons from "../form/FormButtons";
-import {addOrderApiCall, getOrderByIdApiCall, updateOrderApiCall} from "../../apiCalls/orderApiCalls";
-import {checkEmail, checkRequired} from "../../helpers/validationCommon";
-import {menuOrderItems} from "./dropdownMenu/menuOrderItems";
-import FormDropdown from "../form/FormDropdown";
+import {
+    addOrderedsApiCall,
+    getOrderedsByIdApiCall,
+    updateOrderedsApiCall
+} from "../../apiCalls/orderedProductsApiCalls";
+import {menuProductsItems} from "./dropdownMenu/menuProductsItems";
+import {getProductModelApiCall} from "../../apiCalls/productModelApiCalls";
+import FormDropdownOrdered from "./dropdownMenu/FormDropdownOrdered";
+import {getOrderApiCall} from "../../apiCalls/orderApiCalls";
+import {menuOrdersItems} from "./dropdownMenu/menuOrdersItems";
+
 
 export function withRouter(Children){
     return(props)=>{
@@ -16,51 +27,36 @@ export function withRouter(Children){
     }
 }
 
-// noinspection DuplicatedCode
-class OrderForm extends React.Component {
+class OrderedProductsForm extends React.Component {
     constructor(props) {
         super(props);
 
-        const IDorderParams = props.match.params.IDorder
-        const currentFormMode = IDorderParams ? formMode.EDIT: formMode.NEW
+        const IDorderedParams = props.match.params.IDordered
+        const currentFormMode = IDorderedParams ? formMode.EDIT: formMode.NEW
 
         this.state = {
-            IDorder: IDorderParams,
-            order: {
-                datePlaced: new Date(),
-                clientContactInfo: "",
-                shippingCompany: "",
-                premiumDelivery: ""
+            IDordered: IDorderedParams,
+            ordered: {
+                quantity: "",
+                ProductModel_IDproduct: "",
+                Order_IDorder: "",
             },
             errors: {
-                datePlaced: "",
-                clientContactInfo: "",
-                shippingCompany: "",
-                premiumDelivery: ""
+                quantity: "",
+                ProductModel_IDproduct: "",
+                Order_IDorder: "",
             },
             formMode: currentFormMode,
             redirect: false,
             error: null,
-            isListOpen: false,
-            shippingList: [
-                {
-                    id: 0,
-                    companyName: "DHL"
-                },
-                {
-                    id: 1,
-                    companyName: "Inpost"
-                },
-                {
-                    id: 2,
-                    companyName: "Poczta Polska"
-                }
-            ]
+
+            products: [],
+            orders: []
         }
     }
 
-    fetchOrderDetails = () => {
-        getOrderByIdApiCall(this.state.IDorder)
+    fetchOrderedDetails = () => {
+        getOrderedsByIdApiCall(this.state.IDordered)
             .then(res => res.json())
             .then(data => {
                     if (data.message) {
@@ -69,7 +65,7 @@ class OrderForm extends React.Component {
                         })
                     } else {
                         this.setState({
-                            order: data,
+                            ordered: data,
                             message: null
                         })
                     }
@@ -85,6 +81,42 @@ class OrderForm extends React.Component {
                 })
     }
 
+    fetchProductModelList = () => {
+        getProductModelApiCall()
+            .then(res => res.json())
+            .then( data => {
+                    this.setState({
+                        isLoaded: true,
+                        products: data
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+
+    fetchOrderList = () => {
+        getOrderApiCall()
+            .then(res => res.json())
+            .then( data => {
+                    this.setState({
+                        isLoaded: true,
+                        orders: data
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+
     hasErrors = () => {
         const errors = this.state.errors;
         for (const errorField in this.state.errors) {
@@ -97,35 +129,32 @@ class OrderForm extends React.Component {
 
     validateField = (fieldName, fieldValue) => {
         let errorMessage = "";
-        if (fieldName === "datePlaced") {
+        if (fieldName === "quantity") {
+            if(!checkRequired(fieldValue)) {
+                errorMessage = "This field is required"
+            } else if(!checkQuantityRange(fieldValue)) {
+                errorMessage = "This field has to contain a number bigger than 0"
+            }
+        }
+        if(fieldName === "ProductModel_IDproduct") {
             if(!checkRequired(fieldValue)) {
                 errorMessage = "This field is required"
             }
         }
-        if(fieldName === "clientContactInfo") {
-            if(!checkRequired(fieldValue)) {
-                errorMessage = "This field is required"
-            } else if(!checkEmail(fieldValue)) {
-                errorMessage = "This field has to be a valid email address"
-            }
-        }
-        if(fieldName === "shippingCompany") {
+        if(fieldName === "Order_IDorder") {
             if(!checkRequired(fieldValue)) {
                 errorMessage = "This field is required"
             }
         }
-        // if(fieldName === "premiumDelivery") {
-        //
-        // }
 
         return errorMessage;
     }
 
     validateForm = () => {
-        const order = this.state.order;
+        const ordered = this.state.ordered;
         const errors = this.state.errors;
-        for (const fieldName in order) {
-            const fieldValue = order[fieldName]
+        for (const fieldName in ordered) {
+            const fieldValue = ordered[fieldName]
             const errorMessage = this.validateField(fieldName, fieldValue)
             errors[fieldName] = errorMessage
         }
@@ -137,23 +166,23 @@ class OrderForm extends React.Component {
 
     handleChange = (event) => {
         const { name , value } = event.target;
-        const order = { ...this.state.order };
-        order[name] = value
+        const ordered = { ...this.state.ordered };
+        ordered[name] = value
 
         const errorMessage = this.validateField(name, value);
         const errors = { ...this.state.errors };
         errors[name] = errorMessage;
 
         this.setState({
-            order: order,
+            ordered: ordered,
             errors: errors
         })
     }
 
-    dropdownHandleChange = (event) => {
+    dropdownHandleProductChange = (event) => {
         const { name , value } = event.target.value;
-        const order = { ...this.state.order };
-        order.shippingCompany = event.target.value
+        const ordered = { ...this.state.ordered };
+        ordered.ProductModel_IDproduct = event.target.value
 
 
         const errorMessage = this.validateField(name, value);
@@ -161,7 +190,23 @@ class OrderForm extends React.Component {
         errors[name] = errorMessage;
 
         this.setState({
-            order: order,
+            ordered: ordered,
+            errors: errors
+        })
+    }
+
+    dropdownHandleOrderChange = (event) => {
+        const { name , value } = event.target.value;
+        const ordered = { ...this.state.ordered };
+        ordered.Order_IDorder = event.target.value
+
+
+        const errorMessage = this.validateField(name, value);
+        const errors = { ...this.state.errors };
+        errors[name] = errorMessage;
+
+        this.setState({
+            ordered: ordered,
             errors: errors
         })
     }
@@ -170,17 +215,17 @@ class OrderForm extends React.Component {
         event.preventDefault();
         const isValid = this.validateForm()
         if(isValid) {
-            const order = this.state.order,
+            const ordered = this.state.ordered,
                 currentFormMode = this.state.formMode
             let
                 promise,
                 response;
             if (currentFormMode === formMode.NEW) {
-                promise = addOrderApiCall(order)
+                promise = addOrderedsApiCall(ordered)
             } else if(currentFormMode === formMode.EDIT) {
-                console.log(order);
-                const IDorder = this.state.IDorder
-                promise = updateOrderApiCall(IDorder, order)
+                console.log(ordered);
+                const IDordered = this.state.IDordered
+                promise = updateOrderedsApiCall(IDordered, ordered)
             }
             if(promise) {
                 promise
@@ -192,7 +237,6 @@ class OrderForm extends React.Component {
                     })
                     .then( data => {
                             if(!response.ok && response.status === 500) {
-                                console.log(data)
                                 for (const i in data) {
                                     const errorItem = data[i]
                                     const errorMessage = errorItem.message
@@ -219,8 +263,10 @@ class OrderForm extends React.Component {
 
     componentDidMount() {
         const currentFormMode = this.state.formMode
+        this.fetchProductModelList()
+        this.fetchOrderList()
         if (currentFormMode === formMode.EDIT) {
-            this.fetchOrderDetails()
+            this.fetchOrderedDetails()
         }
     }
 
@@ -228,16 +274,16 @@ class OrderForm extends React.Component {
         const { redirect: redirectTest } = this.state
         if (redirectTest) {
             const currentFormMode = this.state.formMode
-            const notice = currentFormMode === formMode.NEW ? "Successfully added an order" : "Successfully updated an order"
+            const notice = currentFormMode === formMode.NEW ? "Successfully added an ordered product" : "Successfully updated an ordered product"
 
             return (
-                <Navigate to="/Order/" state = { notice } />
+                <Navigate to="/OrderedProducts/" state = { notice } />
             )
         }
 
         const errorsSummary = this.hasErrors() ? "The form contains errors" : ""
         const fetchError = this.state.error ? `Error: ${this.state.error.message}` : ""
-        const pageTitle = this.state.formMode === formMode.NEW ? "New order" : "Edit order"
+        const pageTitle = this.state.formMode === formMode.NEW ? "New ordered" : "Edit ordered"
 
         const globalErrorMessage = errorsSummary || fetchError || this.state.message
 
@@ -246,35 +292,35 @@ class OrderForm extends React.Component {
                 <h2>{pageTitle}</h2>
                 <form className="form" onSubmit={this.handleSubmit}>
                     <FormInput
-                        type="text"
-                        label="Client contact info" required
-                        error={this.state.errors.clientContactInfo}
-                        name="clientContactInfo"
-                        placeholder="e-mail address"
+                        type="number"
+                        label="Quantity" required
+                        error={this.state.errors.quantity}
+                        name="quantity"
                         onChange={this.handleChange}
-                        value={this.state.order.clientContactInfo}
+                        value={this.state.ordered.quantity}
                     />
-                    <FormDropdown
-                        label="Shipping company" required
-                        error={this.state.errors.shippingCompany}
-                        name="shippingCompany"
-                        value={this.state.order.shippingCompany}
-                        onChange={this.dropdownHandleChange}
-                        menuItems={menuOrderItems}
+                    <FormDropdownOrdered
+                        label="Product" required
+                        error={this.state.errors.ProductModel_IDproduct}
+                        name="ProductModel_IDproduct"
+                        value={this.state.ordered.ProductModel_IDproduct}
+                        empty="-- Choose product --"
+                        onChange={this.dropdownHandleProductChange}
+                        menuItems={menuProductsItems(this.state.products)}
                     />
-                    <FormInput
-                        type="checkbox"
-                        label="Premium delivery"
-                        error={this.state.errors.premiumDelivery}
-                        name="premiumDelivery"
-                        placeholder=""
-                        onChange={this.handleChange}
-                        value={this.state.order.premiumDelivery}
+                    <FormDropdownOrdered
+                        label="Order" required
+                        error={this.state.errors.Order_IDorder}
+                        name="Order_IDorder"
+                        value={this.state.ordered.Order_IDorder}
+                        empty="-- Choose order --"
+                        onChange={this.dropdownHandleOrderChange}
+                        menuItems={menuOrdersItems(this.state.orders)}
                     />
                     <FormButtons
                         formMode={this.state.formMode}
                         error={globalErrorMessage}
-                        cancelPath="/Order"
+                        cancelPath="/OrderedProducts"
                     />
                 </form>
             </main>
@@ -282,4 +328,4 @@ class OrderForm extends React.Component {
     }
 }
 
-export default withRouter(OrderForm)
+export default withRouter(OrderedProductsForm)

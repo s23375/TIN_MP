@@ -15,7 +15,7 @@ function OrderDetailsData(props) {
                 <tr>
                     <th>IDorderedProduct</th>
                     <th>Quantity</th>
-                    <th>IDproduct</th>
+                    <th>Product</th>
                     <th>IDorder</th>
                 </tr>
                 </thead>
