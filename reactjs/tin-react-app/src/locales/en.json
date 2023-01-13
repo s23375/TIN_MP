@@ -59,6 +59,9 @@
 					"text": "Product successfully updated"
 				}
 			},
+			"detailsForm": {
+				"secondTitle": "Orders for the selected product"
+			},
 			"delete": {
 				"confirm": {
 					"text": "Product successfully deleted"

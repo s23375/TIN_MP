@@ -2,6 +2,7 @@ import React from 'react';
 import {Link, useParams} from "react-router-dom";
 import{ getProductModelByIdApiCall} from "../../apiCalls/productModelApiCalls";
 import ProductDetailsData from "./detailsElements/ProductDetailsData";
+import { withTranslation } from "react-i18next";
 
 export function withRouter(Children){ // thanks(answer with 17 upvotes, wish I understood it) https://stackoverflow.com/questions/64782949/how-to-pass-params-into-link-using-react-router-v6
     return(props)=>{
@@ -70,12 +71,13 @@ class ProductModelDetails extends React.Component {
             content = <ProductDetailsData productData={product} />
         }
 
+        const { t } = this.props
         return (
             <main>
-                <h2>Details for this product</h2>
+                <h2>{t("product.form.details")}</h2>
                 { content }
                 <div className="section-buttons">
-                    <Link to="/ProductModel/" className="form-button-back">Back</Link>
+                    <Link to="/ProductModel/" className="form-button-back">{t("form.actions.return")}</Link>
                 </div>
 
             </main>
@@ -83,4 +85,4 @@ class ProductModelDetails extends React.Component {
     }
 }
 
-export default withRouter(ProductModelDetails);
+export default withTranslation()(withRouter(ProductModelDetails));

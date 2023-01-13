@@ -58,6 +58,9 @@
 					"text": "Produkt został zmodyfikowany"
 				}
 			},
+			"detailsForm": {
+				"secondTitle": "Zamówienia dla wybranego produktu"
+			},
 			"delete": {
 				"confirm": {
 					"text": "Produkt usunięty pomyślnie"
