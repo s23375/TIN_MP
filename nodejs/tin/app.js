@@ -89,12 +89,11 @@ const orderApiRoute = require('./routes/api/OrderApiRoute');
 const userApiRoute = require("./routes/api/UserApiRoute");
 const authApiRouter = require("./routes/api/AuthApiRoute");
 
-
+app.use("/api/auth", authApiRouter)
 app.use('/api/products', productApiRoute);
 app.use('/api/ordereds', orderedApiRoute);
 app.use('/api/orders', orderApiRoute);
 app.use('/api/users', userApiRoute);
-app.use("/api/auth", authApiRouter)
 
 //app.use('/users', usersRouter); // if we type /user it sends us here
 // there aren't actually files, if our path is localhost/users/1/books/5
