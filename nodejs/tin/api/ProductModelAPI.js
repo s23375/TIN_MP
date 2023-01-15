@@ -41,7 +41,7 @@ exports.updateProduct = (req, res, next) => {
             res.status(200).json({message: 'Product updated!', product: result});
         })
         .catch(err => {
-            res.status(500).json(err.message)
+            res.status(500).json(err.errors)
         });
 };
 
