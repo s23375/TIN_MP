@@ -13,9 +13,13 @@ class Navigation extends React.Component{
         });
     }
 
+    onClickLogout = () => {
+        this.props.handleLogout()
+        this.forceUpdate()
+    }
 
     render() {
-        const loginLogoutLink = isAuthenticated() ? <button onClick={this.props.handleLogout}>Logout</button> : <Link to="/login">Log in</Link>
+        const loginLogoutLink = isAuthenticated() ? <button onClick={this.onClickLogout}>Logout</button> : <Link to="/login">Log in</Link>
         const { t } = this.props;
 
         return (

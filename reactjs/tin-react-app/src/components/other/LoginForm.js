@@ -121,7 +121,7 @@ class LoginForm extends React.Component {
         return (
             <main>
                 <div id="login">
-                    <h2>ILL CHANGE THIS LATER</h2>
+                    <h2>Log in</h2>
                     <form className="form" method="post" onSubmit={this.handleSubmit}>
                         <FormInput
                             type="text"
