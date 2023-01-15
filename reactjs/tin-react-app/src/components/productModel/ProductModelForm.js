@@ -156,7 +156,6 @@ class ProductModelForm extends React.Component {
             if (currentFormMode === formMode.NEW) {
                 promise = addProductApiCall(product)
             } else if(currentFormMode === formMode.EDIT) {
-                console.log(product);
                 const IDproduct = this.state.IDproduct
                 promise = updateProductApiCall(IDproduct, product)
             }

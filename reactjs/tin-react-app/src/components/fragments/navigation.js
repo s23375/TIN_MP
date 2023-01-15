@@ -6,7 +6,6 @@ import {isAuthenticated} from "../../helpers/authHelper";
 
 
 class Navigation extends React.Component{
-
     handleLanguageChange = (language) => {
         const { i18n } = this.props
         i18n.changeLanguage(language, (err, t) => {
@@ -14,16 +13,18 @@ class Navigation extends React.Component{
         });
     }
 
+
     render() {
         const loginLogoutLink = isAuthenticated() ? <button onClick={this.props.handleLogout}>Logout</button> : <Link to="/login">Log in</Link>
+        const { t } = this.props;
 
         return (
             <nav>
                 <ul>
-                    <li><Link to="/">Main page</Link></li>
-                    <li><Link to="/ProductModel">Product models</Link></li>
-                    <li><Link to="/Order">Orders</Link></li>
-                    <li><Link to="/OrderedProducts">Ordered products</Link></li>
+                    <li><Link to="/">{t("nav.main-page")}</Link></li>
+                    <li><Link to="/ProductModel">{t("nav.productModel")}</Link></li>
+                    <li><Link to="/Order">{t("nav.order")}</Link></li>
+                    <li><Link to="/OrderedProducts">{t("nav.orderedProducts")}</Link></li>
                     <li className="lang">{loginLogoutLink}</li>
                 </ul>
                 <ul>
