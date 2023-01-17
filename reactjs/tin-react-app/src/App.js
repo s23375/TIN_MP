@@ -39,7 +39,7 @@ function App() {
       <Router>
           <div>
             <Header />
-            <Navigation handleLogout={handleLogout}/>
+            <Navigation handleLogout={handleLogout} />
             <Routes>
                 <Route exact path="/login"  render={(props) => (<LoginForm />)} element={<LoginForm handleLogin={handleLogin} />} />
 

@@ -1,13 +1,19 @@
 import React from "react"
-import formMode, {formValidationKeys} from "../../helpers/formHelper";
-import {addProductApiCall, updateProductApiCall} from "../../apiCalls/productModelApiCalls";
 import {loginApiCall} from "../../apiCalls/authApiCalls";
-import {checkDate, checkPriceRange, checkRequired, checkTextLengthRange} from "../../helpers/validationCommon";
+import {checkRequired} from "../../helpers/validationCommon";
 import FormInput from "../form/FormInput";
-import FormButtons from "../form/FormButtons";
-import {withRouter} from "../order/OrderForm";
+import LoginFormButtons from "./LoginFormButtons";
+import formMode, {formValidationKeys} from "../../helpers/formHelper";
+import {Navigate, useLocation} from "react-router-dom";
 
 
+export function withRouter(Children){
+    return(props)=>{
+
+        const location  = {params: useLocation()};
+        return <Children {...props}  location = {location}/> //TIP: change property name to access props.whateverYouWant
+    }
+}
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +28,8 @@ class LoginForm extends React.Component {
             },
             error: "",
             message: "",
-            prevPath: ""
+            prevPath: "",
+            redirect: false
         }
     }
 
@@ -57,6 +64,9 @@ class LoginForm extends React.Component {
                         if(data.token) {
                             const userString = JSON.stringify(data)
                             this.props.handleLogin(userString)
+                            this.setState({
+                                redirect: true
+                            })
                             //this.props.history.goBack()
                         }
                     } else if (response.status === 401) {
@@ -118,6 +128,13 @@ class LoginForm extends React.Component {
         const fetchError = this.state.error ? `Error: ${this.state.error.message}` : ""
         const globalErrorMessage = errorsSummary || fetchError || this.state.message
 
+        const { redirect: redirectTest } = this.state
+        if (redirectTest) {
+            return (
+                <Navigate to="/"  />
+            )
+        }
+
         return (
             <main>
                 <div id="login">
@@ -139,10 +156,11 @@ class LoginForm extends React.Component {
                             onChange={this.handleChange}
                             value={this.state.user.password}
                         />
-                        <FormButtons
+                        <LoginFormButtons
                             error={globalErrorMessage}
                             cancelPath="/"
                             submitButtonLabel="Log in"
+                            onClickSubmit={this.state.onClickSubmit}
                         />
                     </form>
                 </div>
