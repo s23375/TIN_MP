@@ -1,14 +1,25 @@
 import React from "react"
-import {Link, Navigate} from "react-router-dom"
+import {Link, Navigate, useLocation} from "react-router-dom"
 import { withTranslation } from "react-i18next";
 import {isAuthenticated} from "../../helpers/authHelper";
 
 
+export function withRouter(Children){
+    return(props)=>{
 
+        const location  = {params: useLocation()};
+        return <Children {...props}  location = {location}/> //TIP: change property name to access props.whateverYouWant
+    }
+}
 class Navigation extends React.Component{
     constructor(props) {
         super(props);
 
+
+        this.state = {
+            pathname: props.location.params.pathname,
+            redirect: false
+        }
     }
 
     handleLanguageChange = (language) => {
@@ -23,19 +34,45 @@ class Navigation extends React.Component{
         this.forceUpdate()
     }
 
+    customOnSubmit = () => {
+        console.log(this.props.location.params.pathname)
+        this.setState({
+            pathname: this.props.location.params.pathname
+        })
+    }
+
+    onLogInClick = () => {
+        this.setState({
+            redirect: true
+        })
+
+    }
+
 
     render() {
         const loginLogoutLink = isAuthenticated() ? <button onClick={this.onClickLogout}>Logout</button> :
-            <Link to="/Login" >Log in</Link>
+            <button onClick={this.onLogInClick} >Log in</button>
         const { t } = this.props;
+
+        const bracketsDontWorkIdk = this.state.redirect
+        if(bracketsDontWorkIdk) {
+            let method = this.customOnSubmit;
+            this.setState({
+                redirect: false
+            })
+            return (
+                <Navigate to="/Login" state = { method } />
+            )
+        }
+
 
         return (
             <nav>
                 <ul>
-                    <li><Link to="/">{t("nav.main-page")}</Link></li>
-                    <li><Link to="/ProductModel">{t("nav.productModel")}</Link></li>
-                    <li><Link to="/Order">{t("nav.order")}</Link></li>
-                    <li><Link to="/OrderedProducts">{t("nav.orderedProducts")}</Link></li>
+                    <li><Link to="/" className={this.state.pathname==="/" ? "active" : ""}>{t("nav.main-page")}</Link></li>
+                    <li><Link to="/ProductModel" className={this.state.pathname==="/ProductModel" ? "active" : ""}>{t("nav.productModel")}</Link></li>
+                    <li><Link to="/Order" className={this.state.pathname==="/Order" ? "active" : ""}>{t("nav.order")}</Link></li>
+                    <li><Link to="/OrderedProducts" className={this.state.pathname==="/OrderedProducts" ? "active" : ""}>{t("nav.orderedProducts")}</Link></li>
                     <li className="lang">{loginLogoutLink}</li>
                 </ul>
                 <ul>
@@ -48,4 +85,4 @@ class Navigation extends React.Component{
 
 }
 
-export default withTranslation()(Navigation);
+export default withTranslation()(withRouter(Navigation));
