@@ -219,7 +219,6 @@ class ProductModelForm extends React.Component {
 
         const globalErrorMessage = errorsSummary || fetchError || this.state.message
 
-
         return (
             <main>
                 <h2>{pageTitle}</h2>
