@@ -69,10 +69,10 @@ class Navigation extends React.Component{
         return (
             <nav>
                 <ul>
-                    <li><Link to="/" className={this.state.pathname==="/" ? "active" : ""}>{t("nav.main-page")}</Link></li>
-                    <li><Link to="/ProductModel" className={this.state.pathname==="/ProductModel" ? "active" : ""}>{t("nav.productModel")}</Link></li>
-                    <li><Link to="/Order" className={this.state.pathname==="/Order" ? "active" : ""}>{t("nav.order")}</Link></li>
-                    <li><Link to="/OrderedProducts" className={this.state.pathname==="/OrderedProducts" ? "active" : ""}>{t("nav.orderedProducts")}</Link></li>
+                    <li><Link to="/" >{t("nav.main-page")}</Link></li>
+                    <li><Link to="/ProductModel" >{t("nav.productModel")}</Link></li>
+                    <li><Link to="/Order" >{t("nav.order")}</Link></li>
+                    <li><Link to="/OrderedProducts" >{t("nav.orderedProducts")}</Link></li>
                     <li className="lang">{loginLogoutLink}</li>
                 </ul>
                 <ul>
