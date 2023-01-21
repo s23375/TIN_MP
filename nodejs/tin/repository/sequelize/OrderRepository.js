@@ -24,9 +24,6 @@ exports.getOrderById = (IDorder) => {
 exports.createOrder = (newOrderData) => {
     if(!newOrderData.datePlaced) newOrderData.datePlaced = Date.now();
 
-    if(newOrderData.premiumDelivery === undefined) newOrderData.premiumDelivery = false
-    else newOrderData.premiumDelivery = true
-
     return Order.create({
         datePlaced: newOrderData.datePlaced,
         clientContactInfo: newOrderData.clientContactInfo,
@@ -37,9 +34,6 @@ exports.createOrder = (newOrderData) => {
 
 exports.updateOrder = (IDorder, newOrderData) => {
     if(!newOrderData.datePlaced) newOrderData.datePlaced = Date.now();
-
-    if(newOrderData.premiumDelivery === undefined) newOrderData.premiumDelivery = false
-    else newOrderData.premiumDelivery = true
 
     return Order.update(newOrderData, {where: {IDorder: IDorder}});
 };
