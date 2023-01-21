@@ -1,7 +1,6 @@
 import React from "react";
 import {getFormattedDate} from "../../../helpers/dateHelper";
 import {Link} from "react-router-dom";
-import {deleteProductApiCall} from "../../../apiCalls/productModelApiCalls";
 import {useTranslation} from "react-i18next";
 import {isAuthenticated} from "../../../helpers/authHelper";
 

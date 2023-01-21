@@ -22,7 +22,7 @@ function OrderListTableRow(props) {
                         <Link to={`/Order/edit/${order.IDorder}`} className="list-actions-button-edit">Edit</Link>
                     </li>
                     <li>
-                        <Link to={`/Order`} className="list-actions-button-delete" onClick={ () => (deleteOrderApiCall(order.IDorder)) }>Delete</Link>
+                        <Link to={`/Order`} className="list-actions-button-delete" onClick={ () => (props.deleteOrder(order.IDorder)) }>Delete</Link>
                     </li>
                 </ul>
             </td>

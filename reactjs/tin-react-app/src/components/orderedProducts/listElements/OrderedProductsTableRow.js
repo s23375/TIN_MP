@@ -21,7 +21,7 @@ function OrderedProductsTableRow(props) {
                         <Link to={`/OrderedProducts/edit/${ordered.IDorderedProduct}`} className="list-actions-button-edit">Edit</Link>
                     </li>
                     <li>
-                        <Link to={`/OrderedProducts`} className="list-actions-button-delete" onClick={ () => (deleteOrderedsApiCall(ordered.IDorderedProduct)) }>Delete</Link>
+                        <Link to={`/OrderedProducts`} className="list-actions-button-delete" onClick={ () => (props.deleteOrdereds(ordered.IDorderedProduct)) }>Delete</Link>
                     </li>
                 </ul>
             </td>
