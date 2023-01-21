@@ -8,6 +8,7 @@ import {isAuthenticated} from "../../../helpers/authHelper";
 function ProductListTableRow(props) {
     const product = props.productData;
 
+
     const { t } = useTranslation();
     return (
         <tr key={product.IDproduct}>
@@ -26,7 +27,7 @@ function ProductListTableRow(props) {
                         <Link to={`/ProductModel/edit/${product.IDproduct}`} className="list-actions-button-edit">{t("list.actions.edit")}</Link>
                     </li>
                     <li>
-                        <Link to={`/ProductModel`} className="list-actions-button-delete" onClick={ () => (deleteProductApiCall(product.IDproduct)) }>{t("list.actions.delete")}</Link>
+                        <Link to={`/ProductModel`} className="list-actions-button-delete" onClick={ () => (props.deleteProduct(product.IDproduct)) }>{t("list.actions.delete")}</Link>
                     </li>
                 </ul>
             </td>

@@ -20,7 +20,7 @@ function ProductListTable(props) {
             </thead>
             <tbody>
             {products.map(product =>
-                <ProductListTableRow productData={product} key={product.IDproduct} />
+                <ProductListTableRow productData={product} deleteProduct={props.deleteProduct} key={product.IDproduct} />
             )}
             </tbody>
         </table>

@@ -156,7 +156,6 @@ class ProductModelForm extends React.Component {
             if (currentFormMode === formMode.NEW) {
                 promise = addProductApiCall(product)
             } else if(currentFormMode === formMode.EDIT) {
-                console.log(product);
                 const IDproduct = this.state.IDproduct
                 promise = updateProductApiCall(IDproduct, product)
             }
@@ -219,7 +218,6 @@ class ProductModelForm extends React.Component {
         const pageTitle = this.state.formMode === formMode.NEW ? t("product.form.add.pageTitle") : t("product.form.edit.pageTitle")
 
         const globalErrorMessage = errorsSummary || fetchError || this.state.message
-
 
         return (
             <main>

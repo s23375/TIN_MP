@@ -1,6 +1,6 @@
 import React from "react"
 import {Link, useLocation} from "react-router-dom"
-import { getProductModelApiCall } from "../../apiCalls/productModelApiCalls";
+import {deleteProductApiCall, getProductModelApiCall} from "../../apiCalls/productModelApiCalls";
 import ProductListTable from "./listElements/ProductListTable";
 import { withTranslation } from "react-i18next";
 
@@ -43,6 +43,19 @@ class ProductModelList extends React.Component {
             )
     }
 
+    deleteProductModel = (IDproduct) => {
+        deleteProductApiCall(IDproduct)
+            .then(res => {
+                if(res.ok) {
+                    this.fetchProductModelList()
+                }
+            },
+                (error) => {
+                console.log(error)
+                    this.fetchProductModelList()
+                });
+    }
+
     componentDidMount() {
         this.fetchProductModelList()
     }
@@ -56,7 +69,7 @@ class ProductModelList extends React.Component {
         } else if(!isLoaded) {
             content = <p>Loading data...</p>
         } else {
-            content = <ProductListTable productModelList={products} />
+            content = <ProductListTable productModelList={products} deleteProduct={this.deleteProductModel} />
         }
 
         const { t } = this.props;
