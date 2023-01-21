@@ -1,6 +1,5 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {deleteOrderedsApiCall} from "../../../apiCalls/orderedProductsApiCalls";
 
 
 function OrderedProductsTableRow(props) {

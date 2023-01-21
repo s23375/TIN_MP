@@ -47,7 +47,7 @@
 				"btnLabel": "Dodaj produkt",
 				"confirm": {
 					"header": "Potwierdzenie",
-					"text": "Produkt został dodany"
+					"text": "Produkt został dodany pomyślnie"
 				}
 			},
 			"edit": {
@@ -55,7 +55,7 @@
 				"btnLabel": "Zapisz zmiany",
 				"confirm": {
 					"header": "Potwiedzenie",
-					"text": "Produkt został zmodyfikowany"
+					"text": "Produkt został zmodyfikowany pomyślnie"
 				}
 			},
 			"detailsForm": {
