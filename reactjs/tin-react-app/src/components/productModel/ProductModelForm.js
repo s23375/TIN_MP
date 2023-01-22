@@ -14,7 +14,6 @@ import { withTranslation } from "react-i18next";
 
 export function withRouter(Children){
     return(props)=>{
-
         const match  = {params: useParams()};
         return <Children {...props}  match = {match}/> //TIP: change property name to access props.whateverYouWant
     }
