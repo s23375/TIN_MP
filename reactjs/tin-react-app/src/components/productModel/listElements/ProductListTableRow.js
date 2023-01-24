@@ -8,6 +8,7 @@ function ProductListTableRow(props) {
     const product = props.productData;
 
 
+
     const { t } = useTranslation();
     return (
         <tr key={product.IDproduct}>
