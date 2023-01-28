@@ -1,61 +1,56 @@
-import React from "react"
+import React, {createRef, useRef, useState, useTransition} from "react"
 import {loginApiCall} from "../../apiCalls/authApiCalls";
 import {checkRequired} from "../../helpers/validationCommon";
 import FormInput from "../form/FormInput";
 import LoginFormButtons from "./LoginFormButtons";
-import formMode, {formValidationKeys} from "../../helpers/formHelper";
-import {Navigate, useLocation} from "react-router-dom";
+import {formValidationKeys} from "../../helpers/formHelper";
+import {useNavigate} from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha"
 
 
-export function withRouter(Children){
-    return(props)=>{
+function LoginForm(props) {
+    const recaptchaRef = createRef();
 
-        const location  = {params: useLocation()};
-        return <Children {...props}  location = {location}/> //TIP: change property name to access props.whateverYouWant
-    }
-}
-class LoginForm extends React.Component {
-    constructor(props) {
-        super(props);
+    const [err, setErr] = useState(null);
+    const [message, setMessage] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(null);
 
-        this.state = {
-            user: {
-                email: "",
-                password: ""
-            },
-            errors: {
-                email: "",
-                password: ""
-            },
-            error: "",
-            message: "",
-            prevPath: "",
-            redirect: false
-        }
-    }
+    const [isCaptchaValid, setCaptcha] = useState(null);
 
-    handleChange = (event) => {
+    const navigate = useNavigate();
+
+    const [user, setUser] = useState({
+        email: "",
+        password: ""
+    });
+
+    const [formErrors, setFormErrors] = useState({
+        email: "",
+        password: ""
+    });
+
+    function handleChange(event) {
         const { name, value } = event.target
-        const user = { ...this.state.user }
-        user[name] = value
+        const errorMessage = validateField(name, value)
 
-        const errorMessage = this.validateField(name, value)
-        const errors = { ...this.state.errors }
-        errors[name] = errorMessage
-
-        this.setState({
-            user: user,
-            errors: errors
+        setFormErrors({
+            ...formErrors,
+            [name]: errorMessage
+        })
+        setUser({
+            ...user,
+            [name]: value
         })
     }
 
-    handleSubmit = (event) => {
+    async function handleSubmit(event) {
         event.preventDefault();
-        const isValid = this.validateForm()
-        if(isValid) {
-            const user = this.state.user
+        const isValid = validateForm()
+        if(isValid && validateCaptcha()) {
+            const u = user
             let response;
-            loginApiCall(user)
+
+            loginApiCall(u)
                 .then(res => {
                     response = res
                     return res.json()
@@ -64,27 +59,22 @@ class LoginForm extends React.Component {
                     if(response.status === 200) {
                         if(data.token) {
                             const userString = JSON.stringify(data)
-                            this.props.handleLogin(userString)
-                            this.setState({
-                                redirect: true
-                            })
-                            //this.props.history.goBack()
+                            props.handleLogin(userString)
+                            navigate(-1);
                         }
                     } else if (response.status === 401) {
                         console.log(401)
-                        this.setState({ message: data.message })
+                        setMessage(data.message);
                     }
                 },
                     (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    })
+                        setIsLoaded(true);
+                        setErr(error)
                     })
         }
     }
 
-    validateField = (fieldName, fieldValue) => {
+    function validateField(fieldName, fieldValue) {
         let errorMessage = "";
         if (fieldName === "email") {
             if(!checkRequired(fieldValue)) {
@@ -99,76 +89,87 @@ class LoginForm extends React.Component {
         return errorMessage;
     }
 
-    validateForm = () => {
-        const user = this.state.user;
-        const errors = this.state.errors;
-        for (const fieldName in user) {
-            const fieldValue = user[fieldName]
-            const errorMessage = this.validateField(fieldName, fieldValue)
-            errors[fieldName] = errorMessage
+    function validateForm() {
+        const u = user;
+        let serverFieldsErrors = { ...formErrors };
+
+        for(const fieldName in u) {
+            const fieldValue = user[fieldName];
+            const errorMessage = validateField(fieldName, fieldValue)
+            serverFieldsErrors[fieldName] = errorMessage;
         }
-        this.setState({
-            errors: errors
-        })
-        return !this.hasErrors()
+
+        setFormErrors(serverFieldsErrors)
+        return !hasErrors();
     }
 
-    hasErrors = () => {
-        const errors = this.state.errors;
-        for (const errorField in this.state.errors) {
-            if (errors[errorField] && errors[errorField].length > 0) {
+    function hasErrors() {
+        let serverFieldsErrors = { ...formErrors };
+        for(const errorField in serverFieldsErrors) {
+            if(serverFieldsErrors[errorField].length > 0) {
                 return true;
             }
         }
         return false;
     }
 
-    render() {
-        const { t } = this.props
-        const errorsSummary = this.hasErrors() ? "The form contains errors" : ""
-        const fetchError = this.state.error ? `Error: ${this.state.error.message}` : ""
-        const globalErrorMessage = errorsSummary || fetchError || this.state.message
+    //captcha stuff
+    const REACT_APP_SITE_KEY = "6LdagDMkAAAAAP1-Giax-n2XwfAUhEs8VPXIHMNv"
 
-        const { redirect: redirectTest } = this.state
-        if (redirectTest) {
-            return (
-                <Navigate to="/"  />
-            )
+    function validateCaptcha() {
+        if (recaptchaRef.current == null) {
+            setCaptcha(true);
+            return true;
+        }
+        const res = recaptchaRef.current.getValue();
+        if (res != null && res !== '') {
+            setCaptcha(true);
+            return true;
+        } else {
+            setCaptcha(false);
+            return false;
         }
 
-        return (
-            <main>
-                <div id="login">
-                    <h2>Log in</h2>
-                    <form className="form" method="post" onSubmit={this.handleSubmit}>
-                        <FormInput
-                            type="text"
-                            label="Email" required
-                            error={this.state.errors.email}
-                            name="email"
-                            onChange={this.handleChange}
-                            value={this.state.user.email}
-                        />
-                        <FormInput
-                            type="text"
-                            label="Password" required
-                            error={this.state.errors.password}
-                            name="password"
-                            onChange={this.handleChange}
-                            value={this.state.user.password}
-                        />
-                        <LoginFormButtons
-                            error={globalErrorMessage}
-                            cancelPath="/"
-                            submitButtonLabel="Log in"
-                            onClickSubmit={this.state.onClickSubmit}
-                        />
-                    </form>
-                </div>
-            </main>
-        )
     }
 
+    const { t } = useTransition();
+    const errorsSummary = hasErrors() ? "The form contains errors" : ""
+    const fetchError = err ? `Error: ${err.message}` : ""
+    const globalErrorMessage = errorsSummary || fetchError || message
+    return (
+        <main>
+            <div id="login">
+                <h2>Log in</h2>
+                <form className="form" method="post" onSubmit={handleSubmit}>
+                    <FormInput
+                        type="text"
+                        label="Email" required
+                        error={formErrors["email"]}
+                        name="email"
+                        onChange={handleChange}
+                        value={user["email"]}
+                    />
+                    <FormInput
+                        type="text"
+                        label="Password" required
+                        error={formErrors["password"]}
+                        name="password"
+                        onChange={handleChange}
+                        value={user["password"]}
+                    />
+                    <ReCAPTCHA
+                        sitekey={REACT_APP_SITE_KEY}
+                        ref={recaptchaRef}
+                    />
+                    <LoginFormButtons
+                        error={globalErrorMessage}
+                        cancelPath="/"
+                        submitButtonLabel="Log in"
+                    />
+                </form>
+            </div>
+        </main>
+    )
 }
 
-export default withRouter(LoginForm)
+export default LoginForm
