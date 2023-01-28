@@ -17,7 +17,7 @@ function OrderedProductsTable(props) {
             </thead>
             <tbody>
             {ordereds.map(ordered =>
-                <OrderedProductsTableRow orderedData={ordered} key={ordered.IDorderedProduct} />
+                <OrderedProductsTableRow orderedData={ordered} deleteOrdereds={props.deleteOrdereds} key={ordered.IDorderedProduct} />
             )}
             </tbody>
         </table>

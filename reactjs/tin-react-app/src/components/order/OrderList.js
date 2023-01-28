@@ -1,6 +1,6 @@
 import React from "react"
 import {Link, useLocation} from "react-router-dom"
-import {getOrderApiCall} from "../../apiCalls/orderApiCalls";
+import {deleteOrderApiCall, getOrderApiCall} from "../../apiCalls/orderApiCalls";
 import OrderListTable from "./listElement/OrderListTable";
 
 export function withRouter(Children){
@@ -41,6 +41,19 @@ class OrderList extends React.Component {
             )
     }
 
+    deleteOrder = (IDorder) => {
+        deleteOrderApiCall(IDorder)
+            .then(res => {
+                if(res.ok) {
+                    this.fetchOrderList()
+                }
+            },
+                (error) => {
+                console.log(error)
+                    this.fetchOrderList()
+                });
+    }
+
     componentDidMount() {
         this.fetchOrderList()
     }
@@ -54,7 +67,7 @@ class OrderList extends React.Component {
         } else if(!isLoaded) {
             content = <p>Loading data...</p>
         } else {
-            content = <OrderListTable orderList={orders} />
+            content = <OrderListTable orderList={orders} deleteOrder={this.deleteOrder} />
         }
 
         return (

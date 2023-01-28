@@ -18,7 +18,7 @@ function OrderListTable(props) {
             </thead>
             <tbody>
             {orders.map(order =>
-                <OrderListTableRow orderData={order} key={order.IDorder} />
+                <OrderListTableRow orderData={order} deleteOrder={props.deleteOrder} key={order.IDorder} />
             )}
             </tbody>
         </table>

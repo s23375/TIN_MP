@@ -7,6 +7,7 @@ import {addOrderApiCall, getOrderByIdApiCall, updateOrderApiCall} from "../../ap
 import {checkEmail, checkRequired} from "../../helpers/validationCommon";
 import {menuOrderItems} from "./dropdownMenu/menuOrderItems";
 import FormDropdown from "../form/FormDropdown";
+import FormCheckboxInput from "../form/FormCheckboxInput";
 
 export function withRouter(Children){
     return(props)=>{
@@ -30,7 +31,7 @@ class OrderForm extends React.Component {
                 datePlaced: new Date(),
                 clientContactInfo: "",
                 shippingCompany: "",
-                premiumDelivery: ""
+                premiumDelivery: false
             },
             errors: {
                 datePlaced: "",
@@ -150,6 +151,23 @@ class OrderForm extends React.Component {
         })
     }
 
+    handleCheckboxChange = (event) => {
+        const { name , value } = event.target;
+        const order = { ...this.state.order };
+        order.premiumDelivery = !order.premiumDelivery;
+
+
+        const errorMessage = this.validateField(name, value);
+        const errors = { ...this.state.errors };
+        errors[name] = errorMessage;
+
+        this.setState({
+            order: order,
+            errors: errors
+        })
+        console.log(this.state.order)
+    }
+
     dropdownHandleChange = (event) => {
         const { name , value } = event.target.value;
         const order = { ...this.state.order };
@@ -262,13 +280,13 @@ class OrderForm extends React.Component {
                         onChange={this.dropdownHandleChange}
                         menuItems={menuOrderItems}
                     />
-                    <FormInput
+                    <FormCheckboxInput
                         type="checkbox"
                         label="Premium delivery"
                         error={this.state.errors.premiumDelivery}
                         name="premiumDelivery"
                         placeholder=""
-                        onChange={this.handleChange}
+                        onChange={this.handleCheckboxChange}
                         value={this.state.order.premiumDelivery}
                     />
                     <FormButtons

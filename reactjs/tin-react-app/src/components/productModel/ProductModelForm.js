@@ -14,7 +14,6 @@ import { withTranslation } from "react-i18next";
 
 export function withRouter(Children){
     return(props)=>{
-
         const match  = {params: useParams()};
         return <Children {...props}  match = {match}/> //TIP: change property name to access props.whateverYouWant
     }
@@ -202,9 +201,10 @@ class ProductModelForm extends React.Component {
 
     render() {
         const { redirect: redirectTest } = this.state
+        const { t } = this.props
         if (redirectTest) {
             const currentFormMode = this.state.formMode
-            const notice = currentFormMode === formMode.NEW ? "Successfully added a product" : "Successfully updated a product"
+            const notice = currentFormMode === formMode.NEW ? t("product.form.add.confirm.text") : t("product.form.edit.confirm.text")
 
             return (
                 <Navigate to="/ProductModel/" state = { notice } />
@@ -214,7 +214,7 @@ class ProductModelForm extends React.Component {
         const errorsSummary = this.hasErrors() ? "The form contains errors" : ""
         const fetchError = this.state.error ? `Error: ${this.state.error.message}` : ""
 
-        const { t } = this.props
+
         const pageTitle = this.state.formMode === formMode.NEW ? t("product.form.add.pageTitle") : t("product.form.edit.pageTitle")
 
         const globalErrorMessage = errorsSummary || fetchError || this.state.message
