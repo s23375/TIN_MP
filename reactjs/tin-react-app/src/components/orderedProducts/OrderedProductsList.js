@@ -64,7 +64,7 @@ class OrderedProductsList extends React.Component {
         let content;
 
         if(error) {
-            content = <p>Error: {error.message}</p>
+            content = <p>Error: Please log in before proceeding</p>
         } else if(!isLoaded) {
             content = <p>Loading data...</p>
         } else {
