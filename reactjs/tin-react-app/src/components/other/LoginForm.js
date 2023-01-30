@@ -15,7 +15,7 @@ function LoginForm(props) {
     const [message, setMessage] = useState(null);
     const [isLoaded, setIsLoaded] = useState(null);
 
-    const [isCaptchaValid, setCaptcha] = useState(null);
+    const [isCaptchaValid, setCaptcha] = useState(true);
 
     const navigate = useNavigate();
 
@@ -133,7 +133,7 @@ function LoginForm(props) {
     }
 
     const { t } = useTransition();
-    const errorsSummary = hasErrors() ? "The form contains errors" : ""
+    const errorsSummary = hasErrors() ? "The form contains errors" : (isCaptchaValid ? "" : "Please use reCaptcha to prove your humanity")
     const fetchError = err ? `Error: ${err.message}` : ""
     const globalErrorMessage = errorsSummary || fetchError || message
     return (
